@@ -1,39 +1,39 @@
 <div>register works</div>
 
-<!--<div class="container">-->
-<!--  <form [formGroup]="form">-->
-<!--    <mat-card>-->
-<!--      <mat-card-content>-->
-<!--        <mat-card-title>Register</mat-card-title>-->
-<!--        <mat-form-field appearance="outline">-->
-<!--          <mat-label>Email</mat-label>-->
-<!--          <input matInput formControlName="email" required>-->
-<!--          <mat-error></mat-error>-->
-<!--        </mat-form-field>-->
-<!--        <mat-form-field appearance="outline">-->
-<!--          <mat-label>Password</mat-label>-->
-<!--          <input matInput type="password" formControlName="password" required>-->
-<!--          <mat-error></mat-error>-->
-<!--        </mat-form-field>-->
-<!--        <mat-card-content formGroupName="profile">-->
-<!--          <mat-form-field appearance="outline">-->
-<!--            <mat-label>Name</mat-label>-->
-<!--            <input matInput formControlName="name" required>-->
-<!--            <mat-error></mat-error>-->
-<!--          </mat-form-field>-->
-<!--          <mat-form-field appearance="outline">-->
-<!--            <mat-label>Surame</mat-label>-->
-<!--            <input matInput formControlName="surname" required>-->
-<!--            <mat-error></mat-error>-->
-<!--          </mat-form-field>-->
-<!--          <mat-form-field appearance="outline">-->
-<!--            <mat-label>Age</mat-label>-->
-<!--            <input matInput formControlName="age" required>-->
-<!--            <mat-error></mat-error>-->
-<!--          </mat-form-field>-->
-<!--        </mat-card-content>-->
-<!--        <button mat-raised-button color="primary" (click)="register(form)">Register</button>-->
-<!--      </mat-card-content>-->
-<!--    </mat-card>-->
-<!--  </form>-->
-<!--</div>-->
+<div class="container">
+  <form [formGroup]="form">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Register</mat-card-title>
+        <mat-form-field >
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-card-content formGroupName="profile">
+          <mat-form-field >
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>Surname</mat-label>
+            <input matInput formControlName="surname" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>Age</mat-label>
+            <input matInput formControlName="age" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-raised-button (click)="register(form)">Register</button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

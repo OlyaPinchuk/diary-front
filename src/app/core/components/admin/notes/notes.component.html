@@ -1,0 +1,10 @@
+<p>notes works!</p>
+
+<button routerLink="../">Get Users</button>
+
+<ng-container *ngIf="notes">
+  <div *ngFor="let note of notes">
+    {{note | json}}
+
+  </div>
+</ng-container>

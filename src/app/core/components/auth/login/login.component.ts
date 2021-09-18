@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators as v} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+import {IFullUser} from "../../../interfaces";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,13 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   // @ts-ignore
   form: FormGroup;
+  // @ts-ignore
+  urlId: integer;
+  // @ts-ignore
+  users: any[];
 
-  constructor(private authService: AuthService, private router: Router) {
+
+  constructor(private authService: AuthService, private router: Router, private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -24,7 +31,41 @@ export class LoginComponent implements OnInit {
 
   login(form: FormGroup): void {
     this.authService.login(form.getRawValue()).subscribe(() => {
-      this.router.navigate(['admin']);
+      // 1. get access token
+      // 2. get user id from access token
+      // 3. request http://localhost:8000/api/v1/users/<user_id_from_access_token>
+      // this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users', {params: {email: 'some@mail.com'}}).subscribe(...)
+      this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users')
+        .subscribe(value => {
+          this.users = value;
+          for (let u = 0; u < this.users.length; u++)
+            if (form.getRawValue().email == this.users[u].email) {
+              this.urlId = `${this.users[u].id}`;
+              console.log(this.urlId);
+              console.log('HERE')
+              this.router.navigate(['users', `${this.urlId}`]);
+              // this.router.navigate(['users']);
+            }
+        });
     }, () => this.form.reset());
   }
 }
+
+
+      // console.log(form.getRawValue())
+
+    // this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users')
+    //   .subscribe(value => {
+    //     this.users = value;
+        // console.log(typeof this.users)
+        // console.log(this.users);
+        // console.log(this.users[0].email) // works
+        // for (let u = 0; u < this.users.length; u++)
+        //   if (form.getRawValue().email == this.users[u].email)
+        //     console.log(`found: ${this.users[u].email}`)
+          // console.log(this.users[u].email)
+
+      // })
+
+    // console.log(this.users)
+

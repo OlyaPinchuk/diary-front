@@ -8,8 +8,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'auth', pathMatch: 'full'},
       {path: 'auth', loadChildren: () => import('./core/components/auth/auth.module').then(m => m.AuthModule)},
       {path: 'admin', loadChildren: () => import('./core/components/admin/admin.module').then(m => m.AdminModule)},
-      // {path: 'user', loadChildren: () => import('./core/components/user/user.module').then(m => m.UserModule)},
-      // {path: 'admin', loadChildren: () => import('./core/components/admin/admin.module').then(m => m.AdminModule)},
+      {path: 'users', loadChildren: () => import('./core/components/users/users.module').then(m => m.UsersModule)},
     ]
   }
 ];

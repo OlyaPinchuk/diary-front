@@ -1,0 +1,19 @@
+header {
+  background: #FFEFE1;
+
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+nav button {
+  margin: 0 5px;
+  color: #4A4848;
+}
+
+.logo {
+  color: #4A4848;
+  font-size: x-large;
+}

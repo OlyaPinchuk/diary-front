@@ -1,7 +1,9 @@
-<header>
-  <div class="logo">Diary</div>
+<header class="header">
+  <div class="logo">DIARY</div>
   <nav>
-    <button routerLink="auth">Login</button>
-    <button routerLink="auth/register">Register</button>
+    <button mat-raised-button routerLink="auth" *ngIf="tokenPresent == false">Login</button>
+    <button mat-raised-button routerLink="auth/register" *ngIf="tokenPresent == false">Register</button>
+    <button mat-raised-button routerLink="auth/login" *ngIf="tokenPresent == true" (click)="logOut()">Log Out</button>
+
   </nav>
 </header>

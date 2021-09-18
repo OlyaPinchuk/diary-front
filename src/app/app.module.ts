@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { MainComponent } from './shared/components/main/main.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {MatButtonModule} from "@angular/material/button";
+import {MainInterceptor} from "./main.interceptor";
 
 @NgModule({
   declarations: [
@@ -14,13 +16,21 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     MainComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+    ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: MainInterceptor
+    }
+
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

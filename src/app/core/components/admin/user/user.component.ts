@@ -14,7 +14,9 @@ export class UserComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+
     this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users').subscribe(value => this.users = value)
+
   }
 
 }

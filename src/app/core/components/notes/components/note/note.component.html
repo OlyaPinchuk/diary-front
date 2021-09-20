@@ -1,0 +1,14 @@
+<!--<p>note works!</p>-->
+
+<!--<div *ngIf="note">-->
+<!--  {{note|json}}-->
+<!--</div>-->
+
+<mat-card *ngIf="note" (click)="getNote(note.id)">
+  <mat-card-title>Title: {{note.title}}</mat-card-title>
+  <mat-card-content>
+    <div>Note Id: {{note.id}}</div>
+    <div>Content: {{note.content}}</div>
+    <button mat-raised-button>Edit</button>
+  </mat-card-content>
+</mat-card>

@@ -1,13 +1,24 @@
-<p *ngIf="userId == null || undefined">user works!</p>
-<div *ngIf="userId"> user number {{userId}} works</div>
+<!--<p *ngIf="userId == null || undefined">user works!</p>-->
+<!--<div *ngIf="userId"> user number {{userId}} works</div>-->
 <!--<div *ngIf="user">-->
 <!--  {{user|json}} - -->
 <!--  {{user.id}} &#45;&#45; {{user.email}} &#45;&#45; {{user.profile.name}} &#45;&#45; {{user.profile.surname}} &#45;&#45;{{user.profile.age}}-->
 <!--</div>-->
 
-<mat-card *ngIf="user" >
-  <mat-card-content>
-      {{user.id}} -- {{user.email}} -- {{user.profile.name}} -- {{user.profile.surname}} --{{user.profile.age}}
+<mat-spinner *ngIf="!user" ></mat-spinner>
 
+<button mat-raised-button (click)="getUserNotes()" >My Notes</button>
+<button mat-raised-button >My Lists</button>
+
+
+<mat-card *ngIf="user" >
+  <mat-card-title>My Profile</mat-card-title>
+  <mat-card-content>
+    <div>Id: {{user.id}}</div>
+    <div>Email: {{user.email}}</div>
+    <div>Name: {{user.profile.name}}</div>
+    <div>Surname: {{user.profile.surname}}</div>
+    <div>Age: {{user.profile.age}}</div>
+    <button mat-raised-button>Edit</button>
   </mat-card-content>
 </mat-card>

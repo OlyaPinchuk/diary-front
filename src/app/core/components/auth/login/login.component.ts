@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
             if (form.getRawValue().email == this.users[u].email) {
               this.urlId = `${this.users[u].id}`;
               console.log(this.urlId);
-              console.log('HERE')
               this.router.navigate(['users', `${this.urlId}`]);
               // this.router.navigate(['users']);
             }

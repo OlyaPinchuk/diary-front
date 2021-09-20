@@ -1,0 +1,9 @@
+<!--<p>notes works!</p>-->
+<button mat-raised-button (click)="goToProfile()">Go to My Profile</button>
+
+<div *ngIf="userNotes" class = 'container'>
+  <app-note *ngFor="let n of userNotes" [note]="n">
+
+  </app-note>
+</div>
+<router-outlet></router-outlet>

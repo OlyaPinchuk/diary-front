@@ -1,5 +1,5 @@
 header {
-  background: #FFEFE1;
+  background: #A8D0E6;
 
   height: 50px;
   display: flex;
@@ -10,10 +10,10 @@ header {
 
 nav button {
   margin: 0 5px;
-  color: #4A4848;
+  color: #123C69;
 }
 
 .logo {
-  color: #4A4848;
+  color: snow;
   font-size: x-large;
 }

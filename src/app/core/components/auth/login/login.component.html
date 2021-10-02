@@ -1,24 +1,26 @@
-<p>login works!</p>
+<!--<p>login works!</p>-->
 
+<div class="box">
+  <div class="container">
+    <form [formGroup]="form">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title>Login</mat-card-title>
+          <mat-form-field >
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required>
+            <mat-error></mat-error>
+          </mat-form-field>
 
-<div class="container">
-  <form [formGroup]="form">
-    <mat-card>
-      <mat-card-content>
-        <mat-card-title>Login</mat-card-title>
-        <mat-form-field >
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" required>
-          <mat-error></mat-error>
-        </mat-form-field>
-        <mat-form-field >
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" required>
-          <mat-error></mat-error>
-        </mat-form-field>
-
-        <button mat-raised-button (click)="login(form)" >Login</button>
-      </mat-card-content>
-    </mat-card>
-  </form>
+          <button mat-raised-button (click)="login(form)" >Login</button>
+          <button mat-raised-button >Login as Admin</button>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
 </div>

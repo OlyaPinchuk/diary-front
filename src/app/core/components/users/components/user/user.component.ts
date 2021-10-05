@@ -25,12 +25,19 @@ export class UserComponent implements OnInit {
       this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}`)
         .subscribe((value) => {
           this.user = value
-          console.log(this.user)
+          // console.log(this.user)
         })
     }
   }
   getUserNotes(){
     this.router.navigate(['users', this.userId, 'notes'])
+  }
 
+  getUserLists(){
+    this.router.navigate(['users', this.userId, 'lists'])
+  }
+
+  editProfile(){
+    this.router.navigate(['users', this.userId, 'profile'])
   }
 }

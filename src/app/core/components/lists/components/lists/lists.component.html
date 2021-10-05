@@ -1,0 +1,8 @@
+<!--<p>lists works!</p>-->
+
+<div *ngIf="userLists" class = 'container'>
+  <app-list *ngFor="let l of userLists" [list]="l">
+
+  </app-list>
+</div>
+<router-outlet></router-outlet>

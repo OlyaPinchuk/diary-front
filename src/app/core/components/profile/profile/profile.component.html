@@ -1,0 +1,26 @@
+<!--<p>profile works!</p>-->
+
+<form *ngIf="user" [formGroup]="form" >
+  <mat-card >
+    <mat-card-title>My Profile</mat-card-title>
+    <mat-card-content>
+  <!--    <div>Id:-->
+  <!--      <input [value]="user.id">-->
+  <!--    </div>-->
+  <!--    <div>Email:-->
+  <!--      <input [value]="user.email">-->
+  <!--    </div>-->
+      <div>Name:
+        <input formControlName="name" >
+      </div>
+      <div>Surname:
+        <input formControlName="surname" >
+      </div>
+      <div>Age:
+        <input formControlName="age" >
+      </div>
+      <button mat-raised-button (click)="saveEdits(form)" >Save Changes</button>
+    </mat-card-content>
+  </mat-card>
+</form>
+

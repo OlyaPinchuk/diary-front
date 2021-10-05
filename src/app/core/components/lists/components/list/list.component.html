@@ -1,0 +1,13 @@
+<!--<p>list works!</p>-->
+
+<mat-card *ngIf="list" >
+  <mat-card-title>Title: {{list.title}}</mat-card-title>
+  <mat-card-content>
+    <div>List Id: {{list.id}}</div>
+    <div>User Id: {{list.user}}</div>
+    <div *ngFor="let item of list.items">
+      <div>Item Content: {{item.content}}</div>
+    </div>
+    <button mat-raised-button>Edit</button>
+  </mat-card-content>
+</mat-card>

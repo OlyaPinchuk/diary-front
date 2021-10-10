@@ -6,18 +6,28 @@ import { NotesComponent } from './components/notes/notes.component';
 import { NoteComponent } from './components/note/note.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import { ChosenNoteComponent } from './components/chosen-note/chosen-note.component';
+import { EditNoteComponent } from './components/edit-note/edit-note.component';
 
 
 @NgModule({
   declarations: [
     NotesComponent,
-    NoteComponent
+    NoteComponent,
+    ChosenNoteComponent,
+    EditNoteComponent
   ],
   imports: [
     CommonModule,
     NotesRoutingModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class NotesModule { }

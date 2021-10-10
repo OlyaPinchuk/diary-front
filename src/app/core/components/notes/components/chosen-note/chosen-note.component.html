@@ -1,0 +1,32 @@
+<!--<p>chosen-note works!</p>-->
+
+<mat-card *ngIf="chosenNote && editForm == false">
+  <mat-card-title>Title: {{chosenNote.title}}</mat-card-title>
+  <mat-card-content>
+    <div>Note Id: {{chosenNote.id}}</div>
+    <div>Content: {{chosenNote.content}}</div>
+    <button mat-raised-button (click)="editNote()" >Edit</button>
+  </mat-card-content>
+</mat-card>
+
+<form [formGroup]="form" *ngIf="editForm" >
+  <mat-card >
+      <mat-card-title>Title:
+        <input formControlName="title">
+      </mat-card-title>
+      <mat-card-content>
+<!--        <div>Note Id:-->
+<!--          <input formControlName="id">-->
+<!--        </div>-->
+        <div>Content:
+          <input formControlName="content">
+        </div>
+<!--        <div>User ID:-->
+<!--          <input formControlName="user" >-->
+<!--        </div>-->
+        <button mat-raised-button (click)="saveEdits()" >Save</button>
+      </mat-card-content>
+  </mat-card>
+</form>
+
+

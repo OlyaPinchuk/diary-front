@@ -11,3 +11,40 @@
     <button mat-raised-button>Edit</button>
   </mat-card-content>
 </mat-card>
+
+
+
+<!--<form *ngIf="!list" [formGroup]="form">-->
+<!--  <mat-card>-->
+<!--      <mat-card-content>-->
+<!--            <mat-card-title>New List</mat-card-title>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>Title:</mat-label>-->
+<!--              <input matInput formControlName="title">-->
+<!--              <mat-error></mat-error>-->
+<!--            </mat-form-field>-->
+<!--            <mat-form-field>-->
+<!--              <mat-label>User:</mat-label>-->
+<!--              <input matInput formControlName="user">-->
+<!--              <mat-error></mat-error>-->
+<!--            </mat-form-field>-->
+<!--            <button mat-raised-button (click)="saveNewList(form)">Save</button>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+<!--</form>-->
+
+
+<div *ngIf="!list" [formGroup]="listForm">
+  <div>Title:</div>
+  <input formControlName="title">
+  <div>User: </div>
+  <input formControlName="user">
+  <button (click)="addItem()" >Add item</button>
+  <div formArrayName="items">
+  <div *ngFor="let city of itemsArray.controls; index as i">
+  <input [formControlName]="i">
+  </div>
+  </div>
+</div>
+
+

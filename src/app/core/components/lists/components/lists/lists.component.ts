@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-lists',
@@ -11,7 +11,7 @@ export class ListsComponent implements OnInit {
   userId: any
   userLists: any
 
-  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
@@ -20,6 +20,14 @@ export class ListsComponent implements OnInit {
         this.userLists = value
         console.log(this.userLists)
       })
+  }
+
+  goToProfile(){
+    this.router.navigate(['users', this.userId])
+  }
+
+  createList() {
+    this.router.navigate(['users', this.userId, 'lists', 'add'])
   }
 
 }

@@ -26,4 +26,7 @@ export class NotesComponent implements OnInit {
     this.router.navigate(['users', this.userId])
   }
 
+  createNote() {
+    this.router.navigate(['users', this.userId, 'notes', 'add'])
+  }
 }

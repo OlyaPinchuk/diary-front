@@ -4,11 +4,63 @@
 <!--  {{note|json}}-->
 <!--</div>-->
 
-<mat-card *ngIf="note" (click)="getNote(note.id)">
-  <mat-card-title>Title: {{note.title}}</mat-card-title>
+
+
+  <form *ngIf="!note && editForm == false" [formGroup]="form" >
+    <mat-card>
+      <mat-card-content>
+            <mat-card-title>New Note</mat-card-title>
+            <mat-form-field>
+              <mat-label>Title:</mat-label>
+              <input matInput formControlName="title">
+              <mat-error></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Content:</mat-label>
+              <input matInput formControlName="content">
+              <mat-error></mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>User:</mat-label>
+              <input matInput formControlName="user">
+              <mat-error></mat-error>
+            </mat-form-field>
+            <button mat-raised-button (click)="saveNewNote(form)">Save</button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+
+
+<mat-card *ngIf="note && editForm == false" >
+  <mat-card-title >Title: {{note.title}}</mat-card-title>
   <mat-card-content>
     <div>Note Id: {{note.id}}</div>
     <div>Content: {{note.content}}</div>
-    <button mat-raised-button>Edit</button>
+    <button mat-raised-button (click)="getNote(note.id)" >Expand</button>
+    <button mat-raised-button (click)="editNote(note.id)">Edit</button>
+    <button mat-raised-button >Delete</button>
   </mat-card-content>
 </mat-card>
+
+
+<form [formGroup]="form" *ngIf="editForm" >
+  <mat-card >
+      <mat-card-title>Title:
+        <input formControlName="title">
+      </mat-card-title>
+      <mat-card-content>
+<!--        <div>Note Id:-->
+<!--          <input formControlName="id">-->
+<!--        </div>-->
+        <div>Content:
+          <input formControlName="content">
+        </div>
+<!--        <div>User ID:-->
+<!--          <input formControlName="user" >-->
+<!--        </div>-->
+        <button mat-raised-button (click)="saveEdits()" >Save</button>
+      </mat-card-content>
+  </mat-card>
+</form>
+
+

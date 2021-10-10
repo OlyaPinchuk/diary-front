@@ -6,6 +6,9 @@ import { ListsComponent } from './components/lists/lists.component';
 import { ListComponent } from './components/list/list.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import {MatButtonModule} from "@angular/material/button";
     CommonModule,
     ListsRoutingModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ]
 })
 export class ListsModule { }

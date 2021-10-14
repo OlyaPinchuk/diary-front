@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -22,18 +23,8 @@ export class ListComponent implements OnInit {
   itemsArray: FormArray
 
   // @ts-ignore
-  cityArray: FormArray
-
-  // @ts-ignore
   myGroup: FormGroup
 
-  get cities() {
-    return this.myGroup.get('cities') as FormArray
-  }
-
-  addAltEmail() {
-    this.cityArray.push(this.fb.control(''))
-  }
 
   get items(){
     return this.listForm.get('items') as FormArray
@@ -43,17 +34,11 @@ export class ListComponent implements OnInit {
     this.itemsArray.push(this.fb.control(''))
   }
 
-  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => this.userID = params['id'])
     console.log(this.userID)
-
-    // this.form = new FormGroup({
-    //   title: new FormControl(''),
-    //   user: new FormControl(''),
-    //
-    // })
 
     this.itemsArray = new FormArray([new FormControl('item')])
     this.listForm = new FormGroup({
@@ -62,16 +47,31 @@ export class ListComponent implements OnInit {
       items: this.itemsArray
     })
 
-    // this.cityArray = new FormArray([new FormControl('SF')]);
-    // this.myGroup = new FormGroup({
-    //   cities: this.cityArray
-    // });
-
-
   }
 
   saveNewList(form: FormGroup){
-    console.log(form.getRawValue())
+
+    let current_item: {}
+    let items1 = []
+    // console.log(form.getRawValue().items)
+    for (let i = 0; i < form.getRawValue().items.length; i++) {
+      // console.log(form.getRawValue().items[i])
+      current_item = {
+        content: form.getRawValue().items[i]
+      }
+      items1.push(current_item)
+      // console.log(items1)
+    }
+    // console.log(items1)
+    let data = form.getRawValue()
+    data.items = items1
+    console.log(data)
+
+    this.httpClient.post(`http://localhost:8000/api/v1/lists/add`, data)
+      .subscribe(() => {
+        this.router.navigate(['users', this.userID, 'lists'])
+      })
+
   }
 }
 

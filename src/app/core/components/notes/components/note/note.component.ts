@@ -62,8 +62,12 @@ export class NoteComponent implements OnInit {
       })
   }
 
-  saveEdits() {
-    console.log('save edits')
+  saveEdits(form: FormGroup, noteId: any) {
+    this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
+      .subscribe(() => {
+        this.router.navigate(['users', this.userId])
+      })
+
   }
 
 }

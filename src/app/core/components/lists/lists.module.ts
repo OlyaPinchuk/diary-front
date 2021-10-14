@@ -9,6 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -16,14 +17,15 @@ import {ReactiveFormsModule} from "@angular/forms";
     ListsComponent,
     ListComponent
   ],
-  imports: [
-    CommonModule,
-    ListsRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        ListsRoutingModule,
+        MatCardModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatListModule
+    ]
 })
 export class ListsModule { }

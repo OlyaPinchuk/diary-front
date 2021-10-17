@@ -67,7 +67,15 @@ export class NoteComponent implements OnInit {
       .subscribe(() => {
         this.router.navigate(['users', this.userId])
       })
-
   }
+
+  deleteNote(noteId: any) {
+    console.log('delete')
+    this.httpClient.delete(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
+      .subscribe(() => {
+        this.router.navigate(['users', this.userId])
+      })
+  }
+
 
 }

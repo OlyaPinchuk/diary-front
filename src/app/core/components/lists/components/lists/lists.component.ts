@@ -18,7 +18,7 @@ export class ListsComponent implements OnInit {
     this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`)
       .subscribe(value => {
         this.userLists = value
-        console.log(this.userLists)
+        // console.log(this.userLists)
       })
   }
 

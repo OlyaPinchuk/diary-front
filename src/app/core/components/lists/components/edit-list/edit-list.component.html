@@ -1,0 +1,19 @@
+<mat-card *ngIf="chosenList" [formGroup]="listForm">
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Title:</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+    <div formArrayName="items"> Content:
+      <div *ngFor="let item of itemsArray.controls; index as i">
+<!--        <input [value]="item.value.id" >-->
+<!--        <input [value]="item.value.content" >-->
+<!--        <div>{{item.value.id}}</div>-->
+<!--        <div>{{item.value.content}}</div>-->
+      <input [formControlName]="i">
+      </div>
+    </div>
+    <button mat-raised-button (click)="addItem()" >Add item</button>
+  </mat-card-content>
+  <button mat-raised-button (click)="saveEdits(listForm, itemsArray.controls)" >Save Edits</button>
+</mat-card>

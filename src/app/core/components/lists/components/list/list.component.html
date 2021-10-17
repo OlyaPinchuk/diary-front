@@ -3,12 +3,17 @@
 <mat-card *ngIf="list" >
   <mat-card-title>Title: {{list.title}}</mat-card-title>
   <mat-card-content>
-    <div>List Id: {{list.id}}</div>
-    <div>User Id: {{list.user}}</div>
+<!--    <div>List Id: {{list.id}}</div>-->
+<!--    <div>User Id: {{list.user}}</div>-->
     <div *ngFor="let item of list.items">
-      <div>Item Content: {{item.content}}</div>
+      <div>
+        <input type="checkbox" >
+        {{item.content}}
+      </div>
     </div>
-    <button mat-raised-button>Edit</button>
+    <button mat-raised-button (click)="getList(list.id)" >Expand</button>
+    <button mat-raised-button (click)="editList(list.id)" >Edit</button>
+    <button mat-raised-button>Delete</button>
   </mat-card-content>
 </mat-card>
 
@@ -19,13 +24,13 @@
       <mat-label>Title:</mat-label>
       <input matInput formControlName="title">
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>User:</mat-label>
-      <input matInput formControlName="user">
-    </mat-form-field>
+<!--    <mat-form-field>-->
+<!--      <mat-label>User:</mat-label>-->
+<!--      <input matInput formControlName="user">-->
+<!--    </mat-form-field>-->
 
     <div formArrayName="items"> Content:
-      <div *ngFor="let city of itemsArray.controls; index as i">
+      <div *ngFor="let item of itemsArray.controls; index as i">
       <input [formControlName]="i">
       </div>
     </div>

@@ -38,7 +38,7 @@
     <div>Content: {{note.content}}</div>
     <button mat-raised-button (click)="getNote(note.id)" >Expand</button>
     <button mat-raised-button (click)="editNote(note.id)">Edit</button>
-    <button mat-raised-button >Delete</button>
+    <button mat-raised-button (click)="deleteNote(note.id)" >Delete</button>
   </mat-card-content>
 </mat-card>
 

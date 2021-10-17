@@ -1,0 +1,16 @@
+<mat-card *ngIf="chosenList" >
+  <mat-card-title>Title: {{chosenList.title}}</mat-card-title>
+  <mat-card-content>
+<!--    <div>List Id: {{list.id}}</div>-->
+<!--    <div>User Id: {{list.user}}</div>-->
+    <div *ngFor="let item of chosenList.items">
+      <div>
+        <input type="checkbox" >
+        {{item.content}}
+      </div>
+    </div>
+<!--    <button mat-raised-button >Expand</button>-->
+    <button mat-raised-button>Edit</button>
+    <button mat-raised-button>Delete</button>
+  </mat-card-content>
+</mat-card>

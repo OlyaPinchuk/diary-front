@@ -10,12 +10,16 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatListModule} from "@angular/material/list";
+import { ChosenListComponent } from './components/chosen-list/chosen-list.component';
+import { EditListComponent } from './components/edit-list/edit-list.component';
 
 
 @NgModule({
   declarations: [
     ListsComponent,
-    ListComponent
+    ListComponent,
+    ChosenListComponent,
+    EditListComponent
   ],
     imports: [
         CommonModule,

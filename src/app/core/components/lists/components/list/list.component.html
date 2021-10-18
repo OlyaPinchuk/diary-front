@@ -7,13 +7,15 @@
 <!--    <div>User Id: {{list.user}}</div>-->
     <div *ngFor="let item of list.items">
       <div>
-        <input type="checkbox" >
+
+        <input *ngIf="item.status == true" type="checkbox" checked>
+        <input *ngIf="item.status == false" type="checkbox">
         {{item.content}}
       </div>
     </div>
     <button mat-raised-button (click)="getList(list.id)" >Expand</button>
     <button mat-raised-button (click)="editList(list.id)" >Edit</button>
-    <button mat-raised-button>Delete</button>
+    <button mat-raised-button (click)="deleteList(list.id)" >Delete</button>
   </mat-card-content>
 </mat-card>
 

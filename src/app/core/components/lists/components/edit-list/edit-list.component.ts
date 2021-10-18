@@ -17,6 +17,8 @@ export class EditListComponent implements OnInit {
   // @ts-ignore
   itemsArray: FormArray
   // @ts-ignore
+  itemObject: FormGroup
+  // @ts-ignore
   listForm: FormGroup
   idList: any = []
 
@@ -25,7 +27,11 @@ export class EditListComponent implements OnInit {
   }
 
   addItem() {
-    this.itemsArray.push(this.fb.control(''))
+    this.itemObject = new FormGroup({
+      content: new FormControl(''),
+      status: new FormControl(false)
+    })
+    this.itemsArray.push(this.itemObject)
   }
 
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private fb: FormBuilder, private router: Router) { }
@@ -42,67 +48,56 @@ export class EditListComponent implements OnInit {
         for (let i = 0; i < this.chosenList.items.length; i++) {
           this.idList.push(this.chosenList.items[i].id)
         }
-        console.log(this.idList)
+        // console.log(this.idList)
+        // console.log(this.chosenList)
 
         this.itemsArray = new FormArray([
         ])
-        for (let i = 0; i < this.chosenList.items.length; i++) {
-            // let currentItem = {
-            //   id: this.chosenList.items[i].id,
-            //   content: this.chosenList.items[i].content
-            // }
-            // this.itemsArray.push(new FormControl(currentItem))
-            this.itemsArray.push(new FormControl(this.chosenList.items[i].content))
-          }
-        // console.log(this.itemsArray)
-        // console.log(this.itemsArray.controls[0].value)
 
+        for (let i = 0; i < this.chosenList.items.length; i++) {
+            this.itemObject = new FormGroup({
+              id: new FormControl(this.chosenList.items[i].id),
+              content: new FormControl(this.chosenList.items[i].content),
+              status: new FormControl(this.chosenList.items[i].status),
+            })
+            this.itemsArray.push(this.itemObject)
+          }
 
         this.listForm = new FormGroup({
+          status: new FormControl(true),
           title: new FormControl(this.chosenList.title),
           user: new FormControl(this.chosenList.user),
-          items: this.itemsArray
+          items: this.itemsArray,
         })
       })
 
   }
 
   saveEdits(form: FormGroup, items: any) {
-    // let currentItem: {}
-    // let fullItems = []
+
+    console.log(form.getRawValue())
+
+    // let finalItems = []
+    // console.log(form.getRawValue().items)
     // for (let i = 0; i < form.getRawValue().items.length; i++) {
-    //   currentItem = {
-    //     // id:
-    //     content: form.getRawValue().items[i]
+    //   if (i >= this.idList.length){
+    //     let currentItem = {
+    //       content: form.getRawValue().items[i]
+    //     }
+    //     finalItems.push(currentItem)
+    //   } else if (i <= this.idList.length) {
+    //     let currentItem = {
+    //       id: this.idList[i],
+    //       content: form.getRawValue().items[i]
+    //     }
+    //     finalItems.push(currentItem)
     //   }
-    //   fullItems.push(currentItem)
+    //
     // }
     // let data = form.getRawValue()
-    // data.items = fullItems
-    // console.log(data)
-
-    let finalItems = []
-    console.log(form.getRawValue().items)
-    for (let i = 0; i < form.getRawValue().items.length; i++) {
-      if (i >= this.idList.length){
-        let currentItem = {
-          content: form.getRawValue().items[i]
-        }
-        finalItems.push(currentItem)
-      } else if (i <= this.idList.length) {
-        let currentItem = {
-          id: this.idList[i],
-          content: form.getRawValue().items[i]
-        }
-        finalItems.push(currentItem)
-      }
-
-    }
-    let data = form.getRawValue()
-    data.items = finalItems
-    console.log(data)
-
-    this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, data)
+    // data.items = finalItems
+    //
+    this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userId, 'lists'])
       })

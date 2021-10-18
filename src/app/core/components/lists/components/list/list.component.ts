@@ -38,7 +38,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => this.userID = params['id'])
-    // console.log(this.userID)
 
     this.itemsArray = new FormArray([new FormControl('item')])
     this.listForm = new FormGroup({
@@ -65,7 +64,7 @@ export class ListComponent implements OnInit {
     // console.log(items1)
     let data = form.getRawValue()
     data.items = items1
-    // console.log(data)
+
 
     this.httpClient.post(`http://localhost:8000/api/v1/lists/add`, data)
       .subscribe(() => {
@@ -80,6 +79,13 @@ export class ListComponent implements OnInit {
 
   editList(listId: any){
      this.router.navigate(['users', this.userID, 'lists', listId, 'edit'])
+  }
+
+  deleteList(listId: any) {
+    this.httpClient.delete(`http://localhost:8000/api/v1/lists/${listId}/delete`)
+      .subscribe(() => {
+        this.router.navigate(['users', this.userID ])
+      })
   }
 }
 

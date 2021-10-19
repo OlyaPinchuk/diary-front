@@ -11,11 +11,11 @@ import {MatButtonModule} from "@angular/material/button";
 import {MainInterceptor} from "./main.interceptor";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    MainComponent,
-  ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        MainComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -23,14 +23,17 @@ import {MainInterceptor} from "./main.interceptor";
         BrowserAnimationsModule,
         MatButtonModule,
     ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      multi: true,
-      useClass: MainInterceptor
-    }
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            multi: true,
+            useClass: MainInterceptor
+        }
 
-  ],
-  bootstrap: [AppComponent]
+    ],
+    // exports: [
+    //     HeaderComponent
+    // ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

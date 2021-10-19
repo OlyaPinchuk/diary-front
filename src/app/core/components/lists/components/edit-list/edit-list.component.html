@@ -1,7 +1,6 @@
 <mat-card *ngIf="chosenList" [formGroup]="listForm">
   <mat-card-content>
     <mat-form-field>
-      <input formControlName="status" type="checkbox" >
       <mat-label>Title:</mat-label>
       <input matInput formControlName="title">
     </mat-form-field>
@@ -11,7 +10,7 @@
         <div [formGroupName]="i" >
           <input formControlName="content" >
           <input formControlName="status" type="checkbox" >
-          <input *ngIf="item.value.id" formControlName="id" >
+          <input *ngIf="item.value.id" formControlName="id" type="hidden">
         </div>
 
 <!--        <div>{{item.value.id}}</div>-->

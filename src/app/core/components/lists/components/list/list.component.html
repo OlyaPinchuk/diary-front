@@ -9,6 +9,7 @@
       <div>
 
         <input *ngIf="item.status == true" type="checkbox" checked>
+<!--        <div *ngIf="item.status == true" > status true {{item.content}}</div>-->
         <input *ngIf="item.status == false" type="checkbox">
         {{item.content}}
       </div>
@@ -20,25 +21,39 @@
 </mat-card>
 
 
+<!--<mat-card *ngIf="!list" [formGroup]="listForm">-->
+<!--  <mat-card-content>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Title:</mat-label>-->
+<!--      <input matInput formControlName="title">-->
+<!--    </mat-form-field>-->
+<!--    <div formArrayName="items"> Content:-->
+<!--      <div *ngFor="let item of itemsArray.controls; index as i">-->
+<!--      <input [formControlName]="i">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <button mat-raised-button (click)="addItem()" >Add item</button>-->
+<!--  </mat-card-content>-->
+<!--  <button mat-raised-button (click)="saveNewList(listForm)" >Save</button>-->
+<!--</mat-card>-->
+
 <mat-card *ngIf="!list" [formGroup]="listForm">
   <mat-card-content>
     <mat-form-field>
       <mat-label>Title:</mat-label>
       <input matInput formControlName="title">
     </mat-form-field>
-<!--    <mat-form-field>-->
-<!--      <mat-label>User:</mat-label>-->
-<!--      <input matInput formControlName="user">-->
-<!--    </mat-form-field>-->
-
     <div formArrayName="items"> Content:
+
       <div *ngFor="let item of itemsArray.controls; index as i">
-      <input [formControlName]="i">
+        <div [formGroupName]="i" >
+          <input formControlName="content" >
+          <input formControlName="status" type="checkbox" >
+        </div>
       </div>
     </div>
     <button mat-raised-button (click)="addItem()" >Add item</button>
+    <button mat-raised-button (click)="saveNewList(listForm)" >Save</button>
   </mat-card-content>
-  <button mat-raised-button (click)="saveNewList(listForm)" >Save</button>
 </mat-card>
-
 

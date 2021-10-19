@@ -64,7 +64,7 @@ export class EditListComponent implements OnInit {
           }
 
         this.listForm = new FormGroup({
-          status: new FormControl(true),
+
           title: new FormControl(this.chosenList.title),
           user: new FormControl(this.chosenList.user),
           items: this.itemsArray,

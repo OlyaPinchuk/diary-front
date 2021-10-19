@@ -21,7 +21,8 @@ export class ListComponent implements OnInit {
   listForm: FormGroup
   // @ts-ignore
   itemsArray: FormArray
-
+  // @ts-ignore
+  itemObject: FormGroup
   // @ts-ignore
   myGroup: FormGroup
 
@@ -31,7 +32,11 @@ export class ListComponent implements OnInit {
   }
 
   addItem() {
-    this.itemsArray.push(this.fb.control(''))
+    this.itemObject = new FormGroup({
+      content: new FormControl(''),
+      status: new FormControl(false)
+    })
+    this.itemsArray.push(this.itemObject)
   }
 
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) { }
@@ -39,7 +44,11 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => this.userID = params['id'])
 
-    this.itemsArray = new FormArray([new FormControl('item')])
+    this.itemObject = new FormGroup({
+      content: new FormControl(''),
+      status: new FormControl(false)
+    })
+    this.itemsArray = new FormArray([this.itemObject])
     this.listForm = new FormGroup({
       title: new FormControl(''),
       user: new FormControl(`${this.userID}`),
@@ -49,24 +58,25 @@ export class ListComponent implements OnInit {
   }
 
   saveNewList(form: FormGroup){
+    console.log(form.getRawValue())
 
-    let current_item: {}
-    let items1 = []
-    // console.log(form.getRawValue().items)
-    for (let i = 0; i < form.getRawValue().items.length; i++) {
-      // console.log(form.getRawValue().items[i])
-      current_item = {
-        content: form.getRawValue().items[i]
-      }
-      items1.push(current_item)
-      // console.log(items1)
-    }
-    // console.log(items1)
-    let data = form.getRawValue()
-    data.items = items1
+    // let current_item: {}
+    // let items1 = []
+    // // console.log(form.getRawValue().items)
+    // for (let i = 0; i < form.getRawValue().items.length; i++) {
+    //   // console.log(form.getRawValue().items[i])
+    //   current_item = {
+    //     content: form.getRawValue().items[i]
+    //   }
+    //   items1.push(current_item)
+    //   // console.log(items1)
+    // }
+    // // console.log(items1)
+    // let data = form.getRawValue()
+    // data.items = items1
 
 
-    this.httpClient.post(`http://localhost:8000/api/v1/lists/add`, data)
+    this.httpClient.post(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userID, 'lists'])
       })
@@ -84,7 +94,7 @@ export class ListComponent implements OnInit {
   deleteList(listId: any) {
     this.httpClient.delete(`http://localhost:8000/api/v1/lists/${listId}/delete`)
       .subscribe(() => {
-        this.router.navigate(['users', this.userID ])
+        this.router.navigate(['users', this.userID])
       })
   }
 }

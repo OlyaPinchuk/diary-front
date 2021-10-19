@@ -17,12 +17,15 @@ export class LoginComponent implements OnInit {
   urlId: integer;
   // @ts-ignore
   users: any[];
+  // @ts-ignore
+  someValue: number;
 
 
   constructor(private authService: AuthService, private router: Router, private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.someValue = this.authService.getCurrentState();
     this.form = new FormGroup({
       email: new FormControl('', [v.email, v.required]),
       password: new FormControl('', [v.required])
@@ -41,12 +44,14 @@ export class LoginComponent implements OnInit {
           for (let u = 0; u < this.users.length; u++)
             if (form.getRawValue().email == this.users[u].email) {
               this.urlId = `${this.users[u].id}`;
-              console.log(this.urlId);
+
               this.router.navigate(['users', `${this.urlId}`]);
               // this.router.navigate(['users']);
             }
         });
     }, () => this.form.reset());
+
+    this.authService.setNewState()
   }
 }
 

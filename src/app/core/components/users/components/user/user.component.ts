@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {IFullUser} from "../../../../interfaces";
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-user',
@@ -14,10 +15,13 @@ export class UserComponent implements OnInit {
   user: any
   // @ts-ignore
   userNotes: any
+  // @ts-ignore
+  someValue: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router, private authService: AuthService ) { }
 
   ngOnInit(): void {
+    this.someValue = this.authService.getCurrentState();
     if (!this.user){
       this.activatedRoute.params.subscribe(params => {
         this.userId = params['id']

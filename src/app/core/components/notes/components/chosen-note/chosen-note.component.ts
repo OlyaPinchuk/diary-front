@@ -45,7 +45,7 @@ export class ChosenNoteComponent implements OnInit {
   saveEdits(form: FormGroup, noteId: any) {
     this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
       .subscribe(() => {
-        this.router.navigate(['users', this.userId])
+        this.router.navigate(['users', this.userId, 'notes'])
       })
 
   }

@@ -5,7 +5,8 @@
 <!--    <div>User Id: {{list.user}}</div>-->
     <div *ngFor="let item of chosenList.items">
       <div>
-        <input type="checkbox" >
+        <input *ngIf="item.status == true" type="checkbox" checked>
+        <input *ngIf="item.status == false" type="checkbox">
         {{item.content}}
       </div>
     </div>

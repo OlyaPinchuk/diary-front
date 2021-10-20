@@ -74,33 +74,23 @@ export class EditListComponent implements OnInit {
   }
 
   saveEdits(form: FormGroup, items: any) {
-
     console.log(form.getRawValue())
-
-    // let finalItems = []
-    // console.log(form.getRawValue().items)
-    // for (let i = 0; i < form.getRawValue().items.length; i++) {
-    //   if (i >= this.idList.length){
-    //     let currentItem = {
-    //       content: form.getRawValue().items[i]
-    //     }
-    //     finalItems.push(currentItem)
-    //   } else if (i <= this.idList.length) {
-    //     let currentItem = {
-    //       id: this.idList[i],
-    //       content: form.getRawValue().items[i]
-    //     }
-    //     finalItems.push(currentItem)
-    //   }
-    //
-    // }
-    // let data = form.getRawValue()
-    // data.items = finalItems
-    //
     this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userId, 'lists'])
       })
 
+  }
+
+  deleteItem(itemId: any){
+    this.httpClient.delete(`http://localhost:8000/api/v1/lists/items/${itemId}`)
+      .subscribe(() => {
+        // this.router.navigate(['users', this.userId, 'lists', this.listId, 'edit'])
+        this.ngOnInit()
+      })
+  }
+
+  deleteNewItem(){
+    this.itemsArray.removeAt(-1)
   }
 }

@@ -60,22 +60,6 @@ export class ListComponent implements OnInit {
   saveNewList(form: FormGroup){
     console.log(form.getRawValue())
 
-    // let current_item: {}
-    // let items1 = []
-    // // console.log(form.getRawValue().items)
-    // for (let i = 0; i < form.getRawValue().items.length; i++) {
-    //   // console.log(form.getRawValue().items[i])
-    //   current_item = {
-    //     content: form.getRawValue().items[i]
-    //   }
-    //   items1.push(current_item)
-    //   // console.log(items1)
-    // }
-    // // console.log(items1)
-    // let data = form.getRawValue()
-    // data.items = items1
-
-
     this.httpClient.post(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userID, 'lists'])
@@ -95,6 +79,18 @@ export class ListComponent implements OnInit {
     this.httpClient.delete(`http://localhost:8000/api/v1/lists/${listId}/delete`)
       .subscribe(() => {
         this.router.navigate(['users', this.userID])
+      })
+  }
+
+  changeItemStatus(itemId: any, itemContent: any, status: boolean){
+    let fullItem = {
+      id: itemId,
+      content: itemContent,
+      status: !status
+    }
+    this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
+      .subscribe(() => {
+        // this.ngOnInit()
       })
   }
 }

@@ -43,7 +43,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.someValue = this.authService.getCurrentState();
+    // this.someValue = this.authService.getCurrentState();
+    this.checkToken()
   }
 
 

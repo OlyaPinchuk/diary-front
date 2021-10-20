@@ -3,14 +3,12 @@
 <mat-card *ngIf="list" >
   <mat-card-title>Title: {{list.title}}</mat-card-title>
   <mat-card-content>
-<!--    <div>List Id: {{list.id}}</div>-->
-<!--    <div>User Id: {{list.user}}</div>-->
     <div *ngFor="let item of list.items">
       <div>
 
-        <input *ngIf="item.status == true" type="checkbox" checked>
+        <input *ngIf="item.status == true" type="checkbox" checked (click)="changeItemStatus(item.id, item.content, item.status)">
 <!--        <div *ngIf="item.status == true" > status true {{item.content}}</div>-->
-        <input *ngIf="item.status == false" type="checkbox">
+        <input *ngIf="item.status == false" type="checkbox" (click)="changeItemStatus(item.id, item.content, item.status)" >
         {{item.content}}
       </div>
     </div>

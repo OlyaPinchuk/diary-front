@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router, private authService: AuthService ) { }
 
   ngOnInit(): void {
-    this.someValue = this.authService.getCurrentState();
+    // this.someValue = this.authService.getCurrentState();
     if (!this.user){
       this.activatedRoute.params.subscribe(params => {
         this.userId = params['id']

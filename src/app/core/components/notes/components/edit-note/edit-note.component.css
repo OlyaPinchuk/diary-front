@@ -1,0 +1,60 @@
+button {
+  margin: 5px 5px;
+  color: #123C69;
+}
+
+.toProfileButton {
+  font-size: large;
+}
+
+ul {
+  display: flex;
+  /*justify-content: center;*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+li {
+  display: inline;
+  align-self: center;
+}
+
+li button:hover {
+  background-color: rgb(168, 208, 230);
+  color: white;
+  /*color: rgba(0, 0, 0, 0.6);*/
+}
+
+/*input {*/
+/*  border: 1px darkgray solid;*/
+/*  border-radius: 2px;*/
+/*  width: 200px;*/
+/*  !*height: 30px;*!*/
+/*  overflow: visible;*/
+/*}*/
+
+mat-form-field {
+  display: block;
+}
+
+textarea {
+  min-width: 300px;
+  min-height: 200px;
+}
+
+mat-card {
+  margin: 5px 5px;
+  inline-size: fit-content;
+  align-self: flex-start;
+}
+
+mat-card-title {
+  margin-bottom: 10px;
+  font-weight: lighter;
+  /*font-family: cursive;*/
+  font-family: Arial, fantasy;
+}
+

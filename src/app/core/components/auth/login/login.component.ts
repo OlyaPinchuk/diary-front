@@ -4,6 +4,8 @@ import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {IFullUser} from "../../../interfaces";
 import {HttpClient} from "@angular/common/http";
+import * as jwt from 'jsonwebtoken';
+import JWTDecode from "jwt-decode";
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,8 @@ export class LoginComponent implements OnInit {
   // @ts-ignore
   someValue: number;
 
+  token: any
+
 
   constructor(private authService: AuthService, private router: Router, private httpClient: HttpClient) {
   }
@@ -30,6 +34,7 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [v.email, v.required]),
       password: new FormControl('', [v.required])
     });
+    this.checkToken()
   }
 
   login(form: FormGroup): void {
@@ -51,25 +56,17 @@ export class LoginComponent implements OnInit {
         });
     }, () => this.form.reset());
 
-    this.authService.setNewState()
+    // this.authService.setNewState()
   }
+
+  checkToken(): void {
+      if(!!localStorage.getItem("access")){
+        this.token = localStorage.getItem("access")
+        let decoded:any = JWTDecode(this.token)
+        console.log(decoded.user_id)
+        this.urlId = decoded.user_id
+        this.router.navigate(['users', `${this.urlId}`])
+      }
+  }
+
 }
-
-
-      // console.log(form.getRawValue())
-
-    // this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users')
-    //   .subscribe(value => {
-    //     this.users = value;
-        // console.log(typeof this.users)
-        // console.log(this.users);
-        // console.log(this.users[0].email) // works
-        // for (let u = 0; u < this.users.length; u++)
-        //   if (form.getRawValue().email == this.users[u].email)
-        //     console.log(`found: ${this.users[u].email}`)
-          // console.log(this.users[u].email)
-
-      // })
-
-    // console.log(this.users)
-

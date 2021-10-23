@@ -1,5 +1,7 @@
 button {
   margin: 5px;
+  color: #123C69;
+  font-size: medium;
 }
 
 div {
@@ -23,4 +25,25 @@ mat-card-title {
   font-weight: lighter;
   /*font-family: cursive;*/
   font-family: Arial, fantasy;
+}
+
+ul {
+  display: flex;
+  /*justify-content: center;*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+li {
+  display: inline;
+  align-self: center;
+}
+
+li button:hover {
+  background-color: rgb(168, 208, 230);
+  color: white;
+  /*font-size: medium;*/
 }

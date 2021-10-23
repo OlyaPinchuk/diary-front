@@ -1,6 +1,16 @@
-<!--<p>notes works!</p>-->
-<button mat-raised-button (click)="goToProfile()">Go to My Profile</button>
-<button mat-raised-button (click)="createNote()">Create a Note</button>
+<ul>
+  <li>
+    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+  </li>
+  <li>
+    <button class="createNoteButton" mat-raised-button (click)="createNote()">Create a Note</button>
+  </li>
+</ul>
+
+
+<div *ngIf="userNotes && userNotes.length == 0" >
+  You do not have any notes yet :(
+</div>
 
 <div *ngIf="userNotes" class = 'container'>
   <app-note *ngFor="let n of userNotes" [note]="n">

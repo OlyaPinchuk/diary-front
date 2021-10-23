@@ -32,14 +32,16 @@ export class ChosenNoteComponent implements OnInit {
       })
   }
 
+  goToProfile(){
+    this.router.navigate(['users', this.userId])
+  }
+
+  goToNotes(){
+    this.router.navigate(['users', this.userId, 'notes'])
+  }
+
   editNote() {
-    this.form = new FormGroup({
-      id: new FormControl(this.chosenNote.id),
-      title: new FormControl(this.chosenNote.title),
-      content: new FormControl(this.chosenNote.content),
-      user: new FormControl(this.chosenNote.user)
-    })
-    this.editForm = true
+    this.router.navigate(['users', this.userId, 'notes', this.chosenNote.id, 'edit'])
   }
 
   saveEdits(form: FormGroup, noteId: any) {
@@ -47,7 +49,14 @@ export class ChosenNoteComponent implements OnInit {
       .subscribe(() => {
         this.router.navigate(['users', this.userId, 'notes'])
       })
+  }
 
+  deleteNote(noteId: any) {
+    this.httpClient.delete(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
+      .subscribe(() => {
+        this.router.navigate(['users', this.userId, 'notes'])
+        // this.ngOnInit()
+      })
   }
 
 }

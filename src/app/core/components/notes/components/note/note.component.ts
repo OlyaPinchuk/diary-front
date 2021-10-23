@@ -11,7 +11,6 @@ import {HttpClient} from "@angular/common/http";
 export class NoteComponent implements OnInit {
   @Input()
   note: any
-
   // @ts-ignore
   form: FormGroup
   userId: any
@@ -30,29 +29,14 @@ export class NoteComponent implements OnInit {
       user: new FormControl(`${this.userId}`)
       }
     )
-
   }
 
   getNote(noteId: any){
     this.router.navigate(['users', this.userId, 'notes', noteId])
-    console.log(noteId)
   }
 
   editNote(noteId: any){
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}`)
-      .subscribe(value => {
-        this.chosenNote = value
-        console.log(this.chosenNote)
-        this.form = new FormGroup({
-          id: new FormControl(this.chosenNote.id),
-          title: new FormControl(this.chosenNote.title),
-          content: new FormControl(this.chosenNote.content),
-          user: new FormControl(this.chosenNote.user)
-        })
-        this.editForm = true
-        console.log(this.editForm)
-      })
-
+    this.router.navigate(['users', this.userId, 'notes', noteId, 'edit'])
   }
 
   saveNewNote(form: FormGroup){
@@ -62,16 +46,7 @@ export class NoteComponent implements OnInit {
       })
   }
 
-  saveEdits(form: FormGroup, noteId: any) {
-    this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
-      .subscribe(() => {
-        this.router.navigate(['users', this.userId])
-
-      })
-  }
-
   deleteNote(noteId: any) {
-    console.log('delete')
     this.httpClient.delete(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
       .subscribe(() => {
         this.router.navigate(['users', this.userId])

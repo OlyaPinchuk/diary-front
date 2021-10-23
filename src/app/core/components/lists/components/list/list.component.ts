@@ -60,6 +60,7 @@ export class ListComponent implements OnInit {
   saveNewList(form: FormGroup){
     console.log(form.getRawValue())
 
+
     this.httpClient.post(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userID, 'lists'])
@@ -92,6 +93,10 @@ export class ListComponent implements OnInit {
       .subscribe(() => {
         // this.ngOnInit()
       })
+  }
+
+  deleteNewItem(index: any){
+    this.itemsArray.removeAt(index)
   }
 }
 

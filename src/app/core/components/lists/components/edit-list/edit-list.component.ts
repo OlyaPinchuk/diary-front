@@ -48,9 +48,6 @@ export class EditListComponent implements OnInit {
         for (let i = 0; i < this.chosenList.items.length; i++) {
           this.idList.push(this.chosenList.items[i].id)
         }
-        // console.log(this.idList)
-        // console.log(this.chosenList)
-
         this.itemsArray = new FormArray([
         ])
 
@@ -73,6 +70,14 @@ export class EditListComponent implements OnInit {
 
   }
 
+  goToProfile(){
+    this.router.navigate(['users', this.userId])
+  }
+
+  goToLists(){
+    this.router.navigate(['users', this.userId, 'lists'])
+  }
+
   saveEdits(form: FormGroup, items: any) {
     console.log(form.getRawValue())
     this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, form.getRawValue())
@@ -82,15 +87,16 @@ export class EditListComponent implements OnInit {
 
   }
 
-  deleteItem(itemId: any){
+  deleteItem(itemId: any, index: any){
     this.httpClient.delete(`http://localhost:8000/api/v1/lists/items/${itemId}`)
       .subscribe(() => {
         // this.router.navigate(['users', this.userId, 'lists', this.listId, 'edit'])
-        this.ngOnInit()
+        // this.ngOnInit()
+        this.itemsArray.removeAt(index)
       })
   }
 
-  deleteNewItem(){
-    this.itemsArray.removeAt(-1)
+  deleteNewItem(index: any){
+    this.itemsArray.removeAt(index)
   }
 }

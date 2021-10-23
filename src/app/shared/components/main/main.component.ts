@@ -14,17 +14,17 @@ export class MainComponent implements OnInit, AfterViewInit {
 
 
 
-  @ViewChild(HeaderComponent)
-  // @ts-ignore
-  header: HeaderComponent
-
-  @ViewChild(LoginComponent)
-  // @ts-ignore
-  login: LoginComponent
-
-  @ViewChild(UserComponent)
-  // @ts-ignore
-  user: UserComponent
+  // @ViewChild(HeaderComponent)
+  // // @ts-ignore
+  // header: HeaderComponent
+  //
+  // @ViewChild(LoginComponent)
+  // // @ts-ignore
+  // login: LoginComponent
+  //
+  // @ViewChild(UserComponent)
+  // // @ts-ignore
+  // user: UserComponent
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
@@ -34,9 +34,6 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
    ngAfterViewInit(): void {
-    console.log(this.header)
-    console.log(this.login)
-    console.log(this.user)
    }
 
 

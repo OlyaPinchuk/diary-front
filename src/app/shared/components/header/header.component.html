@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="logo">DIARY</div>
+  <div class="logo" (click)="goToProfile()" >DIARY</div>
   <nav>
     <button mat-raised-button routerLink="auth" *ngIf="tokenPresent == false">Login</button>
     <button mat-raised-button routerLink="auth/register" *ngIf="tokenPresent == false">Register</button>

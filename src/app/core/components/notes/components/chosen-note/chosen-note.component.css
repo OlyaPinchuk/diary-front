@@ -1,0 +1,48 @@
+button {
+  margin: 5px 5px;
+  color: #123C69;
+}
+
+ul {
+  display: flex;
+  /*justify-content: center;*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+li {
+  display: inline;
+  align-self: center;
+}
+
+li button:hover {
+  background-color: rgb(168, 208, 230);
+  color: white;
+  /*color: rgba(0, 0, 0, 0.6);*/
+  font-size: medium;
+}
+
+mat-card {
+  inline-size: fit-content;
+  align-self: flex-start;
+  margin-left: 10px;
+  margin-top: 10px;
+  min-height: 400px;
+  min-width: 400px;
+  /*width: 600px;*/
+}
+
+div {
+  inline-size: fit-content;
+  min-height: 300px;
+  min-width: 300px;
+  max-width: fit-content;
+  border: 1px darkgray solid;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 3px;
+  font-size: small;
+}

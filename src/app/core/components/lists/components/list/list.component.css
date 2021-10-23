@@ -1,0 +1,28 @@
+mat-card {
+  margin: 5px 5px;
+  inline-size: fit-content;
+  align-self: flex-start;
+}
+
+div {
+  /*padding: 5px 10px;*/
+  margin: 3px;
+  inline-size: 300px;
+  /*overflow: visible;*/
+  font-size: small;
+
+}
+
+mat-card-title {
+  margin-bottom: 10px;
+  font-weight: lighter;
+  /*font-family: cursive;*/
+  font-family: Arial, fantasy;
+}
+
+button {
+  height: 35px;
+  margin: 3px;
+  color: #123C69;
+  font-size: smaller;
+}

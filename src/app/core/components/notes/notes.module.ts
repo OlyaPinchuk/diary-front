@@ -11,6 +11,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { ChosenNoteComponent } from './components/chosen-note/chosen-note.component';
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 
 @NgModule({
@@ -20,14 +21,15 @@ import { EditNoteComponent } from './components/edit-note/edit-note.component';
     ChosenNoteComponent,
     EditNoteComponent
   ],
-  imports: [
-    CommonModule,
-    NotesRoutingModule,
-    MatButtonModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule
-  ]
+    imports: [
+        CommonModule,
+        NotesRoutingModule,
+        MatButtonModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSidenavModule
+    ]
 })
 export class NotesModule { }

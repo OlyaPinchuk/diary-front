@@ -1,8 +1,18 @@
+<ul>
+  <li>
+    <button mat-raised-button (click)="getUserNotes()" >My Notes</button>
+  </li>
+  <li>
+    <button mat-raised-button (click)="getUserLists()">My Lists</button>
+  </li>
+</ul>
+
+
 
 <mat-spinner *ngIf="!user" ></mat-spinner>
 
-<button mat-raised-button (click)="getUserNotes()" >My Notes</button>
-<button mat-raised-button (click)="getUserLists()">My Lists</button>
+<!--<button mat-raised-button (click)="getUserNotes()" >My Notes</button>-->
+<!--<button mat-raised-button (click)="getUserLists()">My Lists</button>-->
 
 
 <mat-card *ngIf="user" >

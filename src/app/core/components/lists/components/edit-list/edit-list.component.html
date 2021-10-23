@@ -1,3 +1,6 @@
+<button mat-raised-button (click)="goToProfile()">My Profile</button>
+<button mat-raised-button (click)="goToLists()">My Lists</button>
+
 <mat-card *ngIf="chosenList" [formGroup]="listForm">
   <mat-card-content>
     <mat-form-field>
@@ -10,8 +13,8 @@
         <div [formGroupName]="i" >
           <input formControlName="status" type="checkbox" >
           <input formControlName="content" >
-          <button *ngIf="item.value.id" mat-raised-button (click)="deleteItem(item.value.id)" >Delete</button>
-          <button *ngIf="!item.value.id" mat-raised-button (click)="deleteNewItem()" >Delete</button>
+          <button *ngIf="item.value.id" mat-raised-button (click)="deleteItem(item.value.id, i)" >Delete</button>
+          <button *ngIf="!item.value.id" mat-raised-button (click)="deleteNewItem(i)" >Delete</button>
           <input *ngIf="item.value.id" formControlName="id" type="hidden">
         </div>
       </div>

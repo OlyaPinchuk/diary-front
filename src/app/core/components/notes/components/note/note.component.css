@@ -4,9 +4,19 @@ mat-card {
   align-self: flex-start;
 }
 
-mat-card :hover {
-  cursor: pointer;
+mat-form-field {
+  display: block;
 }
+
+.box {
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 600px;
+}
+
+/*mat-card :hover {*/
+/*  cursor: pointer;*/
+/*}*/
 
 div {
   border: 1px darkgray solid;
@@ -14,13 +24,15 @@ div {
   padding: 5px 10px;
   margin: 3px;
   inline-size: 300px;
-  overflow: auto;
+  overflow: hidden;
   font-size: small;
-
 }
 
 button {
+  height: 35px;
   margin: 3px;
+  color: #123C69;
+  font-size: smaller;
 }
 
 mat-card-title {

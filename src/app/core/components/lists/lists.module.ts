@@ -13,6 +13,7 @@ import {MatListModule} from "@angular/material/list";
 import { ChosenListComponent } from './components/chosen-list/chosen-list.component';
 import { EditListComponent } from './components/edit-list/edit-list.component';
 import {MatIconModule} from "@angular/material/icon";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -22,16 +23,17 @@ import {MatIconModule} from "@angular/material/icon";
     ChosenListComponent,
     EditListComponent
   ],
-  imports: [
-    CommonModule,
-    ListsRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatListModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        ListsRoutingModule,
+        MatCardModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatListModule,
+        MatIconModule,
+        MatCheckboxModule
+    ]
 })
 export class ListsModule { }

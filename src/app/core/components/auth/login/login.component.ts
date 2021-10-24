@@ -43,17 +43,22 @@ export class LoginComponent implements OnInit {
       // 2. get user id from access token
       // 3. request http://localhost:8000/api/v1/users/<user_id_from_access_token>
       // this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users', {params: {email: 'some@mail.com'}}).subscribe(...)
-      this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users')
-        .subscribe(value => {
-          this.users = value;
-          for (let u = 0; u < this.users.length; u++)
-            if (form.getRawValue().email == this.users[u].email) {
-              this.urlId = `${this.users[u].id}`;
-
-              this.router.navigate(['users', `${this.urlId}`]);
-              // this.router.navigate(['users']);
-            }
-        });
+      this.token = localStorage.getItem("access")
+      let decoded:any = JWTDecode(this.token)
+      console.log(decoded.user_id)
+      this.urlId = decoded.user_id
+      this.router.navigate(['users', this.urlId]);
+      // this.httpClient.get<IFullUser[]>('http://localhost:8000/api/v1/users')
+      //   .subscribe(value => {
+      //     this.users = value;
+      //     for (let u = 0; u < this.users.length; u++)
+      //       if (form.getRawValue().email == this.users[u].email) {
+      //         this.urlId = `${this.users[u].id}`;
+      //
+      //         this.router.navigate(['users', `${this.urlId}`]);
+      //         // this.router.navigate(['users']);
+      //       }
+      //   });
     }, () => this.form.reset());
 
     // this.authService.setNewState()

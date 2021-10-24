@@ -18,10 +18,13 @@
 <mat-card *ngIf="user" >
   <mat-card-title>My Profile</mat-card-title>
   <mat-card-content>
-    <div>Id: {{user.id}}</div>
-    <div>Email: {{user.email}}</div>
+<!--    <div>Id: {{user.id}}</div>-->
+<!--    <div>Email: {{user.email}}</div>-->
     <div>Name: {{user.profile.name}}</div>
+    <mat-divider inset ></mat-divider>
+
     <div>Surname: {{user.profile.surname}}</div>
+    <mat-divider inset ></mat-divider>
     <div>Age: {{user.profile.age}}</div>
     <button mat-raised-button (click)="editProfile()" >Edit</button>
   </mat-card-content>

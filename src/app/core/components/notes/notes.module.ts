@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import { ChosenNoteComponent } from './components/chosen-note/chosen-note.component';
 import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatDividerModule
     ]
 })
 export class NotesModule { }

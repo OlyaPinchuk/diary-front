@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
 
   }
   register(form: FormGroup): void {
+    console.log(form)
     this.authService.register(form.getRawValue()).subscribe(() => {
       this.router.navigate(['auth', 'login']);
     }, error => console.log(error))

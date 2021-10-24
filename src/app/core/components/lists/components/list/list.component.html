@@ -1,14 +1,16 @@
 
-<mat-card *ngIf="list" >
+<!--<mat-card class="container" *ngIf="list" >-->
+<mat-card class="existing" *ngIf="list" >
   <mat-card-title>Title: {{list.title}}</mat-card-title>
   <mat-card-content>
-    <div *ngFor="let item of list.items">
-      <div>
-
-        <input *ngIf="item.status == true" type="checkbox" checked (click)="changeItemStatus(item.id, item.content, item.status)">
-<!--        <div *ngIf="item.status == true" > status true {{item.content}}</div>-->
-        <input *ngIf="item.status == false" type="checkbox" (click)="changeItemStatus(item.id, item.content, item.status)" >
-        {{item.content}}
+    <div class="list" >
+      <div *ngFor="let item of list.items">
+        <div>
+          <input *ngIf="item.status == true" type="checkbox" checked (click)="changeItemStatus(item.id, item.content, item.status)">
+  <!--        <div *ngIf="item.status == true" > status true {{item.content}}</div>-->
+          <input *ngIf="item.status == false" type="checkbox" (click)="changeItemStatus(item.id, item.content, item.status)" >
+          {{item.content}}
+        </div>
       </div>
     </div>
     <button mat-raised-button (click)="getList(list.id)" >Expand</button>
@@ -17,26 +19,26 @@
   </mat-card-content>
 </mat-card>
 
-<mat-card *ngIf="!list" [formGroup]="listForm">
+<mat-card class="new" *ngIf="!list" [formGroup]="listForm">
   <mat-card-content>
+    <mat-card-title>New List</mat-card-title>
     <mat-form-field>
       <mat-label>Title:</mat-label>
       <input matInput formControlName="title">
     </mat-form-field>
-    <div formArrayName="items"> Content:
-
-      <div *ngFor="let item of itemsArray.controls; index as i">
-        <div [formGroupName]="i" >
-          <input formControlName="status" type="checkbox" >
-          <input formControlName="content" >
-          <button mat-raised-button (click)="deleteNewItem(i)">
-            <mat-icon>close</mat-icon>
+    <div formArrayName="items">
+      <div  *ngFor="let item of itemsArray.controls; index as i">
+        <mat-form-field class="section" [formGroupName]="i" >
+          <mat-checkbox matPrefix class="margin" formControlName="status" color="primary"> </mat-checkbox>
+          <input matInput formControlName="content" >
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteNewItem(i)">
+            <mat-icon >close</mat-icon>
           </button>
-        </div>
+        </mat-form-field>
       </div>
     </div>
     <button mat-raised-button (click)="addItem()" >Add item</button>
-    <button mat-raised-button (click)="saveNewList(listForm)" >Save</button>
+    <button class="save" mat-raised-button (click)="saveNewList(listForm)" >Save</button>
   </mat-card-content>
 </mat-card>
 

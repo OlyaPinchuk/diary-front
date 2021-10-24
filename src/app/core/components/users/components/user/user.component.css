@@ -5,8 +5,8 @@ button {
 }
 
 div {
-  border: 1px darkgray solid;
-  border-radius: 3px;
+  /*border: 1px darkgray solid;*/
+  /*border-radius: 3px;*/
   padding: 5px 10px;
   margin: 3px;
   inline-size: 300px;
@@ -15,9 +15,8 @@ div {
 
 mat-card {
   inline-size: fit-content;
-  margin-left: 10px;
-
-  /*border: 1px darkgray solid;*/
+  margin-left: 30%;
+  margin-top: 100px;
 }
 
 mat-card-title {
@@ -46,4 +45,9 @@ li button:hover {
   background-color: rgb(168, 208, 230);
   color: white;
   /*font-size: medium;*/
+}
+
+mat-card button {
+  font-size: small;
+
 }

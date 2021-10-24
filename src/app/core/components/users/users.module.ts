@@ -7,6 +7,7 @@ import { UserComponent } from './components/user/user.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -14,12 +15,13 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     UsersComponent,
     UserComponent
   ],
-  imports: [
-    CommonModule,
-    UsersRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    MatProgressSpinnerModule
-  ]
+    imports: [
+        CommonModule,
+        UsersRoutingModule,
+        MatCardModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        MatDividerModule
+    ]
 })
 export class UsersModule { }

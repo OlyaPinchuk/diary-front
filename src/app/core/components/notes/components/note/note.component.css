@@ -8,24 +8,15 @@ mat-form-field {
   display: block;
 }
 
-.box {
-  margin-left: 10px;
-  margin-top: 10px;
-  width: 600px;
-}
-
-/*mat-card :hover {*/
-/*  cursor: pointer;*/
-/*}*/
-
 div {
-  border: 1px darkgray solid;
+  border: 1px lightgray solid;
   border-radius: 3px;
   padding: 5px 10px;
   margin: 3px;
-  inline-size: 300px;
   overflow: hidden;
   font-size: small;
+  height: 100px;
+  width: 300px
 }
 
 button {
@@ -41,3 +32,22 @@ mat-card-title {
   /*font-family: cursive;*/
   font-family: Arial, fantasy;
 }
+
+/*.new {*/
+/*  margin-top: 100px;*/
+/*  margin-left: 30%;*/
+/*  min-height: 400px;*/
+/*  min-width: 500px;*/
+/*}*/
+
+.box {
+  margin-top: 100px;
+  margin-left: 30%;
+  min-height: fit-content;
+  min-width: 500px;
+}
+
+.box mat-card-content button {
+  margin-left: 500px;
+}
+

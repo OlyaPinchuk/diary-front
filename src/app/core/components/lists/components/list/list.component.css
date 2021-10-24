@@ -1,16 +1,86 @@
-mat-card {
-  margin: 5px 5px;
-  inline-size: fit-content;
-  align-self: flex-start;
+/*mat-card {*/
+/*  margin: 5px 5px;*/
+/*  !*inline-size: fit-content;*!*/
+/*  align-self: flex-start;*/
+/*  height: 200px;*/
+/*  width: 300px;*/
+/*}*/
+
+/*div {*/
+/*  !*padding: 5px 10px;*!*/
+/*  margin: 3px;*/
+/*  inline-size: 300px;*/
+/*  !*overflow: visible;*!*/
+/*  font-size: small;*/
+
+/*}*/
+
+
+/*.list {*/
+/*  height: 100px;*/
+/*}*/
+
+/*mat-card-title {*/
+/*  margin-bottom: 10px;*/
+/*  font-weight: lighter;*/
+/*  !*font-family: cursive;*!*/
+/*  font-family: Arial, fantasy;*/
+/*}*/
+
+/*button {*/
+/*  height: 35px;*/
+/*  width: 100px;*/
+/*  !*margin-top: 30px;*!*/
+/*  !*margin-right: 3px;*!*/
+/*  color: #123C69;*/
+/*  background: white;*/
+/*  font-size: smaller;*/
+/*}*/
+
+/*.margin {*/
+/*  margin-right: 10px;*/
+/*}*/
+
+/*.new {*/
+/*  margin-top: 100px;*/
+/*  margin-left: 30%;*/
+/*  min-height: 300px;*/
+/*  min-width: 400px;*/
+/*  height: fit-content;*/
+/*  width: fit-content;*/
+/*}*/
+
+/*mat-card-content {*/
+/*  display: inline-flex;*/
+/*  flex-direction: column;*/
+/*  justify-items: center;*/
+/*  height: fit-content;*/
+/*  width: fit-content;*/
+/*}*/
+
+/*.save {*/
+/*  align-self: flex-end;*/
+/*}*/
+
+
+.existing {
+  display: inline-flex;
+  flex-direction: column;
+  height: 200px;
+  width: 300px;
+  margin: 10px;
 }
 
-div {
-  /*padding: 5px 10px;*/
-  margin: 3px;
-  inline-size: 300px;
-  /*overflow: visible;*/
-  font-size: small;
 
+.list {
+  height: 100px;
+}
+
+.existing button {
+  margin-top: 30px;
+  margin-right: 5px;
+  color: #123C69;
+  font-size: smaller;
 }
 
 mat-card-title {
@@ -20,9 +90,36 @@ mat-card-title {
   font-family: Arial, fantasy;
 }
 
-button {
-  height: 35px;
-  margin: 3px;
+.new {
+  min-height: 300px;
+  min-width: 400px;
+  max-width: fit-content;
+  max-height: fit-content;
+  margin-top: 100px;
+  margin-left: 30%;
+}
+
+.margin {
+  margin-right: 10px;
+}
+
+.section {
+  width: 100%;
+}
+
+.new mat-form-field {
+  width: 100%;
+}
+
+.new button {
+  /*margin-top: 100px;*/
+  margin-right: 5px;
   color: #123C69;
   font-size: smaller;
+  display: block;
+}
+
+.save {
+  margin-top: 100px;
+  margin-left: 350px;
 }

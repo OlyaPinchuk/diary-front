@@ -18,6 +18,8 @@ export class NoteComponent implements OnInit {
   // @ts-ignore
   editForm: boolean = false
 
+
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) { }
 
   ngOnInit(): void {

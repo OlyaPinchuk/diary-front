@@ -1,37 +1,77 @@
-button {
-  margin: 5px;
-  color: #123C69;
-  font-size: medium;
+.box {
+  width: 100%;
+  height: 100%;
+  /*background: black;*/
+  display: inline-flex;
+  flex-direction: column;
 }
 
-div {
-  /*border: 1px darkgray solid;*/
-  /*border-radius: 3px;*/
-  padding: 5px 10px;
-  margin: 3px;
-  inline-size: 300px;
-  overflow: auto;
-}
-
-mat-card {
-  inline-size: fit-content;
+.container {
+  /*inline-size: fit-content;*/
+  /*min-height: 200px;*/
+  height: fit-content;
+  width: 500px;
   margin-left: 30%;
   margin-top: 100px;
+  color: #123C69;
 }
 
-mat-card-title {
-  margin-bottom: 10px;
-  font-weight: lighter;
-  /*font-family: cursive;*/
-  font-family: Arial, fantasy;
+mat-card-content {
+  display: inline-flex;
+  flex-direction: column;
+  color: #123C69;
+  width: 100%;
+  height: 100%;
 }
+
+mat-card-content button {
+  /*margin-top: 100px;*/
+}
+
+mat-card-content div {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+mat-card-content button {
+  font-size: small;
+  color: #123C69;
+}
+
+/*button {*/
+/*  margin: 5px;*/
+/*  color: #123C69;*/
+/*  font-size: medium;*/
+/*}*/
+
+/*div {*/
+/*  !*border: 1px darkgray solid;*!*/
+/*  !*border-radius: 3px;*!*/
+/*  padding: 5px 10px;*/
+/*  margin: 3px;*/
+/*  inline-size: 300px;*/
+/*  overflow: auto;*/
+/*}*/
+
+/*mat-card {*/
+/*  inline-size: fit-content;*/
+/*  margin-left: 30%;*/
+/*  margin-top: 100px;*/
+/*}*/
+
+/*mat-card-title {*/
+/*  margin-bottom: 10px;*/
+/*  font-weight: lighter;*/
+/*  !*font-family: cursive;*!*/
+/*  font-family: Arial, fantasy;*/
+/*}*/
 
 ul {
   display: flex;
   /*justify-content: center;*/
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   overflow: hidden;
   width: 100%;
 }
@@ -39,6 +79,11 @@ ul {
 li {
   display: inline;
   align-self: center;
+  margin-left: 5px;
+}
+
+li button {
+  color: #123C69;
 }
 
 li button:hover {
@@ -47,7 +92,7 @@ li button:hover {
   /*font-size: medium;*/
 }
 
-mat-card button {
-  font-size: small;
+/*mat-card button {*/
+/*  font-size: small;*/
 
-}
+/*}*/

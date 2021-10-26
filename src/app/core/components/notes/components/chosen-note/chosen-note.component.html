@@ -1,7 +1,7 @@
 
 <ul>
   <li>
-    <button mat-raised-button (click)="goToProfile()">My Profile</button>
+    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
   </li>
   <li>
       <button mat-raised-button (click)="goToNotes()">My Notes</button>
@@ -9,6 +9,7 @@
   </li>
 </ul>
 
+<mat-divider></mat-divider>
 
 <mat-card *ngIf="chosenNote && editForm == false">
   <mat-card-title>Title: {{chosenNote.title}}</mat-card-title>

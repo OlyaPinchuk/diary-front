@@ -20,6 +20,8 @@ button {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 
@@ -38,7 +40,13 @@ li {
   align-self: center;
 }
 
+
+
 li button:hover {
   background-color: rgb(168, 208, 230);
   color: white;
+}
+
+.search {
+  margin-left: 10px;
 }

@@ -1,6 +1,5 @@
 header {
   background: #A8D0E6;
-
   height: 50px;
   display: flex;
   align-items: center;
@@ -15,5 +14,8 @@ nav button {
 
 .logo {
   color: snow;
-  font-size: x-large;
+  font-size: xx-large;
+  /*font-family: Arial, fantasy;*/
+  font-family: fantasy;
+
 }

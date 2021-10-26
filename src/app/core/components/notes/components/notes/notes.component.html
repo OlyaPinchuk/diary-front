@@ -5,16 +5,57 @@
   <li>
     <button class="createNoteButton" mat-raised-button (click)="createNote()">Create a Note</button>
   </li>
+  <li class="search">
+    <mat-form-field>
+      <mat-label>search by title</mat-label>
+      <input  matInput type="search" [(ngModel)]="search" (input)="searchLog()">
+    </mat-form-field>
+
+  </li>
 </ul>
 
+<mat-divider></mat-divider>
 
-<div *ngIf="userNotes && userNotes.length == 0" >
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               (page)="pageEvent = $event"
+               (click)="testPages()"
+               aria-label="Select page"
+                >
+
+</mat-paginator>
+
+<!--<div *ngIf="pageEvent">-->
+<!--  <h5>Page Change Event Properties</h5>-->
+<!--  <div>List length: {{pageEvent.length}}</div>-->
+<!--  <div>Page size: {{pageEvent.pageSize}}</div>-->
+<!--  <div>Page index: {{pageEvent.pageIndex}}</div>-->
+<!--</div>-->
+
+
+<!--<button (click)="searchNotes('ww')" >test</button>-->
+
+<div *ngIf="userNotes && userNotes.length == 0 && notesFound != false" >
   You do not have any notes yet :(
 </div>
 
-<div *ngIf="userNotes" class = 'container'>
+<div *ngIf="notesFound == false">
+  You do not have notes with such title :(
+  <button mat-raised-button (click)="backToNotes()" > Back to All Notes</button>
+</div>
+
+<div *ngIf="userNotes && !foundNotes" class = 'container'>
   <app-note *ngFor="let n of userNotes" [note]="n">
 
   </app-note>
 </div>
+
+<div *ngIf="foundNotes" class = 'container'>
+  <app-note *ngFor="let n of foundNotes" [note]="n">
+
+  </app-note>
+</div>
+
+
+
 <router-outlet></router-outlet>

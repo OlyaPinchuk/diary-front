@@ -3,6 +3,10 @@ button {
   color: #123C69;
 }
 
+.toProfileButton {
+  font-size: large;
+}
+
 ul {
   display: flex;
   /*justify-content: center;*/
@@ -22,27 +26,41 @@ li button:hover {
   background-color: rgb(168, 208, 230);
   color: white;
   /*color: rgba(0, 0, 0, 0.6);*/
-  font-size: medium;
+  /*font-size: medium;*/
 }
 
 mat-card {
   inline-size: fit-content;
-  align-self: flex-start;
-  margin-left: 10px;
-  margin-top: 10px;
+  /*align-self: flex-start;*/
+  margin-left: 30%;
+  margin-top: 100px;
   min-height: 400px;
   min-width: 400px;
+
   /*width: 600px;*/
 }
 
 div {
-  inline-size: fit-content;
+  /*inline-size: fit-content;*/
   min-height: 300px;
-  min-width: 300px;
-  max-width: fit-content;
-  border: 1px darkgray solid;
+  height: fit-content;
+  /*min-width: 300px;*/
+  /*max-width: fit-content;*/
+  width: 100%;
+  border: 1px lightgray solid;
   border-radius: 3px;
-  padding: 5px 10px;
-  margin: 3px;
+  padding-left: 5px;
+  /*padding: 5px 10px;*/
+  /*margin: 3px;*/
   font-size: small;
+}
+
+mat-card button {
+  font-size: small;
+}
+
+mat-card-title {
+  font-weight: lighter;
+  margin-bottom: 10px;
+  font-family: Arial, fantasy;
 }

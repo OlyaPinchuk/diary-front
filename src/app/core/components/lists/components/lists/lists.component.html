@@ -5,18 +5,46 @@
   <li>
     <button class="createListButton" mat-raised-button (click)="createList()" >Create a List</button>
   </li>
+  <li class="search">
+    <mat-form-field>
+      <mat-label>search by title</mat-label>
+      <input  matInput type="search" [(ngModel)]="search" (input)="searchLog()">
+    </mat-form-field>
+  </li>
 </ul>
 
 
-
+<mat-divider></mat-divider>
 
 <div *ngIf="userLists && userLists.length == 0" >
   You do not have any lists yet :(
 </div>
 
-<div *ngIf="userLists" class = 'container'>
-  <app-list *ngFor="let l of userLists" [list]="l">
-
-  </app-list>
+<div *ngIf="userLists && !foundLists">
+  <mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               (page)="pageEvent = $event"
+               (click)="changePage()"
+               aria-label="Select page"
+                >
+  </mat-paginator>
+  <div  class = 'container'>
+    <app-list *ngFor="let l of userLists" [list]="l"></app-list>
+  </div>
 </div>
+
+<div *ngIf="foundLists">
+<!--  <mat-paginator [length]="length"-->
+<!--               [pageSize]="pageSize"-->
+<!--               (page)="pageEvent = $event"-->
+<!--               (click)="changePage()"-->
+<!--               aria-label="Select page"-->
+<!--                >-->
+<!--  </mat-paginator>-->
+  <div  class = 'container'>
+    <app-list *ngFor="let l of foundLists" [list]="l"></app-list>
+  </div>
+</div>
+
+
 <router-outlet></router-outlet>

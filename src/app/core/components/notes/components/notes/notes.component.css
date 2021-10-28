@@ -7,15 +7,6 @@ button {
   font-size: large;
 }
 
-/*.toProfileButton:hover {*/
-/*  font-size: x-large;*/
-/*}*/
-
-/*.createNoteButton:hover {*/
-/*  font-size: medium;*/
-/*}*/
-
-
 .container {
   display: inline-flex;
   flex-direction: row;
@@ -49,4 +40,9 @@ li button:hover {
 
 .search {
   margin-left: 10px;
+}
+
+.container :hover {
+  box-shadow: 2px 2px 2px lightblue;
+  border-radius: 5px;
 }

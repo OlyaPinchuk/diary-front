@@ -4,6 +4,10 @@ mat-card {
   align-self: flex-start;
 }
 
+.existing :hover {
+  cursor: pointer;
+}
+
 mat-form-field {
   display: block;
 }

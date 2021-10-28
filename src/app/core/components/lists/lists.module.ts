@@ -8,12 +8,13 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatListModule} from "@angular/material/list";
 import { ChosenListComponent } from './components/chosen-list/chosen-list.component';
 import { EditListComponent } from './components/edit-list/edit-list.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -23,17 +24,19 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ChosenListComponent,
     EditListComponent
   ],
-    imports: [
-        CommonModule,
-        ListsRoutingModule,
-        MatCardModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatListModule,
-        MatIconModule,
-        MatCheckboxModule
-    ]
+  imports: [
+    CommonModule,
+    ListsRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatListModule,
+    MatIconModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatPaginatorModule
+  ]
 })
 export class ListsModule { }

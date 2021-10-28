@@ -1,5 +1,13 @@
-<button mat-raised-button (click)="goToProfile()">My Profile</button>
-<button mat-raised-button (click)="goToLists()">My Lists</button>
+<ul>
+  <li>
+    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+  </li>
+  <li>
+    <button mat-raised-button (click)="goToLists()">My Lists</button>
+  </li>
+</ul>
+
+<mat-divider></mat-divider>
 
 <mat-card *ngIf="chosenList" [formGroup]="listForm">
   <mat-card-content>
@@ -10,16 +18,20 @@
     <div formArrayName="items"> Content:
 
       <div *ngFor="let item of itemsArray.controls; index as i">
-        <div [formGroupName]="i" >
-          <input formControlName="status" type="checkbox" >
-          <input formControlName="content" >
-          <button *ngIf="item.value.id" mat-raised-button (click)="deleteItem(item.value.id, i)" >Delete</button>
-          <button *ngIf="!item.value.id" mat-raised-button (click)="deleteNewItem(i)" >Delete</button>
+        <mat-form-field [formGroupName]="i" >
+          <input matPrefix formControlName="status" type="checkbox" >
+          <input matInput formControlName="content" >
+          <button class="deleteItem" matSuffix mat-icon-button aria-label="Clear" *ngIf="item.value.id" (click)="deleteItem(item.value.id, i)" >
+            <mat-icon >close</mat-icon>
+          </button>
+          <button matSuffix mat-icon-button aria-label="Clear" *ngIf="!item.value.id" (click)="deleteNewItem(i)" >
+            <mat-icon >close</mat-icon>
+          </button>
           <input *ngIf="item.value.id" formControlName="id" type="hidden">
-        </div>
+        </mat-form-field>
       </div>
     </div>
     <button mat-raised-button (click)="addItem()" >Add item</button>
   </mat-card-content>
-  <button mat-raised-button (click)="saveEdits(listForm, itemsArray.controls)" >Save Edits</button>
+  <button class="save" mat-raised-button (click)="saveEdits(listForm, itemsArray.controls)" >Save Edits</button>
 </mat-card>

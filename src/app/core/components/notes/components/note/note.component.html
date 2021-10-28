@@ -20,7 +20,7 @@
   </form>
 
 
-<mat-card *ngIf="note && editForm == false" >
+<mat-card class="existing" *ngIf="note && editForm == false"  (click)="getNote(note.id)">
   <mat-card-title >Title: {{note.title}}</mat-card-title>
   <mat-card-content>
     <p>Content:</p>

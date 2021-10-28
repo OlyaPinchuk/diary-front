@@ -16,23 +16,30 @@ export class NotesComponent implements OnInit {
   // @ts-ignore
   notesFound: boolean
   foundNotes: any
-  pageSize = 5
-  length = 100
+  pageSize: number = 5
+  length: number = 0
   // pageSizeOptions: number[] = [5, 10, 25, 100];
   // @ts-ignore
   pageEvent: PageEvent
-
   // @ts-ignore
   page: number
-
   // @ts-ignore
-  test: any
+  response: any
+
+  searchLength: number = 0
+  // @ts-ignore
+  searchPage: number
+
+  searchResponse: any
+  foundNotesNumber: number = 0
 
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.page = 0
+    this.pageEvent = new PageEvent
+    this.pageEvent.pageIndex = 0
+    this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
 
     this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
@@ -43,8 +50,9 @@ export class NotesComponent implements OnInit {
     })
     .toPromise()
     .then(response => {
-      this.test = response.body
-      this.userNotes = this.test.notes
+      this.response = response.body
+      this.userNotes = this.response.notes
+      this.length = this.response.number
     })
     .catch(console.log);
 
@@ -67,40 +75,52 @@ export class NotesComponent implements OnInit {
 
   searchLog() {
     this.foundNotes = []
+    this.searchPage = 0
     this.httpClient.get(`http://localhost:8000/api/v1/notes/search`, {
       params: {
         userId: this.userId,
-        searchText: this.search
+        searchText: this.search,
+        pageIndex: this.searchPage
       },
       observe: 'response'
     })
     .toPromise()
     .then(response => {
-      this.foundNotes = response.body
+      this.searchResponse = response.body
+      this.foundNotes = this.searchResponse.notes
+      this.searchLength = this.searchResponse.number
       if (this.foundNotes.length == 0) {
         this.notesFound = false
       } else {
         this.notesFound = true
       }
-      console.log(response.body);
     })
     .catch(console.log);
 
+  }
 
-
-    // this.foundNotes = []
-    // for (let i = 0; i < this.userNotes.length; i++)  {
-    //   if (this.userNotes[i].title.includes(this.search)) {
-    //     this.foundNotes.push(this.userNotes[i])
-    //   }
-    // }
-    // console.log(this.foundNotes)
-    // if (this.foundNotes.length == 0) {
-    //   this.notesFound = false
-    //
-    // } else {
-    //   this.notesFound = true
-    // }
+  changeSearchPage(){
+    this.searchPage = this.pageEvent.pageIndex
+    console.log(this.searchPage)
+    this.httpClient.get(`http://localhost:8000/api/v1/notes/search`, {
+      params: {
+        userId: this.userId,
+        searchText: this.search,
+        pageIndex: this.searchPage
+      },
+      observe: 'response'
+    })
+    .toPromise()
+    .then(response => {
+      this.searchResponse = response.body
+      this.foundNotes = this.searchResponse.notes
+      if (this.foundNotes.length == 0) {
+        this.notesFound = false
+      } else {
+        this.notesFound = true
+      }
+    })
+    .catch(console.log);
   }
 
   backToNotes() {
@@ -126,9 +146,7 @@ export class NotesComponent implements OnInit {
   //   .catch(console.log);
   // }
 
-  testPages() {
-
-    console.log(this.pageEvent.pageIndex)
+  changePage() {
     this.page = this.pageEvent.pageIndex
     this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
       params: {
@@ -138,14 +156,9 @@ export class NotesComponent implements OnInit {
     })
     .toPromise()
     .then(response => {
-      this.test = response.body
-      this.userNotes = this.test.notes
-      // console.log(JSON.parse(JSON.stringify(response.body)).number)
-      // this.userNotes = response.body
-      // @ts-ignore
+      this.response = response.body
+      this.userNotes = this.response.notes
 
-      // console.log(this.test.number)
-      // console.log(this.userNotes[0])
     })
     .catch(console.log);
   }

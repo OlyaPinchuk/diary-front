@@ -1,0 +1,46 @@
+ul {
+  display: flex;
+  /*justify-content: center;*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+li {
+  display: inline;
+  align-self: center;
+}
+li button {
+  margin: 5px 5px;
+  color: #123C69;
+}
+
+.toProfileButton {
+  font-size: large;
+}
+
+li button:hover {
+  background-color: rgb(168, 208, 230);
+  color: white;
+}
+
+.main {
+  min-width: 300px;
+  width: fit-content;
+  margin-top: 10px;
+  margin-left: 20px
+}
+
+mat-card-title {
+  font-family: Arial, fantasy;
+  font-weight: lighter;
+  margin-bottom: 10px;
+}
+
+mat-card button {
+  font-size: small;
+  color: #123C69;
+  margin: 3px;
+}

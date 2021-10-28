@@ -1,11 +1,19 @@
-<button mat-raised-button (click)="goToProfile()">My Profile</button>
-<button mat-raised-button (click)="goToLists()">My Lists</button>
+<ul>
+  <li>
+    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+  </li>
+  <li>
+    <button mat-raised-button (click)="goToLists()">My Lists</button>
+  </li>
+</ul>
 
-<mat-card *ngIf="chosenList" >
-  <mat-card-title>Title: {{chosenList.title}}</mat-card-title>
+
+
+<mat-divider></mat-divider>
+
+<mat-card class="main" *ngIf="chosenList" >
+  <mat-card-title> {{chosenList.title}}</mat-card-title>
   <mat-card-content>
-<!--    <div>List Id: {{list.id}}</div>-->
-<!--    <div>User Id: {{list.user}}</div>-->
     <div *ngFor="let item of chosenList.items">
       <div>
         <input *ngIf="item.status == true" type="checkbox" checked (click)="changeItemStatus(item.id, item.content, item.status)" >
@@ -13,7 +21,6 @@
         {{item.content}}
       </div>
     </div>
-<!--    <button mat-raised-button >Expand</button>-->
     <button mat-raised-button (click)="editList(chosenList.id)">Edit</button>
     <button mat-raised-button (click)="deleteList(chosenList.id)" >Delete</button>
   </mat-card-content>

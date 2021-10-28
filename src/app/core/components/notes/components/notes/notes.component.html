@@ -16,25 +16,6 @@
 
 <mat-divider></mat-divider>
 
-<mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               (page)="pageEvent = $event"
-               (click)="testPages()"
-               aria-label="Select page"
-                >
-
-</mat-paginator>
-
-<!--<div *ngIf="pageEvent">-->
-<!--  <h5>Page Change Event Properties</h5>-->
-<!--  <div>List length: {{pageEvent.length}}</div>-->
-<!--  <div>Page size: {{pageEvent.pageSize}}</div>-->
-<!--  <div>Page index: {{pageEvent.pageIndex}}</div>-->
-<!--</div>-->
-
-
-<!--<button (click)="searchNotes('ww')" >test</button>-->
-
 <div *ngIf="userNotes && userNotes.length == 0 && notesFound != false" >
   You do not have any notes yet :(
 </div>
@@ -44,18 +25,30 @@
   <button mat-raised-button (click)="backToNotes()" > Back to All Notes</button>
 </div>
 
-<div *ngIf="userNotes && !foundNotes" class = 'container'>
-  <app-note *ngFor="let n of userNotes" [note]="n">
-
-  </app-note>
+<div *ngIf="userNotes && !foundNotes">
+  <mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               (page)="pageEvent = $event"
+               (click)="changePage()"
+               aria-label="Select page"
+                >
+  </mat-paginator>
+  <div  class = 'container'>
+    <app-note *ngFor="let n of userNotes" [note]="n"></app-note>
+  </div>
 </div>
 
-<div *ngIf="foundNotes" class = 'container'>
-  <app-note *ngFor="let n of foundNotes" [note]="n">
-
-  </app-note>
+<div *ngIf="foundNotes">
+  <mat-paginator [length]="searchLength"
+               [pageSize]="pageSize"
+               (page)="pageEvent = $event"
+               (click)="changeSearchPage()"
+               aria-label="Select page"
+                >
+  </mat-paginator>
+  <div  class = 'container'>
+    <app-note *ngFor="let n of foundNotes" [note]="n"></app-note>
+  </div>
 </div>
-
-
 
 <router-outlet></router-outlet>

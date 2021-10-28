@@ -22,6 +22,10 @@ button {
   flex-wrap: wrap;
 }
 
+.container :hover{
+  box-shadow: 2px 2px 2px lightblue;
+  border-radius: 5px;
+}
 
 ul {
   display: flex;
@@ -41,4 +45,8 @@ li {
 li button:hover {
   background-color: rgb(168, 208, 230);
   color: white;
+}
+
+.search {
+  margin-left: 10px;
 }

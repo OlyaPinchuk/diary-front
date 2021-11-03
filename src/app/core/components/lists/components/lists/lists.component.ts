@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {IList} from "../../../../interfaces";
+import {ListService} from "../../../../services/list.service";
 
 @Component({
   selector: 'app-lists',
@@ -31,19 +32,21 @@ export class ListsComponent implements OnInit {
   searchSortOption: number
 
 
-  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private listService: ListService) { }
 
   ngOnInit(): void {
     this.pageEvent = new PageEvent
     this.pageEvent.pageIndex = 0
     this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`, {
-      params: {
-        pageIndex: this.page
-      },
-      observe: 'response'
-    })
+
+    // this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`, {
+    //   params: {
+    //     pageIndex: this.page
+    //   },
+    //   observe: 'response'
+    // })
+    this.listService.getLists(this.userId, this.page)
     .toPromise()
     .then(response => {
       this.response = response.body

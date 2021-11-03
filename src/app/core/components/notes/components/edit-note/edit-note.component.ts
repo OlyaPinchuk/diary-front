@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {INote} from "../../../../interfaces";
-import {NotesService} from "../../../../services/notes.service";
+import {NoteService} from "../../../../services/note.service";
 
 @Component({
   selector: 'app-edit-note',
@@ -12,13 +12,12 @@ import {NotesService} from "../../../../services/notes.service";
 })
 export class EditNoteComponent implements OnInit {
 
-
   form: FormGroup
   userId: number
   noteId: number
   note: INote
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private notesService: NotesService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private noteService: NoteService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -26,7 +25,7 @@ export class EditNoteComponent implements OnInit {
       this.noteId = params['noteID']
     })
 
-    this.notesService.getChosenNote(this.userId, this.noteId).subscribe(value => {
+    this.noteService.getChosenNote(this.userId, this.noteId).subscribe(value => {
       this.note = value
         this.form = new FormGroup({
           title: new FormControl(this.note.title),
@@ -57,19 +56,25 @@ export class EditNoteComponent implements OnInit {
   }
 
   saveEdits(form: FormGroup, noteId: any){
-    this.httpClient.put<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
-      .subscribe(() => {
-        this.router.navigate(['users', this.userId, 'notes'])
-
-      })
+    this.noteService.saveEdits(this.userId, noteId, form).subscribe(() => {
+      this.router.navigate(['users', this.userId, 'notes'])
+    })
+    // this.httpClient.put<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
+    //   .subscribe(() => {
+    //     this.router.navigate(['users', this.userId, 'notes'])
+    //   })
   }
 
   deleteNote(noteId: any) {
-    this.httpClient.delete<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
-      .subscribe(() => {
-        this.router.navigate(['users', this.userId, 'notes'])
-        // this.ngOnInit()
-      })
+    this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
+      this.router.navigate(['users', this.userId, 'notes'])
+    })
+
+    // this.httpClient.delete<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
+    //   .subscribe(() => {
+    //     this.router.navigate(['users', this.userId, 'notes'])
+    //     // this.ngOnInit()
+    //   })
   }
 
 }

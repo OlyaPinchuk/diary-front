@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {FormArray, FormControl, FormGroup, FormBuilder} from "@angular/forms";
 import {getSortHeaderNotContainedWithinSortError} from "@angular/material/sort/sort-errors";
 import {IList} from "../../../../interfaces";
+import {ListService} from "../../../../services/list.service";
 
 @Component({
   selector: 'app-edit-list',
@@ -31,7 +32,7 @@ export class EditListComponent implements OnInit {
     this.itemsArray.push(this.itemObject)
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private fb: FormBuilder, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private fb: FormBuilder, private router: Router, private listService: ListService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -39,7 +40,8 @@ export class EditListComponent implements OnInit {
       this.listId = params['listId']
     })
 
-    this.httpClient.get<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
+    // this.httpClient.get<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
+      this.listService.getChosenList(this.userId, this.listId)
       .subscribe(value => {
         this.chosenList = value
         // for (let i = 0; i < this.chosenList.items.length; i++) {
@@ -76,20 +78,27 @@ export class EditListComponent implements OnInit {
   }
 
   saveEdits(form: FormGroup, items: any) {
-    this.httpClient.put<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, form.getRawValue())
-      .subscribe(() => {
-        this.router.navigate(['users', this.userId, 'lists'])
-      })
+    this.listService.saveEdits(this.userId, this.listId, form).subscribe(() => {
+      this.router.navigate(['users', this.userId, 'lists'])
+    })
+
+    // this.httpClient.put<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, form.getRawValue())
+    //   .subscribe(() => {
+    //     this.router.navigate(['users', this.userId, 'lists'])
+    //   })
 
   }
 
   deleteItem(itemId: any, index: any){
-    this.httpClient.delete(`http://localhost:8000/api/v1/lists/items/${itemId}`)
-      .subscribe(() => {
-        // this.router.navigate(['users', this.userId, 'lists', this.listId, 'edit'])
-        // this.ngOnInit()
-        this.itemsArray.removeAt(index)
-      })
+    this.listService.deleteItem(itemId).subscribe(() => {
+      this.itemsArray.removeAt(index)
+    })
+    // this.httpClient.delete(`http://localhost:8000/api/v1/lists/items/${itemId}`)
+    //   .subscribe(() => {
+    //     // this.router.navigate(['users', this.userId, 'lists', this.listId, 'edit'])
+    //     // this.ngOnInit()
+    //     this.itemsArray.removeAt(index)
+    //   })
   }
 
   deleteNewItem(index: any){

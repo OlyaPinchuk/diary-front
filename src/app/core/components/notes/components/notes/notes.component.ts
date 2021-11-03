@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {INote} from "../../../../interfaces";
-import {NotesService} from "../../../../services/notes.service";
+import {NoteService} from "../../../../services/note.service";
 
 @Component({
   selector: 'app-notes',
@@ -11,32 +11,25 @@ import {NotesService} from "../../../../services/notes.service";
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-  // @ts-ignore
+
   userId: number
-  // @ts-ignore
   userNotes: INote[]
-    // @ts-ignore
   search: string
-  // @ts-ignore
   notesFound: boolean
   foundNotes: any
   pageSize: number = 5
   length: number = 0
   // pageSizeOptions: number[] = [5, 10, 25, 100];
-  // @ts-ignore
   pageEvent: PageEvent
-  // @ts-ignore
   page: number
-  // @ts-ignore
   response: any
   searchLength: number = 0
-  // @ts-ignore
   searchPage: number
   searchResponse: any
   foundNotesNumber: number = 0
 
 
-  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private notesService: NotesService) { }
+  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private noteService: NoteService) { }
 
   ngOnInit(): void {
     this.pageEvent = new PageEvent
@@ -44,7 +37,7 @@ export class NotesComponent implements OnInit {
     this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
 
-    this.notesService.getUserNotes(this.userId, this.page).toPromise().then(response => {
+    this.noteService.getUserNotes(this.userId, this.page).toPromise().then(response => {
       this.response = response.body
       this.userNotes = this.response.notes
       this.length = this.response.number
@@ -138,7 +131,7 @@ export class NotesComponent implements OnInit {
 
   changePage() {
     this.page = this.pageEvent.pageIndex
-    this.notesService.getUserNotes(this.userId, this.page).toPromise().then(response => {
+    this.noteService.getUserNotes(this.userId, this.page).toPromise().then(response => {
       this.response = response.body
       this.userNotes = this.response.notes
     })

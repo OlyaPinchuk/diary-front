@@ -3,6 +3,7 @@ import {FormArray, FormControl, FormGroup, FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {IList} from "../../../../interfaces";
+import {ListService} from "../../../../services/list.service";
 
 
 @Component({
@@ -35,7 +36,7 @@ export class ListComponent implements OnInit {
     this.itemsArray.push(this.itemObject)
   }
 
-  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) { }
+  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private listService: ListService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => this.userID = params['id'])
@@ -53,10 +54,13 @@ export class ListComponent implements OnInit {
   }
 
   saveNewList(form: FormGroup){
-    this.httpClient.post<IList>(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
-      .subscribe(() => {
-        this.router.navigate(['users', this.userID, 'lists'])
-      })
+    this.listService.saveNewList(form).subscribe(() => {
+      this.router.navigate(['users', this.userID, 'lists'])
+    })
+    // this.httpClient.post<IList>(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
+    //   .subscribe(() => {
+    //     this.router.navigate(['users', this.userID, 'lists'])
+    //   })
   }
 
   getList(listId: any){
@@ -68,10 +72,14 @@ export class ListComponent implements OnInit {
   }
 
   deleteList(listId: any) {
-    this.httpClient.delete<IList>(`http://localhost:8000/api/v1/lists/${listId}/delete`)
-      .subscribe(() => {
-        this.router.navigate(['users', this.userID])
-      })
+    this.listService.deleteList(listId).subscribe(() => {
+      this.router.navigate(['users', this.userID])
+    })
+
+    // this.httpClient.delete<IList>(`http://localhost:8000/api/v1/lists/${listId}/delete`)
+    //   .subscribe(() => {
+    //     this.router.navigate(['users', this.userID])
+    //   })
   }
 
   changeItemStatus(itemId: any, itemContent: any, status: boolean){
@@ -80,10 +88,13 @@ export class ListComponent implements OnInit {
       content: itemContent,
       status: !status
     }
-    this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
-      .subscribe(() => {
-        // this.ngOnInit()
+    this.listService.changeItemStatus(itemId, fullItem).subscribe(() => {
       })
+
+    // this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
+    //   .subscribe(() => {
+    //     // this.ngOnInit()
+    //   })
   }
 
   deleteNewItem(index: any){

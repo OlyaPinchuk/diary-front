@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {INote} from "../../../interfaces";
 
 @Component({
   selector: 'app-notes',
@@ -7,8 +8,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-  // @ts-ignore
-  notes: any[]
+
+  notes: INote[]
 
   constructor(private httpClient: HttpClient) { }
 

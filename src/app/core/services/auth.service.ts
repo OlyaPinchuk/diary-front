@@ -16,24 +16,12 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCurrentState(): number{
-    return this.state.getValue();
-  }
-
-  setNewState(){
-    this.state.next(this.getCurrentState() + 1);
-    console.log(this.state.getValue())
-  }
-
   login(user: IAuth): Observable<IToken> {
-
     return this.httpClient.post<IToken>('http://localhost:8000/api/v1/auth_', user)
       .pipe(
         tap((tokens: IToken) => this.setTokens(tokens))
       )
   }
-
-
 
   register(user: IRegister): Observable<void> {
     return this.httpClient.post<void>('http://localhost:8000/api/v1/auth_/register', user)

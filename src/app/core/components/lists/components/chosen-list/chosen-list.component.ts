@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IList} from "../../../../interfaces";
+import {ListService} from "../../../../services/list.service";
 
 @Component({
   selector: 'app-chosen-list',
@@ -14,7 +15,7 @@ export class ChosenListComponent implements OnInit {
   listId: number
   chosenList: IList
 
-  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private listService: ListService) { }
 
   ngOnInit(): void {
 
@@ -23,10 +24,15 @@ export class ChosenListComponent implements OnInit {
       this.listId = params['listId']
 
     })
-    this.httpClient.get<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
-      .subscribe(value => {
-        this.chosenList = value
-      })
+
+    this.listService.getChosenList(this.userId, this.listId).subscribe(value => {
+      this.chosenList = value
+    })
+
+    // this.httpClient.get<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
+    //   .subscribe(value => {
+    //     this.chosenList = value
+    //   })
   }
 
   goToProfile(){
@@ -42,10 +48,13 @@ export class ChosenListComponent implements OnInit {
   }
 
   deleteList(listId: any) {
-    this.httpClient.delete(`http://localhost:8000/api/v1/lists/${listId}/delete`)
-      .subscribe(() => {
-        this.router.navigate(['users', this.userId, 'lists'])
-      })
+    this.listService.deleteList(listId).subscribe(value => {
+      this.router.navigate(['users', this.userId, 'lists'])
+    })
+    // this.httpClient.delete(`http://localhost:8000/api/v1/lists/${listId}/delete`)
+    //   .subscribe(() => {
+    //     this.router.navigate(['users', this.userId, 'lists'])
+    //   })
   }
 
   changeItemStatus(itemId: any, itemContent: any, status: boolean){
@@ -54,8 +63,10 @@ export class ChosenListComponent implements OnInit {
       content: itemContent,
       status: !status
     }
-    this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
-      .subscribe(() => {
-      })
+    this.listService.changeItemStatus(itemId, fullItem).subscribe(() => {})
+
+    // this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
+    //   .subscribe(() => {
+    //   })
   }
 }

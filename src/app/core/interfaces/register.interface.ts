@@ -1,4 +1,3 @@
-
 import {IUser} from './user.interface';
 import {IProfile} from './profile.interface';
 

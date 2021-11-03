@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {INote} from "../interfaces";
-import {FormGroup} from "@angular/forms";
+import {Form, FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotesService {
+export class NoteService {
 
 
   constructor(private httpClient: HttpClient) { }
@@ -30,6 +30,10 @@ export class NotesService {
 
   deleteNote(userId: number, noteId: number) {
     return this.httpClient.delete(`http://localhost:8000/api/v1/users/${userId}/notes/${noteId}/delete`)
+  }
+
+  saveEdits(userId: number, noteId: number, form: FormGroup) {
+    return this.httpClient.put<INote>(`http://localhost:8000/api/v1/users/${userId}/notes/${noteId}/edit`, form.getRawValue())
 
   }
 

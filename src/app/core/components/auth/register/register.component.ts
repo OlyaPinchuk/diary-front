@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  // @ts-ignore
+
   form: FormGroup;
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
 
   }
   register(form: FormGroup): void {
-    console.log(form)
     this.authService.register(form.getRawValue()).subscribe(() => {
       this.router.navigate(['auth', 'login']);
     }, error => console.log(error))

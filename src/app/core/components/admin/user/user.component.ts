@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http'
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  // @ts-ignore
+
   users: IFullUser[];
 
   constructor(private httpClient: HttpClient) { }

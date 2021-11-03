@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {INote} from "../../../../interfaces";
-import {NotesService} from "../../../../services/notes.service";
+import {NoteService} from "../../../../services/note.service";
 
 @Component({
   selector: 'app-note',
@@ -22,7 +22,7 @@ export class NoteComponent implements OnInit {
 
 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private notesService: NotesService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private noteService: NoteService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
@@ -44,7 +44,7 @@ export class NoteComponent implements OnInit {
   }
 
   saveNewNote(form: FormGroup){
-    this.notesService.createNote(form).subscribe(() => {
+    this.noteService.createNote(form).subscribe(() => {
         this.router.navigate(['users', this.userId, 'notes'])
       })
 
@@ -55,7 +55,7 @@ export class NoteComponent implements OnInit {
   }
 
   deleteNote(noteId: any) {
-    this.notesService.deleteNote(this.userId, noteId).subscribe(() => {
+    this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
       this.router.navigate(['users', this.userId])
     })
 

@@ -25,36 +25,36 @@ li {
 li button:hover {
   background-color: rgb(168, 208, 230);
   color: white;
-  /*color: rgba(0, 0, 0, 0.6);*/
 }
-
-/*input {*/
-/*  border: 1px darkgray solid;*/
-/*  border-radius: 2px;*/
-/*  width: 200px;*/
-/*  !*height: 30px;*!*/
-/*  overflow: visible;*/
-/*}*/
 
 mat-form-field {
   display: block;
 }
 
 textarea {
-  min-width: 300px;
+  min-width: 500px;
   min-height: 200px;
+  color: #123C69;
 }
 
 mat-card {
-  margin: 5px 5px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 500px;
   inline-size: fit-content;
   align-self: flex-start;
+  color: #123C69;
 }
 
 mat-card-title {
   margin-bottom: 10px;
   font-weight: lighter;
   /*font-family: cursive;*/
-  font-family: Arial, fantasy;
+  /*font-family: Arial, fantasy;*/
+}
+
+mat-card button {
+  font-size: small;
 }
 

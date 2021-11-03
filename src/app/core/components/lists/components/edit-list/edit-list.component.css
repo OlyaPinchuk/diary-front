@@ -1,6 +1,5 @@
 ul {
   display: flex;
-  /*justify-content: center;*/
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -28,9 +27,11 @@ li button:hover {
 
 mat-card {
   margin-top: 50px;
-  margin-left: 30%;
+  margin-left: auto;
+  margin-right: auto;
   min-width: 300px;
   width: fit-content;
+  color: #123C69;
 }
 
 .deleteItem {

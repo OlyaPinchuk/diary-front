@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
+import {IList} from "../../../../interfaces";
 
 @Component({
   selector: 'app-chosen-list',
@@ -9,9 +10,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ChosenListComponent implements OnInit {
 
-  userId: any
-  listId: any
-  chosenList: any
+  userId: number
+  listId: number
+  chosenList: IList
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -22,7 +23,7 @@ export class ChosenListComponent implements OnInit {
       this.listId = params['listId']
 
     })
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
+    this.httpClient.get<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
       .subscribe(value => {
         this.chosenList = value
       })
@@ -55,7 +56,6 @@ export class ChosenListComponent implements OnInit {
     }
     this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
       .subscribe(() => {
-        // this.ngOnInit()
       })
   }
 }

@@ -1,7 +1,7 @@
 
-<!--<mat-card class="container" *ngIf="list" >-->
-<mat-card class="existing" *ngIf="list" (click)="getList(list.id)">
-  <mat-card-title>Title: {{list.title}}</mat-card-title>
+<!--<mat-card class="existing" *ngIf="list" (click)="getList(list.id)">-->
+<mat-card class="existing" *ngIf="list">
+  <mat-card-title>{{list.title}}</mat-card-title>
   <mat-card-content>
     <div class="list" >
       <div *ngFor="let item of list.items">

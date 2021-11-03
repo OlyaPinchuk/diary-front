@@ -15,6 +15,9 @@ import { EditListComponent } from './components/edit-list/edit-list.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSortModule} from "@angular/material/sort";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatIconModule,
     MatCheckboxModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRadioModule,
+    MatSortModule,
+    MatMenuModule
   ]
 })
 export class ListsModule { }

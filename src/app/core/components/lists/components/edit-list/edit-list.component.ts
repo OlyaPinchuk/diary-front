@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {FormArray, FormControl, FormGroup, FormBuilder} from "@angular/forms";
 import {getSortHeaderNotContainedWithinSortError} from "@angular/material/sort/sort-errors";
+import {IList} from "../../../../interfaces";
 
 @Component({
   selector: 'app-edit-list',
@@ -11,16 +12,12 @@ import {getSortHeaderNotContainedWithinSortError} from "@angular/material/sort/s
 })
 export class EditListComponent implements OnInit {
 
-  userId: any
-  listId: any
-  chosenList: any
-  // @ts-ignore
+  userId: number
+  listId: number
+  chosenList: IList
   itemsArray: FormArray
-  // @ts-ignore
   itemObject: FormGroup
-  // @ts-ignore
   listForm: FormGroup
-  idList: any = []
 
   get items(){
     return this.listForm.get('items') as FormArray
@@ -42,12 +39,12 @@ export class EditListComponent implements OnInit {
       this.listId = params['listId']
     })
 
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
+    this.httpClient.get<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
       .subscribe(value => {
         this.chosenList = value
-        for (let i = 0; i < this.chosenList.items.length; i++) {
-          this.idList.push(this.chosenList.items[i].id)
-        }
+        // for (let i = 0; i < this.chosenList.items.length; i++) {
+        //   this.idList.push(this.chosenList.items[i].id)
+        // }
         this.itemsArray = new FormArray([
         ])
 
@@ -79,8 +76,7 @@ export class EditListComponent implements OnInit {
   }
 
   saveEdits(form: FormGroup, items: any) {
-    console.log(form.getRawValue())
-    this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, form.getRawValue())
+    this.httpClient.put<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}/edit`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userId, 'lists'])
       })

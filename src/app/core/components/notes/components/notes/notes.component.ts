@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
+import {INote} from "../../../../interfaces";
+import {NotesService} from "../../../../services/notes.service";
 
 @Component({
   selector: 'app-notes',
@@ -9,8 +11,10 @@ import {PageEvent} from "@angular/material/paginator";
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-  userId: any
-  userNotes: any
+  // @ts-ignore
+  userId: number
+  // @ts-ignore
+  userNotes: INote[]
     // @ts-ignore
   search: string
   // @ts-ignore
@@ -25,16 +29,14 @@ export class NotesComponent implements OnInit {
   page: number
   // @ts-ignore
   response: any
-
   searchLength: number = 0
   // @ts-ignore
   searchPage: number
-
   searchResponse: any
   foundNotesNumber: number = 0
 
 
-  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private notesService: NotesService) { }
 
   ngOnInit(): void {
     this.pageEvent = new PageEvent
@@ -42,26 +44,25 @@ export class NotesComponent implements OnInit {
     this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
 
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
-      params: {
-        pageIndex: this.page
-      },
-      observe: 'response'
-    })
-    .toPromise()
-    .then(response => {
+    this.notesService.getUserNotes(this.userId, this.page).toPromise().then(response => {
       this.response = response.body
       this.userNotes = this.response.notes
       this.length = this.response.number
     })
-    .catch(console.log);
 
-    // this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/notes`)
-    //   .subscribe((value => {
-    //     this.userNotes = value
-    //   }))
-
-
+    // this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
+    //   params: {
+    //     pageIndex: this.page
+    //   },
+    //   observe: 'response'
+    // })
+    // .toPromise()
+    // .then(response => {
+    //   this.response = response.body
+    //   this.userNotes = this.response.notes
+    //   this.length = this.response.number
+    // })
+    // .catch(console.log);
 
   }
 
@@ -73,10 +74,15 @@ export class NotesComponent implements OnInit {
     this.router.navigate(['users', this.userId, 'notes', 'add'])
   }
 
-  searchLog() {
+  gotToLists() {
+    this.router.navigate(['users', this.userId, 'lists'])
+
+  }
+
+  searchInput() {
     this.foundNotes = []
     this.searchPage = 0
-    this.httpClient.get(`http://localhost:8000/api/v1/notes/search`, {
+    this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/notes/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,
@@ -102,7 +108,7 @@ export class NotesComponent implements OnInit {
   changeSearchPage(){
     this.searchPage = this.pageEvent.pageIndex
     console.log(this.searchPage)
-    this.httpClient.get(`http://localhost:8000/api/v1/notes/search`, {
+    this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/notes/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,
@@ -130,36 +136,25 @@ export class NotesComponent implements OnInit {
     this.foundNotes = null
   }
 
-  // searchNotes(text: string) {
-  //   console.log(text)
-  //   this.httpClient.get(`http://localhost:8000/api/v1/notes/search`, {
-  //     params: {
-  //       userId: this.userId,
-  //       searchText: 'ww'
-  //     },
-  //     observe: 'response'
-  //   })
-  //   .toPromise()
-  //   .then(response => {
-  //     console.log(response.body);
-  //   })
-  //   .catch(console.log);
-  // }
-
   changePage() {
     this.page = this.pageEvent.pageIndex
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
-      params: {
-        pageIndex: this.page
-      },
-      observe: 'response'
-    })
-    .toPromise()
-    .then(response => {
+    this.notesService.getUserNotes(this.userId, this.page).toPromise().then(response => {
       this.response = response.body
       this.userNotes = this.response.notes
-
     })
-    .catch(console.log);
+
+    // this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
+    //   params: {
+    //     pageIndex: this.page
+    //   },
+    //   observe: 'response'
+    // })
+    // .toPromise()
+    // .then(response => {
+    //   this.response = response.body
+    //   this.userNotes = this.response.notes
+    //
+    // })
+    // .catch(console.log);
   }
 }

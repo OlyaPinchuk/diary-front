@@ -3,13 +3,27 @@
     <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
   </li>
   <li>
+    <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
+  </li>
+  <li>
     <button class="createListButton" mat-raised-button (click)="createList()" >Create a List</button>
   </li>
   <li class="search">
     <mat-form-field>
       <mat-label>search by title</mat-label>
-      <input  matInput type="search" [(ngModel)]="search" (input)="searchLog()">
+      <input  matInput type="search" [(ngModel)]="search" (input)="searchInput()">
     </mat-form-field>
+  </li>
+  <li>
+<!--    <mat-radio-group aria-label="Select an option"> sort by length:-->
+<!--      <mat-radio-button value="1" color="primary">longest first</mat-radio-button>-->
+<!--      <mat-radio-button value="2" color="primary">shortest first</mat-radio-button>-->
+<!--    </mat-radio-group>-->
+    <button mat-flat-button [matMenuTriggerFor]="menu">Sort</button>
+    <mat-menu #menu="matMenu">
+      <button class="menuButton" mat-menu-item (click)="sort(1)" >longer lists first</button>
+      <button class="menuButton" mat-menu-item (click)="sort(0)">shorter lists first</button>
+    </mat-menu>
   </li>
 </ul>
 
@@ -20,7 +34,8 @@
   You do not have any lists yet :(
 </div>
 
-<div *ngIf="userLists && !foundLists">
+<div *ngIf="userLists && !foundLists && !sortedLists">
+
   <mat-paginator [length]="length"
                [pageSize]="pageSize"
                (page)="pageEvent = $event"
@@ -34,15 +49,28 @@
 </div>
 
 <div *ngIf="foundLists">
-<!--  <mat-paginator [length]="length"-->
-<!--               [pageSize]="pageSize"-->
-<!--               (page)="pageEvent = $event"-->
-<!--               (click)="changePage()"-->
-<!--               aria-label="Select page"-->
-<!--                >-->
-<!--  </mat-paginator>-->
+  <mat-paginator [length]="searchLength"
+               [pageSize]="pageSize"
+               (page)="pageEvent = $event"
+               (click)="changeSearchPage()"
+               aria-label="Select page"
+                >
+  </mat-paginator>
   <div  class = 'container'>
     <app-list *ngFor="let l of foundLists" [list]="l"></app-list>
+  </div>
+</div>
+
+<div *ngIf="sortedLists && !foundLists">
+  <mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               (page)="pageEvent = $event"
+               (click)="changeSortedPage()"
+               aria-label="Select page"
+                >
+  </mat-paginator>
+  <div  class = 'container'>
+    <app-list *ngFor="let l of sortedLists" [list]="l"></app-list>
   </div>
 </div>
 

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {IList} from "../../../../interfaces";
 
 
 @Component({
@@ -12,18 +13,13 @@ import {HttpClient} from "@angular/common/http";
 export class ListComponent implements OnInit {
 
   @Input()
-  list: any
+  list: IList
 
-  userID: any
-  // @ts-ignore
+  userID: number
   form: FormGroup
-  // @ts-ignore
   listForm: FormGroup
-  // @ts-ignore
   itemsArray: FormArray
-  // @ts-ignore
   itemObject: FormGroup
-  // @ts-ignore
   myGroup: FormGroup
 
 
@@ -54,18 +50,13 @@ export class ListComponent implements OnInit {
       user: new FormControl(`${this.userID}`),
       items: this.itemsArray
     })
-
   }
 
   saveNewList(form: FormGroup){
-    console.log(form.getRawValue())
-
-
-    this.httpClient.post(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
+    this.httpClient.post<IList>(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userID, 'lists'])
       })
-
   }
 
   getList(listId: any){
@@ -77,7 +68,7 @@ export class ListComponent implements OnInit {
   }
 
   deleteList(listId: any) {
-    this.httpClient.delete(`http://localhost:8000/api/v1/lists/${listId}/delete`)
+    this.httpClient.delete<IList>(`http://localhost:8000/api/v1/lists/${listId}/delete`)
       .subscribe(() => {
         this.router.navigate(['users', this.userID])
       })

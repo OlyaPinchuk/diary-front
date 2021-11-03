@@ -6,18 +6,24 @@ import { ProfileComponent } from './profile/profile.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
   declarations: [
     ProfileComponent
   ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        ProfileRoutingModule,
+        MatCardModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatDividerModule,
+        MatInputModule
+    ]
 })
 export class ProfileModule { }

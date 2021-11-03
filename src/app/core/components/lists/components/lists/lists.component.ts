@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
+import {IList} from "../../../../interfaces";
 
 @Component({
   selector: 'app-lists',
@@ -9,27 +10,25 @@ import {PageEvent} from "@angular/material/paginator";
   styleUrls: ['./lists.component.css']
 })
 export class ListsComponent implements OnInit {
-  userId: any
-  userLists: any
-  // @ts-ignore
+  userId: number
+  userLists: IList[]
+
   search: string
-  // @ts-ignore
+
   listsFound:boolean
   foundLists: any
   pageSize: number = 5
   length: number = 0
-  // @ts-ignore
   pageEvent: PageEvent
-    // @ts-ignore
   page: number
-  // @ts-ignore
   response: any
-  searchLength: number = 100
-  // @ts-ignore
+  searchLength: number = 0
   searchPage: number
-
   searchResponse: any
   foundListsNumber: number = 0
+  sortOption: number
+  sortedLists: IList[]
+  searchSortOption: number
 
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) { }
@@ -39,12 +38,19 @@ export class ListsComponent implements OnInit {
     this.pageEvent.pageIndex = 0
     this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`)
-      .subscribe(value => {
-        console.log(value)
-        this.userLists = value
-        // console.log(this.userLists)
-      })
+    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`, {
+      params: {
+        pageIndex: this.page
+      },
+      observe: 'response'
+    })
+    .toPromise()
+    .then(response => {
+      this.response = response.body
+      this.userLists = this.response.lists
+      this.length = this.response.number
+    })
+    .catch(console.log);
   }
 
   goToProfile(){
@@ -55,7 +61,7 @@ export class ListsComponent implements OnInit {
     this.router.navigate(['users', this.userId, 'lists', 'add'])
   }
 
-  searchLog() {
+  searchInput() {
     this.foundLists = []
     this.searchPage = 0
     this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
@@ -69,7 +75,7 @@ export class ListsComponent implements OnInit {
     .toPromise()
     .then(response => {
       this.searchResponse = response.body
-
+      this.searchLength = this.searchResponse.number
       this.foundLists = this.searchResponse.lists
       console.log(this.foundLists)
       if (this.foundLists.length == 0) {
@@ -81,8 +87,136 @@ export class ListsComponent implements OnInit {
     .catch(console.log);
   }
 
-  changePage() {
-    console.log('change')
+  changeSearchPage() {
+    this.searchPage = this.pageEvent.pageIndex
+
+    if (this.searchSortOption == 0 || this.searchSortOption == 1){
+      this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
+      params: {
+        userId: this.userId,
+        searchText: this.search,
+        pageIndex: this.searchPage,
+        sortOption: this.searchSortOption
+      },
+      observe: 'response'
+      })
+        .toPromise()
+        .then(response => {
+          this.searchResponse = response.body
+          this.foundLists = this.searchResponse.lists
+          if (this.foundLists.length == 0) {
+            this.listsFound = false
+          } else {
+            this.listsFound = true
+          }
+        })
+        .catch(console.log);
+    }
+    else {
+      this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
+      params: {
+        userId: this.userId,
+        searchText: this.search,
+        pageIndex: this.searchPage
+      },
+      observe: 'response'
+      })
+        .toPromise()
+        .then(response => {
+          this.searchResponse = response.body
+          this.foundLists = this.searchResponse.lists
+          if (this.foundLists.length == 0) {
+            this.listsFound = false
+          } else {
+            this.listsFound = true
+          }
+        })
+        .catch(console.log);
+    }
   }
 
+  changePage() {
+    this.page = this.pageEvent.pageIndex
+    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`, {
+      params: {
+        pageIndex: this.page
+      },
+      observe: 'response'
+    })
+    .toPromise()
+    .then(response => {
+      this.response = response.body
+      this.userLists = this.response.lists
+    })
+    .catch(console.log);
+  }
+
+  sort(option: number){
+    this.page = 0
+    this.sortOption = option
+    console.log(this.sortOption)
+    if (this.listsFound) {
+      this.searchSortOption = option
+      this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
+      params: {
+        userId: this.userId,
+        searchText: this.search,
+        pageIndex: this.searchPage,
+        sortOption: this.sortOption
+      },
+      observe: 'response'
+      })
+      .toPromise()
+      .then(response => {
+        this.searchResponse = response.body
+        this.searchLength = this.searchResponse.number
+        this.foundLists = this.searchResponse.lists
+        console.log(this.foundLists)
+        if (this.foundLists.length == 0) {
+          this.listsFound = false
+        } else {
+          this.listsFound = true
+        }
+      })
+      .catch(console.log);
+    }
+    if (!this.listsFound) {
+      this.httpClient.get(`http://localhost:8000/api/v1/lists/sort`, {
+      params: {
+        userId: this.userId,
+        sortOption: this.sortOption,
+        pageIndex: this.page
+      },
+      observe: 'response'
+      })
+      .toPromise()
+      .then(response => {
+        this.response = response.body
+        this.sortedLists = this.response
+      })
+      .catch(console.log);
+    }
+  }
+
+  changeSortedPage() {
+    this.page = this.pageEvent.pageIndex
+    this.httpClient.get(`http://localhost:8000/api/v1/lists/sort`, {
+      params: {
+        userId: this.userId,
+        sortOption: this.sortOption,
+        pageIndex: this.page
+      },
+      observe: 'response'
+    })
+    .toPromise()
+    .then(response => {
+      this.response = response.body
+      this.sortedLists = this.response
+    })
+    .catch(console.log);
+  }
+
+  goToNotes(){
+    this.router.navigate(['users', this.userId, 'notes'])
+  }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {INote} from "../../../../interfaces";
+import {NotesService} from "../../../../services/notes.service";
 
 @Component({
   selector: 'app-edit-note',
@@ -10,14 +12,13 @@ import {HttpClient} from "@angular/common/http";
 })
 export class EditNoteComponent implements OnInit {
 
-  // @ts-ignore
+
   form: FormGroup
+  userId: number
+  noteId: number
+  note: INote
 
-  userId: any
-  noteId: any
-  note: any
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private notesService: NotesService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -25,16 +26,26 @@ export class EditNoteComponent implements OnInit {
       this.noteId = params['noteID']
     })
 
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/notes/${this.noteId}`)
-      .subscribe(value => {
-        this.note = value
+    this.notesService.getChosenNote(this.userId, this.noteId).subscribe(value => {
+      this.note = value
         this.form = new FormGroup({
           title: new FormControl(this.note.title),
           content: new FormControl(this.note.content),
           user: new FormControl(`${this.userId}`)
           }
         )
-      })
+    })
+
+    // this.httpClient.get<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${this.noteId}`)
+    //   .subscribe(value => {
+    //     this.note = value
+    //     this.form = new FormGroup({
+    //       title: new FormControl(this.note.title),
+    //       content: new FormControl(this.note.content),
+    //       user: new FormControl(`${this.userId}`)
+    //       }
+    //     )
+    //   })
   }
 
   goToProfile(){
@@ -46,7 +57,7 @@ export class EditNoteComponent implements OnInit {
   }
 
   saveEdits(form: FormGroup, noteId: any){
-    this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
+    this.httpClient.put<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
       .subscribe(() => {
         this.router.navigate(['users', this.userId, 'notes'])
 
@@ -54,7 +65,7 @@ export class EditNoteComponent implements OnInit {
   }
 
   deleteNote(noteId: any) {
-    this.httpClient.delete(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
+    this.httpClient.delete<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
       .subscribe(() => {
         this.router.navigate(['users', this.userId, 'notes'])
         // this.ngOnInit()

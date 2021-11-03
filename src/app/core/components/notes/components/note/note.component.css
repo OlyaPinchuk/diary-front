@@ -2,6 +2,7 @@ mat-card {
   margin: 5px 5px;
   inline-size: fit-content;
   align-self: flex-start;
+  color: #123C69;
 }
 
 .existing :hover {
@@ -34,7 +35,7 @@ mat-card-title {
   margin-bottom: 10px;
   font-weight: lighter;
   /*font-family: cursive;*/
-  font-family: Arial, fantasy;
+  /*font-family: Arial, fantasy;*/
 }
 
 /*.new {*/

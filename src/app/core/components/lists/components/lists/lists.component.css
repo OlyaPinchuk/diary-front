@@ -7,14 +7,9 @@ button {
   font-size: large;
 }
 
-/*.toProfileButton:hover {*/
-/*  font-size: x-large;*/
+/*.toNotes {*/
+/*  margin-right: 200px;*/
 /*}*/
-
-/*.createListButton:hover {*/
-/*  font-size: medium;*/
-/*}*/
-
 
 .container {
   display: flex;
@@ -29,7 +24,6 @@ button {
 
 ul {
   display: flex;
-  /*justify-content: center;*/
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -50,3 +44,10 @@ li button:hover {
 .search {
   margin-left: 10px;
 }
+
+.menuButton {
+  margin: 0;
+  color: #123C69;
+}
+
+

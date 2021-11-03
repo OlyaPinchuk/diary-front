@@ -44,4 +44,8 @@ export class ProfileComponent implements OnInit {
       })
   }
 
+  goToProfile(){
+    this.router.navigate(['users', this.userId])
+  }
+
 }

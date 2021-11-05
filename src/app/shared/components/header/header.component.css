@@ -19,3 +19,11 @@ nav button {
   font-family: fantasy;
 
 }
+
+.header :hover {
+  cursor: pointer;
+}
+
+/*.logo :hover {*/
+/*  cursor: pointer;*/
+/*}*/

@@ -6,6 +6,7 @@ import {IFullUser} from "../../../interfaces";
 import {HttpClient} from "@angular/common/http";
 import * as jwt from 'jsonwebtoken';
 import JWTDecode from "jwt-decode";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,12 @@ import JWTDecode from "jwt-decode";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  urlId: number;
+  userId: number;
   users: IFullUser[];
   token: any
 
 
-  constructor(private authService: AuthService, private router: Router, private httpClient: HttpClient) {
+  constructor(private authService: AuthService, private router: Router, private httpClient: HttpClient, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -36,8 +37,8 @@ export class LoginComponent implements OnInit {
       this.token = localStorage.getItem("access")
       let decoded:any = JWTDecode(this.token)
       console.log(decoded.user_id)
-      this.urlId = decoded.user_id
-      this.router.navigate(['users', this.urlId]);
+      this.userId = decoded.user_id
+      this.router.navigate(['users', this.userId]);
     }, () => this.form.reset());
   }
 
@@ -46,19 +47,27 @@ export class LoginComponent implements OnInit {
         this.token = localStorage.getItem("access")
         let decoded:any = JWTDecode(this.token)
         console.log(decoded.user_id)
-        this.urlId = decoded.user_id
-        this.router.navigate(['users', `${this.urlId}`])
+        this.userId = decoded.user_id
+        this.router.navigate(['users', `${this.userId}`])
       }
   }
 
   loginAdmin(form: FormGroup) {
     this.authService.login(form.getRawValue()).subscribe((v) => {
-      console.log(v)
       this.token = localStorage.getItem("access")
       let decoded:any = JWTDecode(this.token)
-      console.log(decoded.user_id)
-      this.urlId = decoded.user_id
-      this.router.navigate(['admin']);
+      this.userId = decoded.user_id
+      this.userService.getUser(this.userId).subscribe(value => {
+        let user = value
+        if (user.is_staff == false) {
+          alert('not admin')
+          localStorage.removeItem('access')
+          localStorage.removeItem('refresh')
+        }
+        else {
+          this.router.navigate(['admin']);
+        }
+      })
     }, () => this.form.reset());
   }
 

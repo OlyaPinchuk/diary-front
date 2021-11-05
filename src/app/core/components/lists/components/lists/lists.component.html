@@ -15,10 +15,6 @@
     </mat-form-field>
   </li>
   <li>
-<!--    <mat-radio-group aria-label="Select an option"> sort by length:-->
-<!--      <mat-radio-button value="1" color="primary">longest first</mat-radio-button>-->
-<!--      <mat-radio-button value="2" color="primary">shortest first</mat-radio-button>-->
-<!--    </mat-radio-group>-->
     <button mat-flat-button [matMenuTriggerFor]="menu">Sort</button>
     <mat-menu #menu="matMenu">
       <button class="menuButton" mat-menu-item (click)="sort(1)" >longer lists first</button>
@@ -27,15 +23,9 @@
   </li>
 </ul>
 
-
 <mat-divider></mat-divider>
 
-<div *ngIf="userLists && userLists.length == 0" >
-  You do not have any lists yet :(
-</div>
-
 <div *ngIf="userLists && !foundLists && !sortedLists">
-
   <mat-paginator [length]="length"
                [pageSize]="pageSize"
                (page)="pageEvent = $event"
@@ -72,6 +62,15 @@
   <div  class = 'container'>
     <app-list *ngFor="let l of sortedLists" [list]="l"></app-list>
   </div>
+</div>
+
+<div class="info" *ngIf="userLists && userLists.length == 0" >
+  You do not have any lists yet :(
+</div>
+
+<div class="info" *ngIf="listsFound == false">
+  You do not have lists with such title :(
+  <button mat-raised-button (click)="backToLists()"> Back to All Lists </button>
 </div>
 
 

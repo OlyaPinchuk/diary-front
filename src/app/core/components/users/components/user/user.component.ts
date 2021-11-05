@@ -23,12 +23,11 @@ export class UserComponent implements OnInit {
       })
       this.userService.getUser(this.userId).subscribe(value => {
         this.user = value
-        console.log(this.user)
       })
 
       // this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}`)
       //   .subscribe((value) => {
-      //     this.user = value
+      //     this.users = value
       //   })
     }
   }

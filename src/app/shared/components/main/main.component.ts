@@ -24,7 +24,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   //
   // @ViewChild(UserComponent)
   // // @ts-ignore
-  // user: UserComponent
+  // users: UserComponent
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 

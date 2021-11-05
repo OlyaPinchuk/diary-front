@@ -16,7 +16,7 @@ export class ListsComponent implements OnInit {
 
   search: string
 
-  listsFound:boolean
+  listsFound: boolean
   foundLists: any
   pageSize: number = 5
   length: number = 0
@@ -63,6 +63,7 @@ export class ListsComponent implements OnInit {
   createList() {
     this.router.navigate(['users', this.userId, 'lists', 'add'])
   }
+
 
   searchInput() {
     this.foundLists = []
@@ -222,4 +223,12 @@ export class ListsComponent implements OnInit {
   goToNotes(){
     this.router.navigate(['users', this.userId, 'notes'])
   }
+
+  backToLists() {
+    this.ngOnInit()
+    this.listsFound = true
+    this.search = ''
+    this.foundLists = null
+  }
+
 }

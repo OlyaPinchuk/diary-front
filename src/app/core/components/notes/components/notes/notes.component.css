@@ -46,3 +46,7 @@ li button:hover {
   box-shadow: 2px 2px 2px lightblue;
   border-radius: 5px;
 }
+
+.info {
+  margin: 0 20px;
+}

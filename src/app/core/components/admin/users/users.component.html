@@ -1,0 +1,15 @@
+
+<button mat-raised-button routerLink="notes">Get Notes</button>
+
+<!--<table mat-table>-->
+<!--  <ng-container matColumnDef="position">-->
+<!--    <th mat-header-cell *matHeaderCellDef> No. </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.position}} </td>-->
+<!--  </ng-container>-->
+<!--</table>-->
+
+<ng-container *ngIf="users">
+  <div *ngFor="let user of users">
+    {{user|json}}
+  </div>
+</ng-container>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, DoCheck} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
@@ -47,23 +47,15 @@ export class NoteComponent implements OnInit {
     this.noteService.createNote(form).subscribe(() => {
         this.router.navigate(['users', this.userId, 'notes'])
       })
-
-    // this.httpClient.post<INote>(`http://localhost:8000/api/v1/notes/add`, form.getRawValue())
-    //   .subscribe(() => {
-    //     this.router.navigate(['users', this.userId, 'notes'])
-    //   })
   }
 
   deleteNote(noteId: any) {
+    let currentUrl = this.router.url
+    console.log(currentUrl)
     this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
-      this.router.navigate(['users', this.userId])
+      // this.router.navigate(['users', this.userId])
+      this.router.navigate([currentUrl])
     })
-
-
-    // this.httpClient.delete<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
-    //   .subscribe(() => {
-    //     this.router.navigate(['users', this.userId])
-    //   })
   }
 
 

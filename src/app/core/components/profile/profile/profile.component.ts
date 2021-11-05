@@ -29,19 +29,10 @@ export class ProfileComponent implements OnInit {
         this.form = new FormGroup({
             name: new FormControl(this.user.profile.name),
             surname: new FormControl(this.user.profile.surname),
-            age: new FormControl(this.user.profile.age)
+            age: new FormControl(this.user.profile.age),
+            // status: new FormControl(this.user.is_staff)
           })
       })
-
-      // this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}`)
-      //   .subscribe(value => {
-      //     this.user = value
-      //     this.form = new FormGroup({
-      //       name: new FormControl(this.user.profile.name),
-      //       surname: new FormControl(this.user.profile.surname),
-      //       age: new FormControl(this.user.profile.age)
-      //     })
-      //   })
     }
 
   }

@@ -41,7 +41,7 @@ export class EditNoteComponent implements OnInit {
     //     this.form = new FormGroup({
     //       title: new FormControl(this.note.title),
     //       content: new FormControl(this.note.content),
-    //       user: new FormControl(`${this.userId}`)
+    //       users: new FormControl(`${this.userId}`)
     //       }
     //     )
     //   })

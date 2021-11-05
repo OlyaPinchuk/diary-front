@@ -19,14 +19,7 @@
 
 <mat-divider></mat-divider>
 
-<div *ngIf="userNotes && userNotes.length == 0 && notesFound != false" >
-  You do not have any notes yet :(
-</div>
 
-<div *ngIf="notesFound == false">
-  You do not have notes with such title :(
-  <button mat-raised-button (click)="backToNotes()" > Back to All Notes</button>
-</div>
 
 <div *ngIf="userNotes && !foundNotes">
   <mat-paginator [length]="length"
@@ -52,6 +45,15 @@
   <div  class = 'container'>
     <app-note *ngFor="let n of foundNotes" [note]="n"></app-note>
   </div>
+</div>
+
+<div class="info" *ngIf="userNotes && userNotes.length == 0 && notesFound != false" >
+  You do not have any notes yet :(
+</div>
+
+<div class="info" *ngIf="notesFound == false">
+  You do not have notes with such title :(
+  <button mat-raised-button (click)="backToNotes()" > Back to All Notes</button>
 </div>
 
 <router-outlet></router-outlet>

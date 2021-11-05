@@ -26,7 +26,6 @@ export class NotesComponent implements OnInit {
   searchLength: number = 0
   searchPage: number
   searchResponse: any
-  foundNotesNumber: number = 0
 
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private noteService: NoteService) { }
@@ -42,21 +41,6 @@ export class NotesComponent implements OnInit {
       this.userNotes = this.response.notes
       this.length = this.response.number
     })
-
-    // this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
-    //   params: {
-    //     pageIndex: this.page
-    //   },
-    //   observe: 'response'
-    // })
-    // .toPromise()
-    // .then(response => {
-    //   this.response = response.body
-    //   this.userNotes = this.response.notes
-    //   this.length = this.response.number
-    // })
-    // .catch(console.log);
-
   }
 
   goToProfile(){
@@ -135,19 +119,5 @@ export class NotesComponent implements OnInit {
       this.response = response.body
       this.userNotes = this.response.notes
     })
-
-    // this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/users/${this.userId}/notes`, {
-    //   params: {
-    //     pageIndex: this.page
-    //   },
-    //   observe: 'response'
-    // })
-    // .toPromise()
-    // .then(response => {
-    //   this.response = response.body
-    //   this.userNotes = this.response.notes
-    //
-    // })
-    // .catch(console.log);
   }
 }

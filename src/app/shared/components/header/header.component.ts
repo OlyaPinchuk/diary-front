@@ -4,6 +4,8 @@ import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {AuthService} from "../../../core/services/auth.service";
 import {LoginComponent} from "../../../core/components/auth/login/login.component";
+import JWTDecode from "jwt-decode";
+import {IToken} from "../../../core/interfaces";
 
 @Component({
   selector: 'app-header',
@@ -11,13 +13,15 @@ import {LoginComponent} from "../../../core/components/auth/login/login.componen
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, DoCheck {
-  // @ts-ignore
+
   tokenPresent: boolean;
-  userId: any
+  token: any
+  userId: number
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+
   }
 
   ngDoCheck() {
@@ -26,12 +30,10 @@ export class HeaderComponent implements OnInit, DoCheck {
   }
 
   goToProfile(){
-    console.log('hi')
-    // this.activatedRoute.params.subscribe(params => {
-    //   this.userId = params['id']
-    //   console.log(this.activatedRoute)
-    //   this.router.navigate(['users', '8'])
-    // })
+    this.token = localStorage.getItem("access")
+    let decoded:any = JWTDecode(this.token)
+    this.userId = decoded.user_id
+    this.router.navigate(['users', `${this.userId}`])
   }
 
 

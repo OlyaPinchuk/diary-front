@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {IFullUser} from "../../../interfaces";
-import {HttpClient} from '@angular/common/http'
+import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
-export class UserComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
   users: IFullUser[];
 

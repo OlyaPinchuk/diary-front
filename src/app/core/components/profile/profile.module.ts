@@ -9,6 +9,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatInputModule} from "@angular/material/input";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatInputModule} from "@angular/material/input";
         ReactiveFormsModule,
         MatFormFieldModule,
         MatDividerModule,
-        MatInputModule
+        MatInputModule,
+        MatCheckboxModule
     ]
 })
 export class ProfileModule { }

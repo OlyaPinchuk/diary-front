@@ -1,3 +1,12 @@
 button {
+  color: #123C69;
   margin: 5px;
+}
+
+.box {
+  margin: 5px;
+}
+
+.user {
+  margin: 5px 0;
 }

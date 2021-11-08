@@ -1,9 +1,9 @@
 
-<button mat-raised-button routerLink="../">Get Users</button>
+<button mat-raised-button routerLink="../">Show All Users</button>
 
-<ng-container *ngIf="notes">
-  <div *ngFor="let note of notes">
+<div class="box" *ngIf="notes">
+  <div class="note" *ngFor="let note of notes">
     {{note | json}}
-
+    <mat-divider></mat-divider>
   </div>
-</ng-container>
+</div>

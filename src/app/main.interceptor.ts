@@ -38,6 +38,8 @@ export class MainInterceptor implements HttpInterceptor {
           }
         });
       }
+
+      throw(res);
     })) as any;
   }
 

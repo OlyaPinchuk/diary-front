@@ -6,6 +6,7 @@ import { NotesComponent } from './notes/notes.component';
 import {MatButtonModule} from "@angular/material/button";
 import { UsersComponent } from './users/users.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -13,11 +14,12 @@ import {MatTableModule} from "@angular/material/table";
     NotesComponent,
     UsersComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    MatButtonModule,
-    MatTableModule
-  ]
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        MatButtonModule,
+        MatTableModule,
+        MatDividerModule
+    ]
 })
 export class AdminModule { }

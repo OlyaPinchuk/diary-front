@@ -24,13 +24,13 @@ export class UserComponent implements OnInit {
       this.userService.getUser(this.userId).subscribe(value => {
         this.user = value
       })
-
-      // this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}`)
-      //   .subscribe((value) => {
-      //     this.users = value
-      //   })
     }
   }
+
+  goToProfile(){
+    this.router.navigate(['users', this.userId])
+  }
+
   getUserNotes(){
     this.router.navigate(['users', this.userId, 'notes'])
   }

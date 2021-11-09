@@ -4,8 +4,6 @@ import {regex} from "../../../constants/regex";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {catchError} from "rxjs/operators";
-import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -32,12 +30,9 @@ export class RegisterComponent implements OnInit {
   }
   register(form: FormGroup): void {
     this.authService.register(form.getRawValue()).subscribe((response) => {
-      console.log(response)
       this.router.navigate(['auth', 'login']);
     }, error => {
-      console.log(error)
-      console.log(JSON.stringify(error.error))
-      let msg: string = ''
+      let msg: string = 'Error:\n'
       for (let e in error.error) {
         if (error.error[e].length) {
 

@@ -35,12 +35,13 @@ export class NotesComponent implements OnInit {
     this.pageEvent.pageIndex = 0
     this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
-
-    this.noteService.getUserNotes(this.userId, this.page).toPromise().then(response => {
-      this.response = response.body
-      this.userNotes = this.response.notes
-      this.length = this.response.number
-    })
+    this.noteService.getUserNotes(this.userId, this.page)
+      .toPromise()
+      .then(response => {
+        this.response = response.body
+        this.userNotes = this.response.notes
+        this.length = this.response.number
+      })
   }
 
   goToProfile(){
@@ -53,7 +54,6 @@ export class NotesComponent implements OnInit {
 
   gotToLists() {
     this.router.navigate(['users', this.userId, 'lists'])
-
   }
 
   searchInput() {
@@ -111,6 +111,10 @@ export class NotesComponent implements OnInit {
     this.notesFound = true
     this.search = ''
     this.foundNotes = null
+  }
+
+  goToNotes(){
+    this.router.navigate(['users', this.userId, 'notes'])
   }
 
   changePage() {

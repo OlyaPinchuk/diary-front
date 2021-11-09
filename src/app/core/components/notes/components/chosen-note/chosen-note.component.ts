@@ -26,16 +26,9 @@ export class ChosenNoteComponent implements OnInit {
         this.userId = params['id']
         this.noteId = params['noteID']
       })
-
       this.noteService.getChosenNote(this.userId, this.noteId).subscribe(value => {
         this.chosenNote = value
       })
-
-      // this.httpClient.get<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${this.noteId}`)
-      // .subscribe(value => {
-      //   this.chosenNote = value
-      //   console.log(this.chosenNote)
-      // })
   }
 
   goToProfile(){
@@ -46,25 +39,18 @@ export class ChosenNoteComponent implements OnInit {
     this.router.navigate(['users', this.userId, 'notes'])
   }
 
+  gotToLists() {
+    this.router.navigate(['users', this.userId, 'lists'])
+  }
+
   editNote() {
     this.router.navigate(['users', this.userId, 'notes', this.chosenNote.id, 'edit'])
   }
-
-  // saveEdits(form: FormGroup, noteId: any) {
-  //   this.httpClient.put<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/edit`, form.getRawValue())
-  //     .subscribe(() => {
-  //       this.router.navigate(['users', this.userId, 'notes'])
-  //     })
-  // }
 
   deleteNote(noteId: any) {
     this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
       this.router.navigate(['users', this.userId, 'notes'])
     })
-    // this.httpClient.delete<INote>(`http://localhost:8000/api/v1/users/${this.userId}/notes/${noteId}/delete`)
-    //   .subscribe(() => {
-    //     this.router.navigate(['users', this.userId, 'notes'])
-    //   })
   }
 
 }

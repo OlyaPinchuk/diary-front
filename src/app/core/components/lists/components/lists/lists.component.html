@@ -6,6 +6,9 @@
     <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
   </li>
   <li>
+    <button mat-raised-button (click)="goToLists()">My Lists</button>
+  </li>
+  <li>
     <button class="createListButton" mat-raised-button (click)="createList()" >Create a List</button>
   </li>
   <li class="search">
@@ -68,7 +71,7 @@
   You do not have any lists yet :(
 </div>
 
-<div class="info" *ngIf="listsFound == false">
+<div class="info" *ngIf="found == false">
   You do not have lists with such title :(
   <button mat-raised-button (click)="backToLists()"> Back to All Lists </button>
 </div>

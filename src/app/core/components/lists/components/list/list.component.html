@@ -1,5 +1,4 @@
 
-<!--<mat-card class="existing" *ngIf="list" (click)="getList(list.id)">-->
 <mat-card class="existing" *ngIf="list">
   <mat-card-title>{{list.title}}</mat-card-title>
   <mat-card-content>
@@ -7,7 +6,6 @@
       <div *ngFor="let item of list.items">
         <div>
           <input *ngIf="item.status == true" type="checkbox" checked (click)="changeItemStatus(item.id, item.content, item.status)">
-  <!--        <div *ngIf="item.status == true" > status true {{item.content}}</div>-->
           <input *ngIf="item.status == false" type="checkbox" (click)="changeItemStatus(item.id, item.content, item.status)" >
           {{item.content}}
         </div>

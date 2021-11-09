@@ -7,12 +7,14 @@ import {MatButtonModule} from "@angular/material/button";
 import { UsersComponent } from './users/users.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
+import { ListsComponent } from './lists/lists.component';
 
 
 @NgModule({
   declarations: [
     NotesComponent,
-    UsersComponent
+    UsersComponent,
+    ListsComponent
   ],
     imports: [
         CommonModule,

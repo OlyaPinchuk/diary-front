@@ -29,12 +29,17 @@ li {
   align-self: center;
 }
 
+li button {
+    margin: 5px 3px;
+    color: #123C69;
+}
+
 li button:hover {
   background-color: rgb(168, 208, 230);
   color: white;
 }
 
-button {
+mat-card-content button {
   margin: 5px 5px;
   color: #123C69;
   font-size: small;

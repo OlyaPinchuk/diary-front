@@ -104,4 +104,8 @@ export class EditListComponent implements OnInit {
   deleteNewItem(index: any){
     this.itemsArray.removeAt(index)
   }
+
+  goToNotes(){
+    this.router.navigate(['users', this.userId, 'notes'])
+  }
 }

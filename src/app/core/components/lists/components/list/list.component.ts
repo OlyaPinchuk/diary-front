@@ -15,18 +15,16 @@ export class ListComponent implements OnInit {
 
   @Input()
   list: IList
-
   userID: number
   form: FormGroup
   listForm: FormGroup
   itemsArray: FormArray
   itemObject: FormGroup
-  myGroup: FormGroup
 
 
-  get items(){
-    return this.listForm.get('items') as FormArray
-  }
+  // get items(){
+  //   return this.listForm.get('items') as FormArray
+  // }
 
   addItem() {
     this.itemObject = new FormGroup({
@@ -57,10 +55,6 @@ export class ListComponent implements OnInit {
     this.listService.saveNewList(form).subscribe(() => {
       this.router.navigate(['users', this.userID, 'lists'])
     })
-    // this.httpClient.post<IList>(`http://localhost:8000/api/v1/lists/add`, form.getRawValue())
-    //   .subscribe(() => {
-    //     this.router.navigate(['users', this.userID, 'lists'])
-    //   })
   }
 
   getList(listId: any){
@@ -72,14 +66,12 @@ export class ListComponent implements OnInit {
   }
 
   deleteList(listId: any) {
+    let currentUrl = this.router.url
+    console.log(currentUrl)
     this.listService.deleteList(listId).subscribe(() => {
       this.router.navigate(['users', this.userID])
+      // this.router.navigate([currentUrl])
     })
-
-    // this.httpClient.delete<IList>(`http://localhost:8000/api/v1/lists/${listId}/delete`)
-    //   .subscribe(() => {
-    //     this.router.navigate(['users', this.userID])
-    //   })
   }
 
   changeItemStatus(itemId: any, itemContent: any, status: boolean){
@@ -90,11 +82,6 @@ export class ListComponent implements OnInit {
     }
     this.listService.changeItemStatus(itemId, fullItem).subscribe(() => {
       })
-
-    // this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
-    //   .subscribe(() => {
-    //     // this.ngOnInit()
-    //   })
   }
 
   deleteNewItem(index: any){

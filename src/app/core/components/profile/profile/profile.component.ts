@@ -50,4 +50,12 @@ export class ProfileComponent implements OnInit {
   goToProfile(){
     this.router.navigate(['users', this.userId])
   }
+
+  goToNotes(){
+    this.router.navigate(['users', this.userId, 'notes'])
+  }
+
+  goToLists(){
+    this.router.navigate(['users', this.userId, 'lists'])
+  }
 }

@@ -13,10 +13,8 @@ import {ListService} from "../../../../services/list.service";
 export class ListsComponent implements OnInit {
   userId: number
   userLists: IList[]
-
   search: string
-
-  listsFound: boolean
+  found: boolean
   foundLists: any
   pageSize: number = 5
   length: number = 0
@@ -26,7 +24,6 @@ export class ListsComponent implements OnInit {
   searchLength: number = 0
   searchPage: number
   searchResponse: any
-  foundListsNumber: number = 0
   sortOption: number
   sortedLists: IList[]
   searchSortOption: number
@@ -39,21 +36,13 @@ export class ListsComponent implements OnInit {
     this.pageEvent.pageIndex = 0
     this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
-
-    // this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`, {
-    //   params: {
-    //     pageIndex: this.page
-    //   },
-    //   observe: 'response'
-    // })
     this.listService.getLists(this.userId, this.page)
-    .toPromise()
-    .then(response => {
-      this.response = response.body
-      this.userLists = this.response.lists
-      this.length = this.response.number
-    })
-    .catch(console.log);
+      .toPromise()
+      .then(response => {
+        this.response = response.body
+        this.userLists = this.response.lists
+        this.length = this.response.number
+      })
   }
 
   goToProfile(){
@@ -63,7 +52,6 @@ export class ListsComponent implements OnInit {
   createList() {
     this.router.navigate(['users', this.userId, 'lists', 'add'])
   }
-
 
   searchInput() {
     this.foundLists = []
@@ -76,24 +64,23 @@ export class ListsComponent implements OnInit {
       },
       observe: 'response'
     })
-    .toPromise()
-    .then(response => {
-      this.searchResponse = response.body
-      this.searchLength = this.searchResponse.number
-      this.foundLists = this.searchResponse.lists
-      console.log(this.foundLists)
-      if (this.foundLists.length == 0) {
-        this.listsFound = false
-      } else {
-        this.listsFound = true
-      }
-    })
-    .catch(console.log);
+      .toPromise()
+      .then(response => {
+        this.searchResponse = response.body
+        this.searchLength = this.searchResponse.number
+        this.foundLists = this.searchResponse.lists
+        console.log(this.foundLists)
+        if (this.foundLists.length == 0) {
+          this.found = false
+        } else {
+          this.found = true
+        }
+      })
+      .catch(console.log);
   }
 
   changeSearchPage() {
     this.searchPage = this.pageEvent.pageIndex
-
     if (this.searchSortOption == 0 || this.searchSortOption == 1){
       this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
       params: {
@@ -109,9 +96,9 @@ export class ListsComponent implements OnInit {
           this.searchResponse = response.body
           this.foundLists = this.searchResponse.lists
           if (this.foundLists.length == 0) {
-            this.listsFound = false
+            this.found = false
           } else {
-            this.listsFound = true
+            this.found = true
           }
         })
         .catch(console.log);
@@ -130,9 +117,9 @@ export class ListsComponent implements OnInit {
           this.searchResponse = response.body
           this.foundLists = this.searchResponse.lists
           if (this.foundLists.length == 0) {
-            this.listsFound = false
+            this.found = false
           } else {
-            this.listsFound = true
+            this.found = true
           }
         })
         .catch(console.log);
@@ -147,19 +134,18 @@ export class ListsComponent implements OnInit {
       },
       observe: 'response'
     })
-    .toPromise()
-    .then(response => {
-      this.response = response.body
-      this.userLists = this.response.lists
-    })
-    .catch(console.log);
+      .toPromise()
+      .then(response => {
+        this.response = response.body
+        this.userLists = this.response.lists
+      })
+      .catch(console.log);
   }
 
   sort(option: number){
     this.page = 0
     this.sortOption = option
-    console.log(this.sortOption)
-    if (this.listsFound) {
+    if (this.found) {
       this.searchSortOption = option
       this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
       params: {
@@ -170,21 +156,20 @@ export class ListsComponent implements OnInit {
       },
       observe: 'response'
       })
-      .toPromise()
-      .then(response => {
-        this.searchResponse = response.body
-        this.searchLength = this.searchResponse.number
-        this.foundLists = this.searchResponse.lists
-        console.log(this.foundLists)
-        if (this.foundLists.length == 0) {
-          this.listsFound = false
-        } else {
-          this.listsFound = true
-        }
-      })
-      .catch(console.log);
+        .toPromise()
+        .then(response => {
+          this.searchResponse = response.body
+          this.searchLength = this.searchResponse.number
+          this.foundLists = this.searchResponse.lists
+          if (this.foundLists.length == 0) {
+            this.found = false
+          } else {
+            this.found = true
+          }
+        })
+        .catch(console.log);
     }
-    if (!this.listsFound) {
+    else if (!this.found) {
       this.httpClient.get(`http://localhost:8000/api/v1/lists/sort`, {
       params: {
         userId: this.userId,
@@ -193,12 +178,12 @@ export class ListsComponent implements OnInit {
       },
       observe: 'response'
       })
-      .toPromise()
-      .then(response => {
-        this.response = response.body
-        this.sortedLists = this.response
-      })
-      .catch(console.log);
+        .toPromise()
+        .then(response => {
+          this.response = response.body
+          this.sortedLists = this.response
+        })
+        .catch(console.log);
     }
   }
 
@@ -212,21 +197,25 @@ export class ListsComponent implements OnInit {
       },
       observe: 'response'
     })
-    .toPromise()
-    .then(response => {
-      this.response = response.body
-      this.sortedLists = this.response
-    })
-    .catch(console.log);
+      .toPromise()
+      .then(response => {
+        this.response = response.body
+        this.sortedLists = this.response
+      })
+      .catch(console.log);
   }
 
   goToNotes(){
     this.router.navigate(['users', this.userId, 'notes'])
   }
 
+  goToLists(){
+    this.router.navigate(['users', this.userId, 'lists'])
+  }
+
   backToLists() {
     this.ngOnInit()
-    this.listsFound = true
+    this.found = true
     this.search = ''
     this.foundLists = null
   }

@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(form.getRawValue()).subscribe(() => {
       this.token = localStorage.getItem("access")
       let decoded:any = JWTDecode(this.token)
-      console.log(decoded.user_id)
       this.userId = decoded.user_id
       this.router.navigate(['users', this.userId]);
     }, () => this.form.reset());
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
       if(!!localStorage.getItem("access")){
         this.token = localStorage.getItem("access")
         let decoded:any = JWTDecode(this.token)
-        console.log(decoded.user_id)
         this.userId = decoded.user_id
         this.router.navigate(['users', `${this.userId}`])
       }
@@ -60,7 +58,7 @@ export class LoginComponent implements OnInit {
       this.userService.getUser(this.userId).subscribe(value => {
         let user = value
         if (user.is_staff == false) {
-          alert('not admin')
+          alert('Access denied. You are not admin. Ha-ha')
           localStorage.removeItem('access')
           localStorage.removeItem('refresh')
         }

@@ -38,34 +38,6 @@ mat-card-content button {
   color: #123C69;
 }
 
-/*button {*/
-/*  margin: 5px;*/
-/*  color: #123C69;*/
-/*  font-size: medium;*/
-/*}*/
-
-/*div {*/
-/*  !*border: 1px darkgray solid;*!*/
-/*  !*border-radius: 3px;*!*/
-/*  padding: 5px 10px;*/
-/*  margin: 3px;*/
-/*  inline-size: 300px;*/
-/*  overflow: auto;*/
-/*}*/
-
-/*mat-card {*/
-/*  inline-size: fit-content;*/
-/*  margin-left: 30%;*/
-/*  margin-top: 100px;*/
-/*}*/
-
-/*mat-card-title {*/
-/*  margin-bottom: 10px;*/
-/*  font-weight: lighter;*/
-/*  !*font-family: cursive;*!*/
-/*  font-family: Arial, fantasy;*/
-/*}*/
-
 ul {
   display: flex;
   /*justify-content: center;*/
@@ -92,7 +64,6 @@ li button:hover {
   /*font-size: medium;*/
 }
 
-/*mat-card button {*/
-/*  font-size: small;*/
-
-/*}*/
+.toProfileButton {
+  font-size: large;
+}

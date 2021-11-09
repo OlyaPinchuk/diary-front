@@ -69,4 +69,8 @@ export class ChosenListComponent implements OnInit {
     //   .subscribe(() => {
     //   })
   }
+
+  goToNotes(){
+    this.router.navigate(['users', this.userId, 'notes'])
+  }
 }

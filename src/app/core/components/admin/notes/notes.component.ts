@@ -14,7 +14,8 @@ export class NotesComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    this.httpClient.get<any[]>('http://localhost:8000/api/v1/notes').subscribe(value => this.notes = value)
+
+    this.httpClient.get<INote[]>('http://localhost:8000/api/v1/notes').subscribe(value => this.notes = value)
   }
 
 }

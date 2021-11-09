@@ -29,7 +29,7 @@ export class NoteService {
   }
 
   deleteNote(userId: number, noteId: number) {
-    return this.httpClient.delete(`http://localhost:8000/api/v1/users/${userId}/notes/${noteId}/delete`)
+    return this.httpClient.delete(`http://localhost:8000/api/v1/notes/${noteId}/delete`)
   }
 
   saveEdits(userId: number, noteId: number, form: FormGroup) {

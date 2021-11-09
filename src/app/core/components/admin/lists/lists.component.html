@@ -3,9 +3,9 @@
 <button mat-raised-button routerLink="../notes">Show All Notes</button>
 <button mat-raised-button routerLink="../lists">Show All Lists</button>
 
-<div class="box" *ngIf="notes">
-  <div class="note" *ngFor="let note of notes">
-    {{note | json}}
+<div class="box" *ngIf="lists">
+  <div class="note" *ngFor="let list of lists">
+    {{list | json}}
     <mat-divider></mat-divider>
   </div>
 </div>

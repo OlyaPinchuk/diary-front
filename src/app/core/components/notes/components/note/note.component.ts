@@ -14,10 +14,8 @@ export class NoteComponent implements OnInit {
 
   @Input()
   note: INote
-
   form: FormGroup
   userId: number
-  chosenNote: INote
   editForm: boolean = false
 
 
@@ -53,7 +51,6 @@ export class NoteComponent implements OnInit {
     let currentUrl = this.router.url
     console.log(currentUrl)
     this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
-      // this.router.navigate(['users', this.userId])
       this.router.navigate([currentUrl])
     })
   }

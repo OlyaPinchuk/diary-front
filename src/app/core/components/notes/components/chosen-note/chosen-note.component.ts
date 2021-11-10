@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {INote} from "../../../../interfaces";
 import {NoteService} from "../../../../services/note.service";
-import {coerceNumberProperty} from "@angular/cdk/coercion";
 
 @Component({
   selector: 'app-chosen-note',

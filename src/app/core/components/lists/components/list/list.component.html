@@ -19,28 +19,28 @@
 
 <div *ngIf="!list"  [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="mainNew">
     <form  class="new" [formGroup]="listForm" >
-  <mat-card class="box">
-    <mat-card-content>
-      <mat-card-title>New List</mat-card-title>
-      <mat-form-field>
-        <mat-label>Title:</mat-label>
-        <input matInput formControlName="title">
-      </mat-form-field>
-      <div formArrayName="items">
-        <div  *ngFor="let item of itemsArray.controls; index as i">
-          <mat-form-field class="section" [formGroupName]="i" >
-            <mat-checkbox matPrefix class="margin" formControlName="status" color="primary"> </mat-checkbox>
-            <input matInput formControlName="content" >
-            <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteNewItem(i)">
-              <mat-icon >close</mat-icon>
-            </button>
+      <mat-card class="box">
+        <mat-card-content>
+          <mat-card-title>New List</mat-card-title>
+          <mat-form-field>
+            <mat-label>Title:</mat-label>
+            <input matInput formControlName="title">
           </mat-form-field>
-        </div>
-      </div>
-      <button mat-raised-button (click)="addItem()" >Add item</button>
-      <button class="save" mat-raised-button (click)="saveNewList(listForm)" >Save</button>
-    </mat-card-content>
-  </mat-card>
+          <div formArrayName="items">
+            <div  *ngFor="let item of itemsArray.controls; index as i">
+              <mat-form-field class="section" [formGroupName]="i" >
+                <mat-checkbox matPrefix class="margin" formControlName="status" color="primary"> </mat-checkbox>
+                <input matInput formControlName="content" >
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteNewItem(i)">
+                  <mat-icon >close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+          <button mat-raised-button (click)="addItem()" >Add item</button>
+          <button class="save" mat-raised-button (click)="saveNewList(listForm)" >Save</button>
+        </mat-card-content>
+      </mat-card>
     </form>
 </div>
 

@@ -1,4 +1,3 @@
-
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
   <ul>
     <li>
@@ -11,7 +10,7 @@
       <button mat-raised-button (click)="getUserLists()">My Lists</button>
     </li>
     <li>
-     <button mat-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu"> Choose Background
+     <button mat-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu"> Change Background
 <!--      <mat-icon>more_vert</mat-icon>-->
       </button>
       <mat-menu #menu="matMenu">
@@ -35,7 +34,6 @@
 
 
   <mat-spinner *ngIf="!user" ></mat-spinner>
-
 
   <mat-card class="container" *ngIf="user" >
     <mat-card-title>My Profile</mat-card-title>

@@ -34,6 +34,10 @@ li button:hover {
   color: #123C69;
 }
 
+.list {
+  min-height: 100px;
+}
+
 mat-card-title {
   font-weight: lighter;
   margin-bottom: 10px;
@@ -46,7 +50,7 @@ mat-card button {
 }
 
 .box {
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }
 

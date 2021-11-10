@@ -1,7 +1,5 @@
 header {
   background: #A8D0E6;
-  /*width: 100%;*/
-  /*box-sizing: border-box;*/
   height: 50px;
   display: flex;
   align-items: center;
@@ -11,7 +9,6 @@ header {
 }
 
 nav button {
-  /*margin-right: 10px;*/
   margin-right: 10px;
   color: #123C69;
 }

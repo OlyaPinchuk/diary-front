@@ -1,33 +1,33 @@
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
 
-<ul>
-  <li>
-    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
-  </li>
-  <li>
-    <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
-  </li>
-  <li>
-    <button mat-raised-button (click)="goToLists()">My Lists</button>
-  </li>
-</ul>
+  <ul>
+    <li>
+      <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+    </li>
+    <li>
+      <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="goToLists()">My Lists</button>
+    </li>
+  </ul>
 
+  <mat-divider></mat-divider>
 
-
-<mat-divider></mat-divider>
-
-<mat-card class="main" *ngIf="chosenList" >
-  <mat-card-title> {{chosenList.title}}</mat-card-title>
-  <mat-card-content>
-    <div *ngFor="let item of chosenList.items">
-      <div>
-        <input *ngIf="item.status == true" type="checkbox" checked (click)="changeItemStatus(item.id, item.content, item.status)" >
-        <input *ngIf="item.status == false" type="checkbox" (click)="changeItemStatus(item.id, item.content, item.status)">
-        {{item.content}}
-      </div>
-    </div>
-    <button mat-raised-button (click)="editList(chosenList.id)">Edit</button>
-    <button mat-raised-button (click)="deleteList(chosenList.id)" >Delete</button>
-  </mat-card-content>
-</mat-card>
+  <mat-card class="main" *ngIf="chosenList" >
+    <mat-card-title> {{chosenList.title}}</mat-card-title>
+    <mat-card-content>
+      <div class="list">
+        <div *ngFor="let item of chosenList.items">
+          <div>
+            <input *ngIf="item.status == true" type="checkbox" checked (click)="changeItemStatus(item.id, item.content, item.status)" >
+            <input *ngIf="item.status == false" type="checkbox" (click)="changeItemStatus(item.id, item.content, item.status)">
+            {{item.content}}
+          </div>
+          </div>
+        </div>
+      <button mat-raised-button (click)="editList(chosenList.id)">Edit</button>
+      <button mat-raised-button (click)="deleteList(chosenList.id)" >Delete</button>
+    </mat-card-content>
+  </mat-card>
 </div>

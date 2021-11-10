@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
       this.token = localStorage.getItem("access")
       let decoded:any = JWTDecode(this.token)
       this.userId = decoded.user_id
-      this.router.navigate(['users', this.userId]);
+      // this.router.navigate(['users', this.userId]);
+      this.router.navigate(['auth', 'landing', this.userId]);
     }, () => this.form.reset());
   }
 

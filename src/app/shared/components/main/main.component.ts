@@ -16,14 +16,9 @@ export class MainComponent implements OnInit, AfterViewInit {
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
-
-
   }
 
    ngAfterViewInit(): void {
    }
-
-
-
 
 }

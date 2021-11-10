@@ -1,0 +1,51 @@
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+
+li {
+  display: inline;
+  align-self: center;
+  margin-left: 5px;
+}
+
+li button {
+  color: #123C69;
+}
+
+li button:hover {
+  background-color: rgb(168, 208, 230);
+  color: white;
+}
+
+h1 {
+  color: #123C69;
+  font-family: fantasy;
+  text-align: center;
+  font-size: xx-large;
+  margin-top: 100px;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+}
+
+mat-icon {
+  font-size: xx-large;
+  margin-left: 50%;
+  /*margin-right: auto;*/
+}
+
+.pinkBack {
+  background: rgba(231, 182, 255, 0.22);
+}
+
+.yellowBack {
+  background: rgba(255, 255, 224, 0.77);
+}
+
+.box {
+  height: 100vh;
+}

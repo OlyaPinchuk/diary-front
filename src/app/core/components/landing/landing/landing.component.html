@@ -1,0 +1,19 @@
+<div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+  <ul>
+    <li>
+      <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="getUserNotes()" >My Notes</button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="getUserLists()">My Lists</button>
+    </li>
+  </ul>
+
+  <mat-divider></mat-divider>
+
+  <h1>Hi there in your online helper!</h1>
+  <mat-icon>favorite_border</mat-icon>
+
+</div>

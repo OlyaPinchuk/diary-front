@@ -15,7 +15,6 @@ export class ListsComponent implements OnInit {
 
   ngOnInit(): void {
         this.httpClient.get<IList[]>('http://localhost:8000/api/v1/lists').subscribe(value => this.lists = value)
-    console.log(this.lists)
   }
 
 }

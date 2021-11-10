@@ -47,7 +47,7 @@
                   >
     </mat-paginator>
     <div [ngClass]="{'containerList': viewOption == 1}"  class = 'container'>
-      <app-note class="app" *ngFor="let n of userNotes" [note]="n" [test]="viewOption"></app-note>
+      <app-note class="app" *ngFor="let n of userNotes" [note]="n"></app-note>
     </div>
   </div>
 

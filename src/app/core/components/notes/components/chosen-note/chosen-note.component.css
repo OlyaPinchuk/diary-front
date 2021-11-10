@@ -41,13 +41,14 @@ mat-card {
 
 div {
   min-height: 300px;
-  height: fit-content;
+  inline-size: fit-content;
   width: 100%;
   border: 1px lightgray solid;
   border-radius: 3px;
   padding-left: 5px;
   font-size: small;
-  overflow: auto;
+  word-wrap: anywhere;
+
 }
 
 mat-card button {

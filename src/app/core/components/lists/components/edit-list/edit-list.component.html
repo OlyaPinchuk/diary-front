@@ -1,43 +1,43 @@
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
 
-<ul>
-  <li>
-    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
-  </li>
-  <li>
-    <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
-  </li>
-  <li>
-    <button mat-raised-button (click)="goToLists()">My Lists</button>
-  </li>
-</ul>
+  <ul>
+    <li>
+      <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+    </li>
+    <li>
+      <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="goToLists()">My Lists</button>
+    </li>
+  </ul>
 
-<mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
-<mat-card *ngIf="chosenList" [formGroup]="listForm">
-  <mat-card-content>
-    <mat-form-field>
-      <mat-label>Title:</mat-label>
-      <input matInput formControlName="title">
-    </mat-form-field>
-    <div formArrayName="items"> Content:
+  <mat-card *ngIf="chosenList" [formGroup]="listForm">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Title:</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+      <div formArrayName="items"> Content:
 
-      <div *ngFor="let item of itemsArray.controls; index as i">
-        <mat-form-field [formGroupName]="i" >
-          <input matPrefix formControlName="status" type="checkbox" >
-          <input matInput formControlName="content" >
-          <button class="deleteItem" matSuffix mat-icon-button aria-label="Clear" *ngIf="item.value.id" (click)="deleteItem(item.value.id, i)" >
-            <mat-icon >close</mat-icon>
-          </button>
-          <button matSuffix mat-icon-button aria-label="Clear" *ngIf="!item.value.id" (click)="deleteNewItem(i)" >
-            <mat-icon >close</mat-icon>
-          </button>
-          <input *ngIf="item.value.id" formControlName="id" type="hidden">
-        </mat-form-field>
+        <div *ngFor="let item of itemsArray.controls; index as i">
+          <mat-form-field [formGroupName]="i" >
+            <input matPrefix formControlName="status" type="checkbox" >
+            <input matInput formControlName="content" >
+            <button class="deleteItem" matSuffix mat-icon-button aria-label="Clear" *ngIf="item.value.id" (click)="deleteItem(item.value.id, i)" >
+              <mat-icon >close</mat-icon>
+            </button>
+            <button matSuffix mat-icon-button aria-label="Clear" *ngIf="!item.value.id" (click)="deleteNewItem(i)" >
+              <mat-icon >close</mat-icon>
+            </button>
+            <input *ngIf="item.value.id" formControlName="id" type="hidden">
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-    <button mat-raised-button (click)="addItem()" >Add item</button>
-  </mat-card-content>
-  <button class="save" mat-raised-button (click)="saveEdits(listForm, itemsArray.controls)" >Save Edits</button>
-</mat-card>
+      <button mat-raised-button (click)="addItem()" >Add item</button>
+    </mat-card-content>
+    <button class="save" mat-raised-button (click)="saveEdits(listForm, itemsArray.controls)" >Save Edits</button>
+  </mat-card>
 </div>

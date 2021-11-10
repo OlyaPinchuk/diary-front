@@ -1,40 +1,39 @@
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+  <ul>
+    <li>
+      <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+    </li>
+     <li>
+      <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
+    </li>
+    <li>
+      <button class="toLists" mat-raised-button (click)="goToLists()">My Lists</button>
+    </li>
+  </ul>
+  <mat-divider></mat-divider>
 
-<ul>
-  <li>
-    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
-  </li>
-   <li>
-    <button class="toNotes" mat-raised-button (click)="goToNotes()">My Notes</button>
-  </li>
-  <li>
-    <button class="toLists" mat-raised-button (click)="goToLists()">My Lists</button>
-  </li>
-</ul>
-<mat-divider></mat-divider>
-
-<form *ngIf="user" [formGroup]="form" >
-  <mat-card >
-    <mat-card-title>My Profile</mat-card-title>
-    <mat-card-content>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" >
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Surname</mat-label>
-        <input matInput formControlName="surname" >
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Age</mat-label>
-        <input matInput formControlName="age" >
-      </mat-form-field>
-<!--      <div>-->
-<!--        <input type="checkbox" formControlName="status">-->
-<!--        <mat-label>I am admin</mat-label>-->
-<!--      </div>-->
-      <button mat-raised-button (click)="saveEdits(form)" >Save Changes</button>
-    </mat-card-content>
-  </mat-card>
-</form>
+  <form *ngIf="user" [formGroup]="form" >
+    <mat-card >
+      <mat-card-title>My Profile</mat-card-title>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Surname</mat-label>
+          <input matInput formControlName="surname" >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Age</mat-label>
+          <input matInput formControlName="age" >
+        </mat-form-field>
+  <!--      <div>-->
+  <!--        <input type="checkbox" formControlName="status">-->
+  <!--        <mat-label>I am admin</mat-label>-->
+  <!--      </div>-->
+        <button mat-raised-button (click)="saveEdits(form)" >Save Changes</button>
+      </mat-card-content>
+    </mat-card>
+  </form>
 </div>

@@ -22,6 +22,7 @@ button {
 }
 
 .box {
+  padding-bottom: 30px;
   height: fit-content;
   min-height: 1000px;
   width: 100%;

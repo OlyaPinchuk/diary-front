@@ -1,34 +1,32 @@
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+  <ul>
+    <li>
+      <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+    </li>
+    <li>
+        <button class="toNotesButton" mat-raised-button (click)="goToNotes()">My Notes</button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="gotToLists()">My Lists</button>
+    </li>
+  </ul>
 
-<ul>
-  <li>
-    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
-  </li>
-  <li>
-      <button class="toNotesButton" mat-raised-button (click)="goToNotes()">My Notes</button>
-  </li>
-  <li>
-    <button mat-raised-button (click)="gotToLists()">My Lists</button>
-  </li>
-</ul>
+  <mat-divider></mat-divider>
 
-<mat-divider></mat-divider>
-
-<form *ngIf="note" [formGroup]="form" >
-  <mat-card >
-      <mat-form-field>
-        <mat-label>Title:</mat-label>
-        <input matInput formControlName="title">
-        <mat-error></mat-error>
-      </mat-form-field>
-      <mat-card-content>
-        <div>
-          <textarea  formControlName="content"></textarea>
-        </div>
-        <button mat-raised-button (click)="saveEdits(form, note.id)" (keydown.enter)="$event.preventDefault()" >Save Edits</button>
-        <button mat-raised-button (click)="deleteNote(note.id)" >Delete</button>
-
-      </mat-card-content>
-  </mat-card>
-</form>
+  <form *ngIf="note" [formGroup]="form" >
+    <mat-card class="card">
+        <mat-form-field>
+          <mat-label>Title:</mat-label>
+          <input matInput formControlName="title">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-card-content>
+          <div>
+            <textarea  formControlName="content"></textarea>
+          </div>
+          <button mat-raised-button (click)="saveEdits(form, note.id)" (keydown.enter)="$event.preventDefault()" >Save Edits</button>
+          <button mat-raised-button (click)="deleteNote(note.id)" >Delete</button>
+        </mat-card-content>
+    </mat-card>
+  </form>
 </div>

@@ -20,17 +20,10 @@ export class NoteComponent implements OnInit, DoCheck {
   viewOption: number = 0
   color: number
 
-  @Input()
-  test: number
-
-
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private noteService: NoteService) { }
 
   ngOnInit(): void {
-    // if (this.test) {
-    //   console.log(this.test)
-    // }
     if (localStorage.hasOwnProperty('view')) {
       this.viewOption = parseInt(<string>localStorage.getItem('view'))
       console.log(this.viewOption)

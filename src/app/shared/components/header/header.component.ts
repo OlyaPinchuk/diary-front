@@ -1,6 +1,5 @@
 import {Component, Input, OnInit, ViewChild, OnChanges, SimpleChanges, AfterViewInit, DoCheck} from '@angular/core';
 import {ActivatedRoute, Route, Router} from "@angular/router";
-import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {AuthService} from "../../../core/services/auth.service";
 import {LoginComponent} from "../../../core/components/auth/login/login.component";
@@ -33,14 +32,14 @@ export class HeaderComponent implements OnInit, DoCheck {
     else {
       this.color = 0
     }
-
   }
 
   goToProfile(){
     this.token = localStorage.getItem("access")
     let decoded:any = JWTDecode(this.token)
     this.userId = decoded.user_id
-    this.router.navigate(['users', `${this.userId}`])
+    // this.router.navigate(['users', `${this.userId}`])
+    this.router.navigate(['auth', 'landing', this.userId])
   }
 
 

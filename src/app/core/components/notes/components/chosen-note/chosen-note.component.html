@@ -1,28 +1,27 @@
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+  <ul>
+    <li>
+      <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+    </li>
+    <li>
+        <button mat-raised-button (click)="goToNotes()">My Notes</button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="gotToLists()">My Lists</button>
+    </li>
+  </ul>
 
-<ul>
-  <li>
-    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
-  </li>
-  <li>
-      <button mat-raised-button (click)="goToNotes()">My Notes</button>
-  </li>
-  <li>
-    <button mat-raised-button (click)="gotToLists()">My Lists</button>
-  </li>
-</ul>
+  <mat-divider></mat-divider>
 
-<mat-divider></mat-divider>
-
-<mat-card *ngIf="chosenNote && editForm == false">
-  <mat-card-title>Title: {{chosenNote.title}}</mat-card-title>
-  <mat-card-content>
-    <p>Content: </p>
-    <div>{{chosenNote.content}}</div>
-    <button mat-raised-button (click)="editNote()" >Edit</button>
-    <button mat-raised-button (click)="deleteNote(chosenNote.id)" >Delete</button>
-  </mat-card-content>
-</mat-card>
+  <mat-card *ngIf="chosenNote && editForm == false">
+    <mat-card-title>Title: {{chosenNote.title}}</mat-card-title>
+    <mat-card-content>
+      <p>Content: </p>
+      <div>{{chosenNote.content}}</div>
+      <button mat-raised-button (click)="editNote()" >Edit</button>
+      <button mat-raised-button (click)="deleteNote(chosenNote.id)" >Delete</button>
+    </mat-card-content>
+  </mat-card>
 </div>
 
 

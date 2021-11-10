@@ -1,10 +1,8 @@
 mat-card {
   margin: 5px 5px;
   inline-size: fit-content;
-  /*align-self: flex-start;*/
   color: #123C69;
 }
-
 
 .existing :hover {
   cursor: pointer;

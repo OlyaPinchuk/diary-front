@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {INote} from "../../../../interfaces";
 import {NoteService} from "../../../../services/note.service";
+import {coerceNumberProperty} from "@angular/cdk/coercion";
 
 @Component({
   selector: 'app-chosen-note',
@@ -17,10 +18,14 @@ export class ChosenNoteComponent implements OnInit {
   chosenNote: INote
   editForm: boolean = false
   form: FormGroup
+  color: number
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private noteService: NoteService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
     this.activatedRoute.params
       .subscribe(params => {
         this.userId = params['id']

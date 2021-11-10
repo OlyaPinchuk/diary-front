@@ -14,10 +14,14 @@ export class ChosenListComponent implements OnInit {
   userId: number
   listId: number
   chosenList: IList
+  color: number
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private listService: ListService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
 
     this.activatedRoute.params.subscribe(params => {
       this.userId = params['id']
@@ -28,11 +32,6 @@ export class ChosenListComponent implements OnInit {
     this.listService.getChosenList(this.userId, this.listId).subscribe(value => {
       this.chosenList = value
     })
-
-    // this.httpClient.get<IList>(`http://localhost:8000/api/v1/users/${this.userId}/lists/${this.listId}`)
-    //   .subscribe(value => {
-    //     this.chosenList = value
-    //   })
   }
 
   goToProfile(){
@@ -51,10 +50,6 @@ export class ChosenListComponent implements OnInit {
     this.listService.deleteList(listId).subscribe(value => {
       this.router.navigate(['users', this.userId, 'lists'])
     })
-    // this.httpClient.delete(`http://localhost:8000/api/v1/lists/${listId}/delete`)
-    //   .subscribe(() => {
-    //     this.router.navigate(['users', this.userId, 'lists'])
-    //   })
   }
 
   changeItemStatus(itemId: any, itemContent: any, status: boolean){
@@ -65,9 +60,6 @@ export class ChosenListComponent implements OnInit {
     }
     this.listService.changeItemStatus(itemId, fullItem).subscribe(() => {})
 
-    // this.httpClient.put(`http://localhost:8000/api/v1/lists/items/${itemId}`, fullItem)
-    //   .subscribe(() => {
-    //   })
   }
 
   goToNotes(){

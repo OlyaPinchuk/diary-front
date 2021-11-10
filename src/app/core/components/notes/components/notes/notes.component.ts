@@ -26,11 +26,19 @@ export class NotesComponent implements OnInit {
   searchLength: number = 0
   searchPage: number
   searchResponse: any
+  color: number = 0
+  viewOption: number = 0
 
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private noteService: NoteService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
+    if (localStorage.hasOwnProperty('view')) {
+      this.viewOption = parseInt(<string>localStorage.getItem('view'))
+    }
     this.pageEvent = new PageEvent
     this.pageEvent.pageIndex = 0
     this.page = this.pageEvent.pageIndex
@@ -123,5 +131,15 @@ export class NotesComponent implements OnInit {
       this.response = response.body
       this.userNotes = this.response.notes
     })
+  }
+
+  view(option: number) {
+      this.viewOption = option
+      localStorage.setItem('view', `${option}`)
+  }
+
+  viewSetDefault() {
+    localStorage.removeItem('view')
+    this.viewOption = 0
   }
 }

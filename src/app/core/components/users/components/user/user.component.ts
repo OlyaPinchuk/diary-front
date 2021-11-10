@@ -13,10 +13,14 @@ import {UserService} from "../../../../services/user.service";
 export class UserComponent implements OnInit {
   userId: number
   user: IFullUser
+  color: number
 
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
     if (!this.user){
       this.activatedRoute.params.subscribe(params => {
         this.userId = params['id']
@@ -41,5 +45,15 @@ export class UserComponent implements OnInit {
 
   editProfile(){
     this.router.navigate(['users', this.userId, 'profile'])
+  }
+
+  setBack(color: number) {
+    localStorage.setItem('color', `${color}`)
+    this.color = color
+  }
+
+  setDefaultBack() {
+    localStorage.removeItem('color')
+    this.color = 0
   }
 }

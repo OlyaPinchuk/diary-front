@@ -1,5 +1,5 @@
 
-<div class="box">
+<div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
   <ul>
     <li>
       <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
@@ -9,6 +9,26 @@
     </li>
     <li>
       <button mat-raised-button (click)="getUserLists()">My Lists</button>
+    </li>
+    <li>
+     <button mat-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu"> Choose Background
+<!--      <mat-icon>more_vert</mat-icon>-->
+      </button>
+      <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="setDefaultBack()">
+        <mat-icon class="default"></mat-icon>
+        <span>Default</span>
+      </button>
+      <button mat-menu-item (click)="setBack(1)">
+        <mat-icon class="pink"></mat-icon>
+        <span>Pink</span>
+      </button>
+      <button mat-menu-item (click)="setBack(2)">
+        <mat-icon class="yellow"></mat-icon>
+        <span>Yellow</span>
+      </button>
+
+    </mat-menu>
     </li>
   </ul>
   <mat-divider></mat-divider>
@@ -20,8 +40,6 @@
   <mat-card class="container" *ngIf="user" >
     <mat-card-title>My Profile</mat-card-title>
     <mat-card-content>
-  <!--    <div>Id: {{users.id}}</div>-->
-  <!--    <div>Email: {{users.email}}</div>-->
       <div>Name: {{user.profile.name}}</div>
       <mat-divider inset ></mat-divider>
 

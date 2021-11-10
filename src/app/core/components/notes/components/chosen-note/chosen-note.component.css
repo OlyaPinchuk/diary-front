@@ -9,7 +9,6 @@ button {
 
 ul {
   display: flex;
-  /*justify-content: center;*/
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -58,5 +57,17 @@ mat-card button {
 mat-card-title {
   font-weight: lighter;
   margin-bottom: 10px;
-  /*font-family: Arial, fantasy;*/
+}
+
+.box {
+  height: 100%;
+  width: 100%;
+}
+
+.pinkBack {
+  background: rgba(231, 182, 255, 0.22);
+}
+
+.yellowBack {
+  background: rgba(255, 255, 224, 0.77);
 }

@@ -7,18 +7,43 @@ button {
   font-size: large;
 }
 
+.innerBox {
+  /*background: yellow;*/
+  /*height: 100%;*/
+}
+
 .container {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 10px;
   margin-left: 10px;
+  height: 100%;
 }
 
+.box {
+  height: fit-content;
+  min-height: 1000px;
+  width: 100%;
+}
+
+.containerList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  margin-left: 10px;
+  width: fit-content;
+  height: 100%;
+}
+
+.containerList :hover {
+  box-shadow: 2px 2px 2px lightblue;
+  border-radius: 5px;
+}
 
 ul {
   display: flex;
-  /*justify-content: center;*/
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -30,8 +55,6 @@ li {
   display: inline;
   align-self: center;
 }
-
-
 
 li button:hover {
   background-color: rgb(168, 208, 230);
@@ -50,3 +73,19 @@ li button:hover {
 .info {
   margin: 0 20px;
 }
+
+
+
+.pinkBack {
+  background: rgba(231, 182, 255, 0.22);
+}
+
+.yellowBack {
+  background: rgba(255, 255, 224, 0.77);
+
+}
+
+.menuButton {
+  margin: 0;
+}
+

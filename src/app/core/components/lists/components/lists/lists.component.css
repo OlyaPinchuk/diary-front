@@ -7,14 +7,20 @@ button {
   font-size: large;
 }
 
-/*.toNotes {*/
-/*  margin-right: 200px;*/
-/*}*/
-
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 10px;
+}
+
+.containerList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  width: fit-content;
+  height: 100%;
 }
 
 .container :hover{
@@ -52,6 +58,20 @@ li button:hover {
 
 .info {
   margin: 0 20px;
+}
+
+.box {
+  min-height: 1000px;
+  height: fit-content;
+  width: 100%;
+}
+
+.pinkBack {
+  background: rgba(231, 182, 255, 0.22);
+}
+
+.yellowBack {
+  background: rgba(255, 255, 224, 0.77);
 }
 
 

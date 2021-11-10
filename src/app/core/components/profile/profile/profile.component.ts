@@ -15,10 +15,14 @@ export class ProfileComponent implements OnInit {
   form: FormGroup
   userId: number
   user: IFullUser
+  color: number
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
 
     if (!this.user){
       this.activatedRoute.params.subscribe(params => {
@@ -41,10 +45,6 @@ export class ProfileComponent implements OnInit {
     this.userService.saveEdits(this.userId, form).subscribe(() => {
       this.router.navigate(['users', this.userId])
     })
-    // this.httpClient.put(`http://localhost:8000/api/v1/users/${this.userId}/profile`, form.getRawValue())
-    //   .subscribe(() => {
-    //     this.router.navigate(['users', this.userId])
-    //   })
   }
 
   goToProfile(){

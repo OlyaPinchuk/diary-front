@@ -4,7 +4,6 @@ import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {IFullUser} from "../../../interfaces";
 import {HttpClient} from "@angular/common/http";
-import * as jwt from 'jsonwebtoken';
 import JWTDecode from "jwt-decode";
 import {UserService} from "../../../services/user.service";
 

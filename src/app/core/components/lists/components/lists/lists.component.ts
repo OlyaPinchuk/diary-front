@@ -27,11 +27,21 @@ export class ListsComponent implements OnInit {
   sortOption: number
   sortedLists: IList[]
   searchSortOption: number
+  color: number
+  viewOption: number = 0
+
+
 
 
   constructor(private httpClient: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, private listService: ListService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
+    if (localStorage.hasOwnProperty('view')) {
+      this.viewOption = parseInt(<string>localStorage.getItem('view'))
+    }
     this.pageEvent = new PageEvent
     this.pageEvent.pageIndex = 0
     this.page = this.pageEvent.pageIndex
@@ -218,6 +228,16 @@ export class ListsComponent implements OnInit {
     this.found = true
     this.search = ''
     this.foundLists = null
+  }
+
+  view(option: number) {
+      this.viewOption = option
+      localStorage.setItem('view', `${option}`)
+  }
+
+  viewSetDefault() {
+    localStorage.removeItem('view')
+    this.viewOption = 0
   }
 
 }

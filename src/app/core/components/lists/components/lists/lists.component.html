@@ -1,3 +1,7 @@
+<div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+
+
+
 <ul>
   <li>
     <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
@@ -24,45 +28,60 @@
       <button class="menuButton" mat-menu-item (click)="sort(0)">shorter lists first</button>
     </mat-menu>
   </li>
+  <li>
+      <button mat-button [matMenuTriggerFor]="menu2" aria-label="icon-button with a menu"> View
+      <mat-icon>view_list</mat-icon>
+      </button>
+      <mat-menu #menu2="matMenu">
+        <button class="menuButton"  mat-menu-item (click)="viewSetDefault()">
+          <mat-icon class="grid" >view_module</mat-icon>
+          <span>Grid</span>
+        </button>
+        <button class="menuButton" mat-menu-item (click)="view(1)">
+          <mat-icon class="list">view_list</mat-icon>
+          <span>List</span>
+        </button>
+      </mat-menu>
+    </li>
 </ul>
 
 <mat-divider></mat-divider>
 
 <div *ngIf="userLists && !foundLists && !sortedLists">
-  <mat-paginator [length]="length"
+  <mat-paginator [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" [length]="length"
                [pageSize]="pageSize"
                (page)="pageEvent = $event"
                (click)="changePage()"
                aria-label="Select page"
                 >
   </mat-paginator>
-  <div  class = 'container'>
+  <div [ngClass]="{'containerList': viewOption == 1}"  class = 'container'>
     <app-list *ngFor="let l of userLists" [list]="l"></app-list>
   </div>
 </div>
 
 <div *ngIf="foundLists">
-  <mat-paginator [length]="searchLength"
+  <mat-paginator [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" [length]="searchLength"
                [pageSize]="pageSize"
                (page)="pageEvent = $event"
                (click)="changeSearchPage()"
                aria-label="Select page"
                 >
   </mat-paginator>
-  <div  class = 'container'>
+  <div [ngClass]="{'containerList': viewOption == 1}"  class = 'container'>
     <app-list *ngFor="let l of foundLists" [list]="l"></app-list>
   </div>
 </div>
 
 <div *ngIf="sortedLists && !foundLists">
-  <mat-paginator [length]="length"
+  <mat-paginator [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" [length]="length"
                [pageSize]="pageSize"
                (page)="pageEvent = $event"
                (click)="changeSortedPage()"
                aria-label="Select page"
                 >
   </mat-paginator>
-  <div  class = 'container'>
+  <div [ngClass]="{'containerList': viewOption == 1}"  class = 'container'>
     <app-list *ngFor="let l of sortedLists" [list]="l"></app-list>
   </div>
 </div>
@@ -75,6 +94,6 @@
   You do not have lists with such title :(
   <button mat-raised-button (click)="backToLists()"> Back to All Lists </button>
 </div>
-
+</div>
 
 <router-outlet></router-outlet>

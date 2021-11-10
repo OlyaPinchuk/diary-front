@@ -50,3 +50,17 @@ button {
   color: #123C69;
   font-size: small;
 }
+
+.box {
+  height: 100%;
+  width: 100%;
+}
+
+.pinkBack {
+  background: rgba(231, 182, 255, 0.22);
+}
+
+.yellowBack {
+  background: rgba(255, 255, 224, 0.77);
+}
+

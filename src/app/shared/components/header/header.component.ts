@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   tokenPresent: boolean;
   token: any
   userId: number
+  color: number
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
@@ -26,6 +27,12 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
     this.checkToken()
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
+    else {
+      this.color = 0
+    }
 
   }
 
@@ -40,11 +47,9 @@ export class HeaderComponent implements OnInit, DoCheck {
   checkToken(): void {
       if(!!localStorage.getItem("access")){
         this.tokenPresent = true
-        // console.log('check true')
       }
       if(!localStorage.hasOwnProperty('access')){
         this.tokenPresent = false
-        // console.log(('check false'))
       }
 
   }

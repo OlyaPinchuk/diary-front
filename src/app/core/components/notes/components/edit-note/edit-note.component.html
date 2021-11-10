@@ -1,3 +1,5 @@
+<div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+
 <ul>
   <li>
     <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
@@ -22,7 +24,6 @@
       <mat-card-content>
         <div>
           <textarea  formControlName="content"></textarea>
-<!--          <input (keydown.enter)="$event.preventDefault()" formControlName="content">-->
         </div>
         <button mat-raised-button (click)="saveEdits(form, note.id)" (keydown.enter)="$event.preventDefault()" >Save Edits</button>
         <button mat-raised-button (click)="deleteNote(note.id)" >Delete</button>
@@ -30,3 +31,4 @@
       </mat-card-content>
   </mat-card>
 </form>
+</div>

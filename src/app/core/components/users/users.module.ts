@@ -8,6 +8,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDividerModule} from "@angular/material/divider";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -15,13 +17,15 @@ import {MatDividerModule} from "@angular/material/divider";
     UsersComponent,
     UserComponent
   ],
-    imports: [
-        CommonModule,
-        UsersRoutingModule,
-        MatCardModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        MatDividerModule
-    ]
+  imports: [
+    CommonModule,
+    UsersRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatMenuModule,
+    MatIconModule
+  ]
 })
 export class UsersModule { }

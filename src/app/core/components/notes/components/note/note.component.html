@@ -1,5 +1,5 @@
-
-  <form class="new" *ngIf="!note && editForm == false" [formGroup]="form" >
+<div *ngIf="!note && editForm == false" [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="mainNew">
+  <form  class="new" [formGroup]="form" >
     <mat-card class="box" >
       <mat-card-content>
             <mat-card-title>New Note</mat-card-title>
@@ -11,16 +11,17 @@
             <mat-form-field>
               <mat-label>Content:</mat-label>
               <textarea matInput formControlName="content"></textarea>
-<!--              <input matInput formControlName="content">-->
               <mat-error></mat-error>
             </mat-form-field>
             <button mat-raised-button (click)="saveNewNote(form)">Save</button>
       </mat-card-content>
     </mat-card>
   </form>
+</div>
 
 
-<mat-card class="existing" *ngIf="note && editForm == false"  (click)="getNote(note.id)">
+
+<mat-card [ngClass]="{'existingListView' : viewOption == 1}" class="existing" *ngIf="note && editForm == false"  (click)="getNote(note.id)">
   <mat-card-title >Title: {{note.title}}</mat-card-title>
   <mat-card-content>
     <p>Content:</p>

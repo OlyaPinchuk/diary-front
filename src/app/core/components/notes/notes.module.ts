@@ -14,6 +14,8 @@ import { EditNoteComponent } from './components/edit-note/edit-note.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {_MatMenuDirectivesModule, MatMenuModule} from "@angular/material/menu";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -34,7 +36,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatSidenavModule,
     MatDividerModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    _MatMenuDirectivesModule,
+    MatMenuModule,
+    MatIconModule
   ]
 })
 export class NotesModule { }

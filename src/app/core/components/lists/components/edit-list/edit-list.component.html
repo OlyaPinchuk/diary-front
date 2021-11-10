@@ -1,3 +1,5 @@
+<div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+
 <ul>
   <li>
     <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
@@ -38,3 +40,4 @@
   </mat-card-content>
   <button class="save" mat-raised-button (click)="saveEdits(listForm, itemsArray.controls)" >Save Edits</button>
 </mat-card>
+</div>

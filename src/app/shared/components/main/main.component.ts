@@ -13,19 +13,6 @@ import {UserComponent} from "../../../core/components/users/components/user/user
 export class MainComponent implements OnInit, AfterViewInit {
 
 
-
-  // @ViewChild(HeaderComponent)
-  // // @ts-ignore
-  // header: HeaderComponent
-  //
-  // @ViewChild(LoginComponent)
-  // // @ts-ignore
-  // login: LoginComponent
-  //
-  // @ViewChild(UserComponent)
-  // // @ts-ignore
-  // users: UserComponent
-
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {

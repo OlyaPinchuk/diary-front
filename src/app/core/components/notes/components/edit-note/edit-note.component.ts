@@ -16,10 +16,14 @@ export class EditNoteComponent implements OnInit {
   userId: number
   noteId: number
   note: INote
+  color: number
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private noteService: NoteService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
     this.activatedRoute.params.subscribe(params => {
       this.userId = params['id']
       this.noteId = params['noteID']

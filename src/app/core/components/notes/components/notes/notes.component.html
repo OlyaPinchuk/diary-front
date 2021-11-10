@@ -1,62 +1,78 @@
-<ul>
-  <li>
-    <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
-  </li>
-  <li>
-      <button mat-raised-button (click)="goToNotes()">My Notes</button>
-  </li>
-  <li>
-    <button mat-raised-button (click)="gotToLists()">My Lists</button>
-  </li>
-  <li>
-    <button class="createNoteButton" mat-raised-button (click)="createNote()">Create a Note</button>
-  </li>
-  <li class="search">
-    <mat-form-field>
-      <mat-label>search by title</mat-label>
-      <input  matInput type="search" [(ngModel)]="search" (input)="searchInput()">
-    </mat-form-field>
+<div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+  <ul>
+    <li>
+      <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
+    </li>
+    <li>
+        <button mat-raised-button (click)="goToNotes()">My Notes</button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="gotToLists()">My Lists</button>
+    </li>
+    <li>
+      <button class="createNoteButton" mat-raised-button (click)="createNote()">Create a Note</button>
+    </li>
+    <li class="search">
+      <mat-form-field>
+        <mat-label>search by title</mat-label>
+        <input  matInput type="search" [(ngModel)]="search" (input)="searchInput()">
+      </mat-form-field>
+    </li>
+    <li>
+      <button mat-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu"> View
+      <mat-icon>view_list</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button class="menuButton"  mat-menu-item (click)="viewSetDefault()">
+          <mat-icon class="grid" >view_module</mat-icon>
+          <span>Grid</span>
+        </button>
+        <button class="menuButton" mat-menu-item (click)="view(1)">
+          <mat-icon class="list">view_list</mat-icon>
+          <span>List</span>
+        </button>
+      </mat-menu>
+    </li>
+  </ul>
 
-  </li>
-</ul>
-
-<mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
 
-
-<div *ngIf="userNotes && !foundNotes">
-  <mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               (page)="pageEvent = $event"
-               (click)="changePage()"
-               aria-label="Select page"
-                >
-  </mat-paginator>
-  <div  class = 'container'>
-    <app-note *ngFor="let n of userNotes" [note]="n"></app-note>
+  <div class="innerBox" *ngIf="userNotes && !foundNotes">
+    <mat-paginator [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" [length]="length"
+                 [pageSize]="pageSize"
+                 (page)="pageEvent = $event"
+                 (click)="changePage()"
+                 aria-label="Select page"
+                  >
+    </mat-paginator>
+    <div [ngClass]="{'containerList': viewOption == 1}"  class = 'container'>
+      <app-note class="app" *ngFor="let n of userNotes" [note]="n" [test]="viewOption"></app-note>
+    </div>
   </div>
-</div>
 
-<div *ngIf="foundNotes">
-  <mat-paginator [length]="searchLength"
-               [pageSize]="pageSize"
-               (page)="pageEvent = $event"
-               (click)="changeSearchPage()"
-               aria-label="Select page"
-                >
-  </mat-paginator>
-  <div  class = 'container'>
-    <app-note *ngFor="let n of foundNotes" [note]="n"></app-note>
+  <div *ngIf="foundNotes">
+    <mat-paginator [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" [length]="searchLength"
+                 [pageSize]="pageSize"
+                 (page)="pageEvent = $event"
+                 (click)="changeSearchPage()"
+                 aria-label="Select page"
+                  >
+    </mat-paginator>
+    <div [ngClass]="{'containerList': viewOption == 1}" class = 'container'>
+      <app-note *ngFor="let n of foundNotes" [note]="n"></app-note>
+    </div>
   </div>
-</div>
 
-<div class="info" *ngIf="userNotes && userNotes.length == 0 && notesFound != false" >
-  You do not have any notes yet :(
-</div>
+  <div class="info" *ngIf="userNotes && userNotes.length == 0 && notesFound != false" >
+    You do not have any notes yet :(
+  </div>
 
-<div class="info" *ngIf="notesFound == false">
-  You do not have notes with such title :(
-  <button mat-raised-button (click)="backToNotes()" > Back to All Notes</button>
+  <div class="info" *ngIf="notesFound == false">
+    You do not have notes with such title :(
+    <button mat-raised-button (click)="backToNotes()" > Back to All Notes</button>
+  </div>
+
 </div>
 
 <router-outlet></router-outlet>

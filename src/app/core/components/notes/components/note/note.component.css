@@ -1,9 +1,10 @@
 mat-card {
   margin: 5px 5px;
   inline-size: fit-content;
-  align-self: flex-start;
+  /*align-self: flex-start;*/
   color: #123C69;
 }
+
 
 .existing :hover {
   cursor: pointer;
@@ -34,16 +35,7 @@ button {
 mat-card-title {
   margin-bottom: 10px;
   font-weight: lighter;
-  /*font-family: cursive;*/
-  /*font-family: Arial, fantasy;*/
 }
-
-/*.new {*/
-/*  margin-top: 100px;*/
-/*  margin-left: 30%;*/
-/*  min-height: 400px;*/
-/*  min-width: 500px;*/
-/*}*/
 
 .box {
   margin-top: 100px;
@@ -56,3 +48,27 @@ mat-card-title {
   margin-left: 500px;
 }
 
+.existingListView {
+  height: 160px;
+  width: 600px
+}
+
+.existingListView div {
+  height: 50px;
+  width: auto;
+}
+
+.pinkBack {
+  background: rgba(231, 182, 255, 0.22);
+}
+
+.yellowBack {
+  background: rgba(255, 255, 224, 0.77);
+
+}
+
+.mainNew {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}

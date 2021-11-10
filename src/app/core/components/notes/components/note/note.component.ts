@@ -10,19 +10,36 @@ import {NoteService} from "../../../../services/note.service";
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css']
 })
-export class NoteComponent implements OnInit {
+export class NoteComponent implements OnInit, DoCheck {
 
   @Input()
   note: INote
   form: FormGroup
   userId: number
   editForm: boolean = false
+  viewOption: number = 0
+  color: number
+
+  @Input()
+  test: number
 
 
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private noteService: NoteService) { }
 
   ngOnInit(): void {
+    // if (this.test) {
+    //   console.log(this.test)
+    // }
+    if (localStorage.hasOwnProperty('view')) {
+      this.viewOption = parseInt(<string>localStorage.getItem('view'))
+      console.log(this.viewOption)
+    } else {
+      this.viewOption = 0
+    }
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
 
     this.form = new FormGroup({
@@ -32,6 +49,16 @@ export class NoteComponent implements OnInit {
       }
     )
   }
+
+  ngDoCheck() {
+    if (localStorage.hasOwnProperty('view')) {
+      this.viewOption = parseInt(<string>localStorage.getItem('view'))
+      console.log(this.viewOption)
+    } else if (!localStorage.hasOwnProperty('view')) {
+      this.viewOption = 0
+    }
+  }
+
 
   getNote(noteId: any){
     this.router.navigate(['users', this.userId, 'notes', noteId])
@@ -54,6 +81,4 @@ export class NoteComponent implements OnInit {
       this.router.navigate([currentUrl])
     })
   }
-
-
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, DoCheck, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
@@ -11,7 +11,7 @@ import {ListService} from "../../../../services/list.service";
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, DoCheck {
 
   @Input()
   list: IList
@@ -20,6 +20,8 @@ export class ListComponent implements OnInit {
   listForm: FormGroup
   itemsArray: FormArray
   itemObject: FormGroup
+  viewOption: number = 0
+  color: number
 
 
   // get items(){
@@ -37,6 +39,9 @@ export class ListComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private listService: ListService) { }
 
   ngOnInit(): void {
+    if (localStorage.hasOwnProperty('color')) {
+      this.color = parseInt(<string>localStorage.getItem('color'))
+    }
     this.activatedRoute.params.subscribe(params => this.userID = params['id'])
 
     this.itemObject = new FormGroup({
@@ -49,6 +54,15 @@ export class ListComponent implements OnInit {
       user: new FormControl(`${this.userID}`),
       items: this.itemsArray
     })
+  }
+
+  ngDoCheck() {
+     if (localStorage.hasOwnProperty('view')) {
+      this.viewOption = parseInt(<string>localStorage.getItem('view'))
+      console.log(this.viewOption)
+    } else if (!localStorage.hasOwnProperty('view')) {
+      this.viewOption = 0
+    }
   }
 
   saveNewList(form: FormGroup){
@@ -88,21 +102,3 @@ export class ListComponent implements OnInit {
     this.itemsArray.removeAt(index)
   }
 }
-
-  // Example:
-  //
-  //
-  //   <div [formGroup]="myGroup">
-  //     <div formArrayName="cities">
-  //       <div *ngFor="let city of cityArray.controls; index as i">
-  //         <input [formControlName]="i">
-  //       </div>
-  //     </div>
-  //   </div>
-  //
-  //   In your class:
-  //
-  //   this.cityArray = new FormArray([new FormControl('SF')]);
-  //   this.myGroup = new FormGroup({
-  //     cities: this.cityArray
-  //   });

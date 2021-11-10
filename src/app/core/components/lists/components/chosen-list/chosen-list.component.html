@@ -1,3 +1,5 @@
+<div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
+
 <ul>
   <li>
     <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
@@ -28,3 +30,4 @@
     <button mat-raised-button (click)="deleteList(chosenList.id)" >Delete</button>
   </mat-card-content>
 </mat-card>
+</div>

@@ -27,8 +27,6 @@
 mat-card-title {
   margin-bottom: 10px;
   font-weight: lighter;
-  /*font-family: cursive;*/
-  /*font-family: Arial, fantasy;*/
 }
 
 .new {
@@ -36,10 +34,15 @@ mat-card-title {
   min-width: 500px;
   max-width: fit-content;
   max-height: fit-content;
-  margin-top: 100px;
+  /*margin-top: 100px;*/
   margin-left: auto;
   margin-right: auto;
   color: #123C69;
+}
+
+.box {
+  /*margin-top: 100px;*/
+  min-height: fit-content;
 }
 
 .margin {
@@ -55,7 +58,6 @@ mat-card-title {
 }
 
 .new button {
-  /*margin-top: 100px;*/
   margin-right: 5px;
   color: #123C69;
   font-size: smaller;
@@ -65,3 +67,29 @@ mat-card-title {
 .save {
   margin-left: 500px;
 }
+
+.existingListView {
+  height: 130px;
+  width: 400px;
+}
+
+.existingListView .list {
+  height: 40px;
+}
+
+.pinkBack {
+  background: rgba(231, 182, 255, 0.22);
+}
+
+.yellowBack {
+  background: rgba(255, 255, 224, 0.77);
+
+}
+
+.mainNew {
+  padding-top: 100px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+

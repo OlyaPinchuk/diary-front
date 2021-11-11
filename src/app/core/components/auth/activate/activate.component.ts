@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IToken} from "../../../interfaces";
+import {environment} from "../../../../../environments/environment";
+
+const API_HOST = environment.API_HOST
 
 @Component({
   selector: 'app-activate',
@@ -19,7 +22,7 @@ export class ActivateComponent implements OnInit {
     this.params = this.activatedRoute.queryParams
     this.token = this.params.value.token
 
-    this.httpClient.get(`http://localhost:8000/api/v1/auth_/activate?token=${this.token}`).subscribe(v => {
+    this.httpClient.get(`${API_HOST}/api/v1/auth_/activate?token=${this.token}`).subscribe(v => {
         console.log(v)
     })
   }

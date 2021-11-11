@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {INote} from "../../../interfaces";
+import {environment} from "../../../../../environments/environment";
+
+const API_HOST = environment.API_HOST
 
 @Component({
   selector: 'app-notes',
@@ -15,7 +18,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.httpClient.get<INote[]>('http://localhost:8000/api/v1/notes').subscribe(value => this.notes = value)
+    this.httpClient.get<INote[]>(`${API_HOST}/api/v1/notes`).subscribe(value => this.notes = value)
   }
 
 }

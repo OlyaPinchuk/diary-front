@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<IToken> {
-    return this.httpClient.post<IToken>(URL.refreshTokenURL, {refresh: this.getRefreshToken()})
+    return this.httpClient.post<IToken>(`${API_HOST}/api/v1/auth_/refresh`, {refresh: this.getRefreshToken()})
       .pipe(
         tap((tokens: IToken) => this.setTokens(tokens))
       )

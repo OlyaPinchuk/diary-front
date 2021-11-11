@@ -4,6 +4,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {INote} from "../../../../interfaces";
 import {NoteService} from "../../../../services/note.service";
+import {environment} from "../../../../../../environments/environment";
+
+const API_HOST = environment.API_HOST
 
 @Component({
   selector: 'app-notes',
@@ -67,7 +70,7 @@ export class NotesComponent implements OnInit {
   searchInput() {
     this.foundNotes = []
     this.searchPage = 0
-    this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/notes/search`, {
+    this.httpClient.get<INote[]>(`${API_HOST}/api/v1/notes/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,
@@ -93,7 +96,7 @@ export class NotesComponent implements OnInit {
   changeSearchPage(){
     this.searchPage = this.pageEvent.pageIndex
     console.log(this.searchPage)
-    this.httpClient.get<INote[]>(`http://localhost:8000/api/v1/notes/search`, {
+    this.httpClient.get<INote[]>(`${API_HOST}/api/v1/notes/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,

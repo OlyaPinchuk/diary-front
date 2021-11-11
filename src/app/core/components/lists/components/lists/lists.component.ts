@@ -4,6 +4,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {IList} from "../../../../interfaces";
 import {ListService} from "../../../../services/list.service";
+import {environment} from "../../../../../../environments/environment";
+
+const API_HOST = environment.API_HOST
 
 @Component({
   selector: 'app-lists',
@@ -66,7 +69,7 @@ export class ListsComponent implements OnInit {
   searchInput() {
     this.foundLists = []
     this.searchPage = 0
-    this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
+    this.httpClient.get(`${API_HOST}/api/v1/lists/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,
@@ -92,7 +95,7 @@ export class ListsComponent implements OnInit {
   changeSearchPage() {
     this.searchPage = this.pageEvent.pageIndex
     if (this.searchSortOption == 0 || this.searchSortOption == 1){
-      this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
+      this.httpClient.get(`${API_HOST}/api/v1/lists/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,
@@ -114,7 +117,7 @@ export class ListsComponent implements OnInit {
         .catch(console.log);
     }
     else {
-      this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
+      this.httpClient.get(`${API_HOST}/api/v1/lists/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,
@@ -138,7 +141,7 @@ export class ListsComponent implements OnInit {
 
   changePage() {
     this.page = this.pageEvent.pageIndex
-    this.httpClient.get(`http://localhost:8000/api/v1/users/${this.userId}/lists`, {
+    this.httpClient.get(`${API_HOST}/api/v1/users/${this.userId}/lists`, {
       params: {
         pageIndex: this.page
       },
@@ -157,7 +160,7 @@ export class ListsComponent implements OnInit {
     this.sortOption = option
     if (this.found) {
       this.searchSortOption = option
-      this.httpClient.get(`http://localhost:8000/api/v1/lists/search`, {
+      this.httpClient.get(`${API_HOST}/api/v1/lists/search`, {
       params: {
         userId: this.userId,
         searchText: this.search,
@@ -180,7 +183,7 @@ export class ListsComponent implements OnInit {
         .catch(console.log);
     }
     else if (!this.found) {
-      this.httpClient.get(`http://localhost:8000/api/v1/lists/sort`, {
+      this.httpClient.get(`${API_HOST}/api/v1/lists/sort`, {
       params: {
         userId: this.userId,
         sortOption: this.sortOption,
@@ -199,7 +202,7 @@ export class ListsComponent implements OnInit {
 
   changeSortedPage() {
     this.page = this.pageEvent.pageIndex
-    this.httpClient.get(`http://localhost:8000/api/v1/lists/sort`, {
+    this.httpClient.get(`${API_HOST}/api/v1/lists/sort`, {
       params: {
         userId: this.userId,
         sortOption: this.sortOption,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {IFullUser} from "../../../interfaces";
 import {UserService} from "../../../services/user.service";
+import {timeSinceInMicros} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
 
 @Component({
   selector: 'app-landing',
@@ -13,6 +14,7 @@ export class LandingComponent implements OnInit {
   userId: number
   user: IFullUser
   color: number
+  admin: boolean = false
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) { }
 
@@ -25,6 +27,9 @@ export class LandingComponent implements OnInit {
     })
     this.userService.getUser(this.userId).subscribe(value => {
       this.user = value
+      if (this.user.is_staff) {
+        this.admin = true
+      }
     })
   }
 
@@ -40,4 +45,7 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['users', this.userId, 'lists'])
   }
 
+  goToAdminPage() {
+    this.router.navigate(['admin'])
+  }
 }

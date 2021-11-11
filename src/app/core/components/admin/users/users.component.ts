@@ -18,8 +18,17 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.httpClient.get<IFullUser[]>(`${API_HOST}/api/v1/users`).subscribe(value => this.users = value)
+    this.httpClient.get<IFullUser[]>(`${API_HOST}/api/v1/users`).subscribe(value => {
+      this.users = value
+    })
 
+  }
+
+  upgradeToAdmin(id: any) {
+    console.log(id)
+    this.httpClient.patch(`${API_HOST}/api/v1/users/${id}/to_admin`, '').subscribe(value => {
+      console.log(value)
+    }, error => alert(`You do not have permission to perform this action. \n ${error.message}`))
   }
 
 }

@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   userId: number
   user: IFullUser
   color: number
+  admin: boolean = false
 
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router, private authService: AuthService, private userService: UserService) { }
 
@@ -27,6 +28,9 @@ export class UserComponent implements OnInit {
       })
       this.userService.getUser(this.userId).subscribe(value => {
         this.user = value
+        if (this.user.is_staff) {
+          this.admin = true
+        }
       })
     }
   }
@@ -55,5 +59,9 @@ export class UserComponent implements OnInit {
   setDefaultBack() {
     localStorage.removeItem('color')
     this.color = 0
+  }
+
+  goToAdminPage() {
+    this.router.navigate(['admin'])
   }
 }

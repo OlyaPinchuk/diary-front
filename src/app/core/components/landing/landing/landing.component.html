@@ -1,5 +1,8 @@
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
   <ul>
+    <li *ngIf="admin">
+      <button mat-raised-button (click)="goToAdminPage()">Admin Page</button>
+    </li>
     <li>
       <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
     </li>

@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     this.form = new FormGroup({
       email: new FormControl('', [v.email, v.required]),
       password: new FormControl('', v.pattern(regex.password)),
+      // is_staff: new FormControl(''),
       profile: new FormGroup({
         name: new FormControl('', [v.required, v.pattern(regex.name)]),
         surname: new FormControl('', [v.required, v.min(1), v.max(150)]),
@@ -29,6 +30,7 @@ export class RegisterComponent implements OnInit {
 
   }
   register(form: FormGroup): void {
+    console.log(form.getRawValue())
     this.authService.register(form.getRawValue()).subscribe((response) => {
       this.router.navigate(['auth', 'login']);
     }, error => {

@@ -5,6 +5,9 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {IAuth, IRegister, IToken} from "../interfaces";
 import {URL} from '../../shared/config/'
 import {tap} from "rxjs/operators";
+import {environment} from '../../../environments/environment'
+
+const API_HOST = environment.API_HOST
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +15,22 @@ import {tap} from "rxjs/operators";
 export class AuthService {
   private accessTokenKey = 'access';
   private refreshTokenKey = 'refresh';
-  private state = new BehaviorSubject<number>(0);
+  // private state = new BehaviorSubject<number>(0);
 
   constructor(private httpClient: HttpClient) { }
 
   login(user: IAuth): Observable<IToken> {
-    return this.httpClient.post<IToken>('http://localhost:8000/api/v1/auth_', user)
+    console.log(API_HOST)
+    // return this.httpClient.post<IToken>('http://localhost:8000/api/v1/auth_', user)
+    return this.httpClient.post<IToken>(`${API_HOST}/api/v1/auth_`, user)
       .pipe(
         tap((tokens: IToken) => this.setTokens(tokens))
       )
   }
 
   register(user: IRegister): Observable<void> {
-    return this.httpClient.post<void>('http://localhost:8000/api/v1/auth_/register', user)
+    // return this.httpClient.post<void>('http://localhost:8000/api/v1/auth_/register', user)
+    return this.httpClient.post<void>( `${API_HOST}/api/v1/auth_/register`, user)
   }
 
   refreshToken(): Observable<IToken> {

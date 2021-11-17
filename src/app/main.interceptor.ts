@@ -29,7 +29,7 @@ export class MainInterceptor implements HttpInterceptor {
         if (res.status === 401) {
           return this.handle401Error(request, next);
         }
-        console.log(res.error.detail);
+        // console.log(res.error.detail);
       }
       if (res.status === 403) {
         this.router.navigate(['login'], {

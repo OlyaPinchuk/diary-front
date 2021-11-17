@@ -32,6 +32,9 @@ export class ChosenNoteComponent implements OnInit {
       })
       this.noteService.getChosenNote(this.userId, this.noteId).subscribe(value => {
         this.chosenNote = value
+        if (this.chosenNote.user != this.userId) {
+          this.router.navigate(['users', this.userId, 'notes'])
+        }
       })
   }
 
@@ -52,7 +55,7 @@ export class ChosenNoteComponent implements OnInit {
   }
 
   deleteNote(noteId: any) {
-    this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
+    this.noteService.deleteNote(noteId).subscribe(() => {
       this.router.navigate(['users', this.userId, 'notes'])
     })
   }

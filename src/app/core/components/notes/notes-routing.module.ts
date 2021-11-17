@@ -4,10 +4,11 @@ import {NotesComponent} from "./components/notes/notes.component";
 import {NoteComponent} from "./components/note/note.component";
 import {ChosenNoteComponent} from "./components/chosen-note/chosen-note.component";
 import {EditNoteComponent} from "./components/edit-note/edit-note.component";
+import {AuthGuard} from "../../guards/auth.guard";
 
 const routes: Routes = [
-  {path: '', component: NotesComponent},
-  {path: 'add', component: NoteComponent},
+  {path: '', component: NotesComponent, canActivate: [AuthGuard]},
+  {path: 'add', component: NoteComponent, canActivate: [AuthGuard]},
   {path: ':noteID', component: ChosenNoteComponent},
   {path: ':noteID/edit', component: EditNoteComponent}
 ];

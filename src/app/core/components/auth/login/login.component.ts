@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       let decoded:any = JWTDecode(this.token)
       this.userId = decoded.user_id
       // this.router.navigate(['users', this.userId]);
+
       this.router.navigate(['auth', 'landing', this.userId]);
     }, () => this.form.reset());
   }
@@ -50,23 +51,23 @@ export class LoginComponent implements OnInit {
       }
   }
 
-  loginAdmin(form: FormGroup) {
-    this.authService.login(form.getRawValue()).subscribe((v) => {
-      this.token = localStorage.getItem("access")
-      let decoded:any = JWTDecode(this.token)
-      this.userId = decoded.user_id
-      this.userService.getUser(this.userId).subscribe(value => {
-        let user = value
-        if (user.is_staff == false) {
-          alert('Access denied. You are not admin. Ha-ha')
-          localStorage.removeItem('access')
-          localStorage.removeItem('refresh')
-        }
-        else {
-          this.router.navigate(['admin']);
-        }
-      })
-    }, () => this.form.reset());
-  }
+  // loginAdmin(form: FormGroup) {
+  //   this.authService.login(form.getRawValue()).subscribe((v) => {
+  //     this.token = localStorage.getItem("access")
+  //     let decoded:any = JWTDecode(this.token)
+  //     this.userId = decoded.user_id
+  //     this.userService.getUser(this.userId).subscribe(value => {
+  //       let user = value
+  //       if (user.is_staff == false) {
+  //         alert('Access denied. You are not admin. Ha-ha')
+  //         localStorage.removeItem('access')
+  //         localStorage.removeItem('refresh')
+  //       }
+  //       else {
+  //         this.router.navigate(['admin']);
+  //       }
+  //     })
+  //   }, () => this.form.reset());
+  // }
 
 }

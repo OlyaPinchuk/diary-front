@@ -23,7 +23,6 @@ export class ActivateComponent implements OnInit {
     this.token = this.params.value.token
 
     this.httpClient.get(`${API_HOST}/api/v1/auth_/activate?token=${this.token}`).subscribe(v => {
-        console.log(v)
     })
   }
 

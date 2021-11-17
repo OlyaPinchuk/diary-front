@@ -26,7 +26,6 @@ export class NoteComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     if (localStorage.hasOwnProperty('view')) {
       this.viewOption = parseInt(<string>localStorage.getItem('view'))
-      console.log(this.viewOption)
     } else {
       this.viewOption = 0
     }
@@ -46,12 +45,10 @@ export class NoteComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if (localStorage.hasOwnProperty('view')) {
       this.viewOption = parseInt(<string>localStorage.getItem('view'))
-      console.log(this.viewOption)
     } else if (!localStorage.hasOwnProperty('view')) {
       this.viewOption = 0
     }
   }
-
 
   getNote(noteId: any){
     this.router.navigate(['users', this.userId, 'notes', noteId])
@@ -69,8 +66,7 @@ export class NoteComponent implements OnInit, DoCheck {
 
   deleteNote(noteId: any) {
     let currentUrl = this.router.url
-    console.log(currentUrl)
-    this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
+    this.noteService.deleteNote(noteId).subscribe(() => {
       this.router.navigate([currentUrl])
     })
   }

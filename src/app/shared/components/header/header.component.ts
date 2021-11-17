@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.token = localStorage.getItem("access")
     let decoded:any = JWTDecode(this.token)
     this.userId = decoded.user_id
-    // this.router.navigate(['users', `${this.userId}`])
     this.router.navigate(['auth', 'landing', this.userId])
   }
 
@@ -56,6 +55,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   logOut(): void {
       localStorage.removeItem('access')
       localStorage.removeItem('refresh')
+      localStorage.removeItem('user')
       this.checkToken()
   }
 

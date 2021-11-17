@@ -31,6 +31,9 @@ export class ChosenListComponent implements OnInit {
 
     this.listService.getChosenList(this.userId, this.listId).subscribe(value => {
       this.chosenList = value
+      if (this.chosenList.user != this.userId) {
+          this.router.navigate(['users', this.userId, 'lists'])
+      }
     })
   }
 

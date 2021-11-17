@@ -62,3 +62,33 @@ mat-card-title {
 .yellowBack {
   background: rgba(255, 255, 224, 0.77);
 }
+
+.upload {
+  border: 1px lightgray solid;
+  border-radius: 3px;
+  width: fit-content;
+  margin: 5px 0;
+  padding: 0 5px;
+  display: block;
+}
+
+.upload:hover {
+  cursor: pointer;
+
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.imgName {
+  border-bottom: 1px lightgray solid;
+  margin: 10px 0;
+  padding-left: 5px;
+}

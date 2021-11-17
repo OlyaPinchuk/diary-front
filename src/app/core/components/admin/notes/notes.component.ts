@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {INote} from "../../../interfaces";
 import {environment} from "../../../../../environments/environment";
+import {NoteService} from "../../../services/note.service";
 
 const API_HOST = environment.API_HOST
 
@@ -14,11 +15,10 @@ export class NotesComponent implements OnInit {
 
   notes: INote[]
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private noteService: NoteService) { }
 
   ngOnInit(): void {
-
-    this.httpClient.get<INote[]>(`${API_HOST}/api/v1/notes`).subscribe(value => this.notes = value)
+    this.noteService.getAllNotes().subscribe(value => this.notes = value)
   }
 
 }

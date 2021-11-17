@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IList, INote} from "../../../interfaces";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
+import {ListService} from "../../../services/list.service";
 
 const API_HOST = environment.API_HOST
 
@@ -14,10 +15,10 @@ export class ListsComponent implements OnInit {
 
   lists: IList[]
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private listService: ListService) { }
 
   ngOnInit(): void {
-        this.httpClient.get<IList[]>(`${API_HOST}/api/v1/lists`).subscribe(value => this.lists = value)
+        this.listService.getAllLists().subscribe(value => this.lists = value)
   }
 
 }

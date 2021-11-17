@@ -4,9 +4,10 @@ import {ListsComponent} from "./components/lists/lists.component";
 import {ListComponent} from "./components/list/list.component";
 import {ChosenListComponent} from "./components/chosen-list/chosen-list.component";
 import {EditListComponent} from "./components/edit-list/edit-list.component";
+import {AuthGuard} from "../../guards/auth.guard";
 
 const routes: Routes = [
-  {path: '', component: ListsComponent},
+  {path: '', component: ListsComponent, canActivate: [AuthGuard]},
   {path: 'add', component: ListComponent},
   {path: ':listId', component: ChosenListComponent},
   {path: ':listId/edit', component: EditListComponent},

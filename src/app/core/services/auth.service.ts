@@ -20,7 +20,6 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   login(user: IAuth): Observable<IToken> {
-    console.log(API_HOST)
     // return this.httpClient.post<IToken>('http://localhost:8000/api/v1/auth_', user)
     return this.httpClient.post<IToken>(`${API_HOST}/api/v1/auth_`, user)
       .pipe(

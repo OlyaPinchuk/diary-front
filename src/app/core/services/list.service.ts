@@ -13,7 +13,11 @@ export class ListService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getLists(userId: number, page: number) {
+  getAllLists() {
+    return this.httpClient.get<IList[]>(`${API_HOST}/api/v1/lists`)
+  }
+
+  getUserLists(userId: number, page: number) {
     return this.httpClient.get(`${API_HOST}/api/v1/users/${userId}/lists`, {
       params: {
         pageIndex: page
@@ -23,11 +27,11 @@ export class ListService {
   }
 
   getChosenList(userId: number, listId: number) {
-    return this.httpClient.get<IList>(`${API_HOST}/api/v1/users/${userId}/lists/${listId}`)
+    return this.httpClient.get<IList>(`${API_HOST}/api/v1/lists/${listId}`)
   }
 
   deleteList(listId: number) {
-    return this.httpClient.delete(`${API_HOST}/api/v1/lists/${listId}/delete`)
+    return this.httpClient.delete(`${API_HOST}/api/v1/lists/${listId}`)
   }
 
   changeItemStatus(itemId: number, fullItem: object) {
@@ -35,7 +39,7 @@ export class ListService {
   }
 
   saveEdits(userId: number, listId: number, form: FormGroup) {
-    return this.httpClient.put<IList>(`${API_HOST}/api/v1/users/${userId}/lists/${listId}/edit`, form.getRawValue())
+    return this.httpClient.put<IList>(`${API_HOST}/api/v1/lists/${listId}`, form.getRawValue())
   }
 
   deleteItem(itemId: number) {

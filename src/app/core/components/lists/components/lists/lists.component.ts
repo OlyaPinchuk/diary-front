@@ -49,7 +49,7 @@ export class ListsComponent implements OnInit {
     this.pageEvent.pageIndex = 0
     this.page = this.pageEvent.pageIndex
     this.activatedRoute.params.subscribe(params => this.userId = params['id'])
-    this.listService.getLists(this.userId, this.page)
+    this.listService.getUserLists(this.userId, this.page)
       .toPromise()
       .then(response => {
         this.response = response.body
@@ -82,7 +82,6 @@ export class ListsComponent implements OnInit {
         this.searchResponse = response.body
         this.searchLength = this.searchResponse.number
         this.foundLists = this.searchResponse.lists
-        console.log(this.foundLists)
         if (this.foundLists.length == 0) {
           this.found = false
         } else {

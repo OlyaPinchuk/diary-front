@@ -16,6 +16,15 @@
     <mat-card >
       <mat-card-title>My Profile</mat-card-title>
       <mat-card-content>
+        <div>
+          <img *ngIf="avatar != false" class="avatar" [src]="API_HOST+ user.profile.avatar">
+          <img *ngIf="avatar == false" class="avatar" [src]="API_HOST + '/media/avatar.jpg'">
+          <label class="upload"> Change Avatar
+            <input type="file" name="file" id="file" (change)="onFileChanged($event)" />
+          </label>
+          <div class="imgName" *ngIf="file"> Chosen Image: {{file.name}}
+          </div>
+        </div>
         <mat-form-field>
           <mat-label>Name</mat-label>
           <input matInput formControlName="name" >
@@ -28,10 +37,11 @@
           <mat-label>Age</mat-label>
           <input matInput formControlName="age" >
         </mat-form-field>
-  <!--      <div>-->
-  <!--        <input type="checkbox" formControlName="status">-->
-  <!--        <mat-label>I am admin</mat-label>-->
-  <!--      </div>-->
+
+<!--        <input class="file-upload" type="file" accept="image/*" formControlName="avatar">-->
+<!--        <button >Choose Image</button>-->
+<!--        <input type="file" class="file-upload" onchange="console.log(event.target.files)">-->
+
         <button mat-raised-button (click)="saveEdits(form)" >Save Changes</button>
       </mat-card-content>
     </mat-card>

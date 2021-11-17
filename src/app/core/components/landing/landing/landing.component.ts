@@ -27,6 +27,7 @@ export class LandingComponent implements OnInit {
     })
     this.userService.getUser(this.userId).subscribe(value => {
       this.user = value
+      localStorage.setItem('user', JSON.stringify(this.user))
       if (this.user.is_staff) {
         this.admin = true
       }

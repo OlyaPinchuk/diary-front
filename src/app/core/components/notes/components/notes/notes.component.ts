@@ -95,7 +95,6 @@ export class NotesComponent implements OnInit {
 
   changeSearchPage(){
     this.searchPage = this.pageEvent.pageIndex
-    console.log(this.searchPage)
     this.httpClient.get<INote[]>(`${API_HOST}/api/v1/notes/search`, {
       params: {
         userId: this.userId,

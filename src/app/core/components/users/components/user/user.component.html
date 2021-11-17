@@ -1,6 +1,5 @@
 <div [ngClass]="{'pinkBack': color == 1, 'yellowBack': color == 2}" class="box">
   <ul>
-
     <li>
       <button class="toProfileButton" mat-raised-button (click)="goToProfile()">My Profile</button>
     </li>
@@ -12,7 +11,6 @@
     </li>
     <li>
      <button mat-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu"> Change Background
-<!--      <mat-icon>more_vert</mat-icon>-->
       </button>
       <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="setDefaultBack()">
@@ -38,6 +36,8 @@
 
   <mat-card class="container" *ngIf="user" >
     <mat-card-title>My Profile</mat-card-title>
+    <img *ngIf="avatar != false" class="avatar" [src]="API_HOST + user.profile.avatar">
+    <img *ngIf="avatar == false" class="avatar" [src]="API_HOST + '/media/avatar.jpg'">
     <mat-card-content>
       <div>Name: {{user.profile.name}}</div>
       <mat-divider inset ></mat-divider>

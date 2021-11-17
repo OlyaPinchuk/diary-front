@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {IFullUser} from "../../../../interfaces";
 import {AuthService} from "../../../../services/auth.service";
 import {UserService} from "../../../../services/user.service";
+import {environment} from "../../../../../../environments/environment";
+
 
 @Component({
   selector: 'app-user',
@@ -15,6 +17,8 @@ export class UserComponent implements OnInit {
   user: IFullUser
   color: number
   admin: boolean = false
+  avatar: boolean
+  API_HOST = environment.API_HOST
 
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router, private authService: AuthService, private userService: UserService) { }
 
@@ -28,6 +32,9 @@ export class UserComponent implements OnInit {
       })
       this.userService.getUser(this.userId).subscribe(value => {
         this.user = value
+        if (this.user.profile.avatar == 'images/avatar.jpg') {
+          this.avatar = false
+        }
         if (this.user.is_staff) {
           this.admin = true
         }
@@ -61,7 +68,7 @@ export class UserComponent implements OnInit {
     this.color = 0
   }
 
-  goToAdminPage() {
-    this.router.navigate(['admin'])
-  }
+  // goToAdminPage() {
+  //   this.router.navigate(['admin'])
+  // }
 }

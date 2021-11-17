@@ -31,6 +31,9 @@ export class EditNoteComponent implements OnInit {
 
     this.noteService.getChosenNote(this.userId, this.noteId).subscribe(value => {
       this.note = value
+      if (this.note.user != this.userId) {
+          this.router.navigate(['users', this.userId, 'notes'])
+      }
         this.form = new FormGroup({
           title: new FormControl(this.note.title),
           content: new FormControl(this.note.content),
@@ -59,7 +62,7 @@ export class EditNoteComponent implements OnInit {
   }
 
   deleteNote(noteId: any) {
-    this.noteService.deleteNote(this.userId, noteId).subscribe(() => {
+    this.noteService.deleteNote(noteId).subscribe(() => {
       this.router.navigate(['users', this.userId, 'notes'])
     })
   }

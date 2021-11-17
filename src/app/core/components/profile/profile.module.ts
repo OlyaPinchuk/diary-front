@@ -10,11 +10,13 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+// import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    // FileUploadComponent
   ],
     imports: [
         CommonModule,

@@ -59,7 +59,6 @@ export class ListComponent implements OnInit, DoCheck {
   ngDoCheck() {
      if (localStorage.hasOwnProperty('view')) {
       this.viewOption = parseInt(<string>localStorage.getItem('view'))
-      console.log(this.viewOption)
     } else if (!localStorage.hasOwnProperty('view')) {
       this.viewOption = 0
     }
@@ -81,7 +80,6 @@ export class ListComponent implements OnInit, DoCheck {
 
   deleteList(listId: any) {
     let currentUrl = this.router.url
-    console.log(currentUrl)
     this.listService.deleteList(listId).subscribe(() => {
       this.router.navigate(['users', this.userID])
       // this.router.navigate([currentUrl])

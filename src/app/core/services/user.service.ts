@@ -13,11 +13,19 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllUsers() {
+    return this.httpClient.get<IFullUser[]>(`${API_HOST}/api/v1/users`)
+  }
+
   getUser(userId: number) {
     return this.httpClient.get<IFullUser>(`${API_HOST}/api/v1/users/${userId}`)
   }
 
   saveEdits(userId: number, form: FormGroup) {
-    return this.httpClient.put(`${API_HOST}/api/v1/users/${userId}/profile`, form.getRawValue())
+    return this.httpClient.patch(`${API_HOST}/api/v1/users/${userId}/profile`, form)
+  }
+
+  upgradeToAdmin(id: any) {
+    return this.httpClient.patch(`${API_HOST}/api/v1/users/${id}/to_admin`, '')
   }
 }

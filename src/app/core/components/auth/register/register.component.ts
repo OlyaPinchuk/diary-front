@@ -30,8 +30,8 @@ export class RegisterComponent implements OnInit {
 
   }
   register(form: FormGroup): void {
-    console.log(form.getRawValue())
     this.authService.register(form.getRawValue()).subscribe((response) => {
+      alert('Check your email.')
       this.router.navigate(['auth', 'login']);
     }, error => {
       let msg: string = 'Error:\n'

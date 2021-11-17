@@ -11,8 +11,11 @@ const API_HOST = environment.API_HOST
 })
 export class NoteService {
 
-
   constructor(private httpClient: HttpClient) { }
+
+  getAllNotes() {
+    return this.httpClient.get<INote[]>(`${API_HOST}/api/v1/notes`)
+  }
 
   getUserNotes(userId: number, page: number) {
     return this.httpClient.get<INote[]>(`${API_HOST}/api/v1/users/${userId}/notes`, {
@@ -24,20 +27,19 @@ export class NoteService {
   }
 
   getChosenNote(userId: number, noteId: number) {
-    return this.httpClient.get<INote>(`${API_HOST}/api/v1/users/${userId}/notes/${noteId}`)
+    return this.httpClient.get<INote>(`${API_HOST}/api/v1/notes/${noteId}`)
   }
 
   createNote(form: FormGroup) {
     return this.httpClient.post<INote>(`${API_HOST}/api/v1/notes/add`, form.getRawValue())
   }
 
-  deleteNote(userId: number, noteId: number) {
-    return this.httpClient.delete(`${API_HOST}/api/v1/notes/${noteId}/delete`)
+  deleteNote(noteId: number) {
+    return this.httpClient.delete(`${API_HOST}/api/v1/notes/${noteId}`)
   }
 
   saveEdits(userId: number, noteId: number, form: FormGroup) {
-    return this.httpClient.put<INote>(`${API_HOST}/api/v1/users/${userId}/notes/${noteId}/edit`, form.getRawValue())
-
+    return this.httpClient.put<INote>(`${API_HOST}/api/v1/notes/${noteId}`, form.getRawValue())
   }
 
 }

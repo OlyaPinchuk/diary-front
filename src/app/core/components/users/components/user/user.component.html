@@ -36,14 +36,15 @@
 
   <mat-card class="container" *ngIf="user" >
     <mat-card-title>My Profile</mat-card-title>
+<!--    поправити шляхи аватарів-->
     <img *ngIf="avatar != false"
          crossOrigin="anonymous"
          referrerPolicy="origin"
-         class="avatar" [src]="API_HOST + user.profile.avatar">
-    <img *ngIf="avatar == false"
-         crossOrigin="anonymous"
-         referrerPolicy="origin"
-         class="avatar" [src]="API_HOST + '/media/avatar.jpg'">
+         class="avatar" [src]="'https://cors-everywhere-me.herokuapp.com/'+ user.profile.avatar">
+<!--    <img *ngIf="avatar == false"-->
+<!--         crossOrigin="anonymous"-->
+<!--         referrerPolicy="origin"-->
+<!--         class="avatar" [src]="API_HOST + '/images/avatar.jpg'">-->
     <mat-card-content>
       <div>Name: {{user.profile.name}}</div>
       <mat-divider inset ></mat-divider>

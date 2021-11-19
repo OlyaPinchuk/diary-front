@@ -32,9 +32,12 @@ export class UserComponent implements OnInit {
       })
       this.userService.getUser(this.userId).subscribe(value => {
         this.user = value
-        if (this.user.profile.avatar == 'images/avatar.jpg') {
-          this.avatar = false
-        }
+        console.log(this.user)
+
+        // used once for local run
+        // if (this.user.profile.avatar == 'images/avatar.jpg') {
+        //   this.avatar = false
+        // }
         if (this.user.is_staff) {
           this.admin = true
         }

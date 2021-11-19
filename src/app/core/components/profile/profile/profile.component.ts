@@ -39,9 +39,9 @@ export class ProfileComponent implements OnInit {
       })
       this.userService.getUser(this.userId).subscribe(value => {
         this.user = value
-        if (this.user.profile.avatar == 'images/avatar.jpg') {
-          this.avatar = false
-        }
+        // if (this.user.profile.avatar == 'images/avatar.jpg') {
+        //   this.avatar = false
+        // }
         this.form = new FormGroup({
             name: new FormControl(this.user.profile.name),
             surname: new FormControl(this.user.profile.surname),
